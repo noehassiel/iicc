@@ -1,26 +1,18 @@
-{{-- CMS: events --}}
+{{-- Events: managed from the admin panel (admin.events.*) --}}
 @php
-    $culturalActivities = [
-        ['slug' => 'gastronomia', 'title' => __('Gastronomía'), 'description' => __('Descripción')],
-        ['slug' => 'manualidad', 'title' => __('Manualidad'), 'description' => __('Descripción')],
-        ['slug' => 'otros', 'title' => __('Otros'), 'description' => __('Descripción')],
+    $events = App\Models\Event::query()->with('photos')->latest('date')->get();
+
+    $toCard = fn (App\Models\Event $event) => [
+        'slug' => $event->slug,
+        'title' => $event->localized('title'),
+        'description' => $event->localized('description'),
+        'cover' => $event->coverUrl(),
+        'year' => $event->date->format('Y'),
     ];
 
-    $campusEvents = [
-        ['slug' => 'ano-nuevo-chino', 'title' => __('Año Nuevo Chino'), 'description' => __('Descripción')],
-        ['slug' => 'aniversarios-del-instituto', 'title' => __('Aniversarios del Instituto'), 'description' => __('Descripción')],
-        ['slug' => 'ceremonia-de-apertura', 'title' => __('Ceremonia de Apertura'), 'description' => __('Descripción')],
-    ];
-
-    $externalEvents = [
-        ['slug' => '4to-festival-de-arte-y-cultura-de-taiwan', 'year' => 2023, 'title' => __('4to Festival de Arte y Cultura de Taiwán')],
-        ['slug' => '3er-festival-de-arte-y-cultura-de-taiwan', 'year' => 2016, 'title' => __('3er Festival de Arte y Cultura de Taiwán')],
-        ['slug' => '2do-festival-de-arte-y-cultura-de-taiwan', 'year' => 2015, 'title' => __('2do Festival de Arte y Cultura de Taiwán')],
-        ['slug' => '1er-festival-de-arte-y-cultura-de-taiwan', 'year' => 2013, 'title' => __('1er Festival de Arte y Cultura de Taiwán')],
-        ['slug' => 'desfile-de-ano-nuevo-chino-2010', 'year' => 2010, 'title' => __('Desfile de Año Nuevo Chino sobre Reforma')],
-        ['slug' => 'desfile-de-ano-nuevo-chino-2009', 'year' => 2009, 'title' => __('Desfile de Año Nuevo Chino sobre Reforma')],
-        ['slug' => 'desfile-de-ano-nuevo-chino-2008', 'year' => 2008, 'title' => __('Desfile de Año Nuevo Chino sobre Reforma')],
-    ];
+    $culturalActivities = $events->where('category', App\Enums\EventCategory::Cultural)->map($toCard)->values()->all();
+    $campusEvents = $events->where('category', App\Enums\EventCategory::Campus)->map($toCard)->values()->all();
+    $externalEvents = $events->where('category', App\Enums\EventCategory::Huella)->map($toCard)->values()->all();
 
     $cardSchemes = [
         ['background' => '#1f4e8c', 'color' => '#ffffff'],
@@ -34,14 +26,13 @@
         ...$cardSchemes[$index % count($cardSchemes)],
     ]);
 
-    // Modal data, keyed by slug. Gallery photos come from the CMS later.
-    $modalEvents = collect([...$culturalActivities, ...$campusEvents, ...$externalEvents])
-        ->mapWithKeys(fn (array $event) => [$event['slug'] => [
-            'title' => $event['title'],
-            'date' => isset($event['year']) ? (string) $event['year'] : __('Fecha del evento'),
-            'description' => $event['description'] ?? __('Descripción de esta actividad'),
-            'photos' => [],
-        ]]);
+    // Modal data, keyed by slug.
+    $modalEvents = $events->mapWithKeys(fn (App\Models\Event $event) => [$event->slug => [
+        'title' => $event->localized('title'),
+        'date' => $event->displayDate(),
+        'description' => $event->localized('description') ?? '',
+        'photos' => $event->photos->map->url()->all(),
+    ]]);
 @endphp
 
 <x-layouts.site title="Eventos">
@@ -73,10 +64,15 @@
             <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($culturalActivities as $event)
                     <button type="button" x-on:click="current = @js($event['slug'])" class="group block w-full cursor-pointer text-left">
-                        {{-- Image: event cover photo --}}
-                        <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+                        @if ($event['cover'])
+                            <img src="{{ $event['cover'] }}" alt="" loading="lazy" class="aspect-[4/3] w-full rounded-2xl object-cover">
+                        @else
+                            <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+                        @endif
                         <h3 class="mt-4 text-lg font-semibold">{{ $event['title'] }}</h3>
-                        <p class="mt-1 text-neutral-600">{{ $event['description'] }}</p>
+                        @if ($event['description'])
+                            <p class="mt-1 line-clamp-2 text-neutral-600">{{ $event['description'] }}</p>
+                        @endif
                         <span class="mt-2 inline-block font-medium text-brand-blue group-hover:underline">{{ __('Ver fotos') }} →</span>
                     </button>
                 @endforeach
@@ -98,10 +94,15 @@
             <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($campusEvents as $event)
                     <button type="button" x-on:click="current = @js($event['slug'])" class="group block w-full cursor-pointer text-left">
-                        {{-- Image: event cover photo --}}
-                        <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+                        @if ($event['cover'])
+                            <img src="{{ $event['cover'] }}" alt="" loading="lazy" class="aspect-[4/3] w-full rounded-2xl object-cover">
+                        @else
+                            <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+                        @endif
                         <h3 class="mt-4 text-lg font-semibold">{{ $event['title'] }}</h3>
-                        <p class="mt-1 text-neutral-600">{{ $event['description'] }}</p>
+                        @if ($event['description'])
+                            <p class="mt-1 line-clamp-2 text-neutral-600">{{ $event['description'] }}</p>
+                        @endif
                         <span class="mt-2 inline-block font-medium text-brand-blue group-hover:underline">{{ __('Ver fotos') }} →</span>
                     </button>
                 @endforeach

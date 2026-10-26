@@ -17,6 +17,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Admin user
+    |--------------------------------------------------------------------------
+    |
+    | Credentials used by AdminUserSeeder. The password must be set in
+    | production; elsewhere it falls back to "password".
+    |
+    */
+
+    'admin' => [
+        'name' => env('ADMIN_NAME', 'Administrador IICC'),
+        'email' => env('ADMIN_EMAIL', 'admin@iicc.org.mx'),
+        'password' => env('ADMIN_PASSWORD'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Locales
     |--------------------------------------------------------------------------
     |

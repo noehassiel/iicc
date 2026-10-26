@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('idioma/{locale}', function (string $locale) {
@@ -20,8 +21,14 @@ Route::view('contacto', 'pages.contacto')->name('contacto');
 
 Route::view('eventos', 'pages.eventos.index')->name('eventos.index');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::redirect('/', 'admin/eventos')->name('home');
+    Route::livewire('banner', Admin\Banner\Edit::class)->name('banner.edit');
+    Route::livewire('eventos', Admin\Events\Index::class)->name('events.index');
+    Route::livewire('eventos/crear', Admin\Events\Form::class)->name('events.create');
+    Route::livewire('eventos/{event}', Admin\Events\Form::class)->name('events.edit');
 });
+
+Route::redirect('dashboard', 'admin')->name('dashboard');
 
 require __DIR__.'/settings.php';

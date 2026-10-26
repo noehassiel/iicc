@@ -1,4 +1,6 @@
 @php
+    $banner = App\Models\Banner::current();
+
     $services = [
         ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-motion.webp'],
         ['route' => 'certificaciones', 'title' => __('Certificaciones oficiales'), 'text' => __('Con la guía de profesores expertos, materiales actualizados y simulacros reales, aseguramos tu éxito en los exámenes oficiales.'), 'image' => __('Foto de examen / certificación'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-moss.webp'],
@@ -18,19 +20,29 @@
 @endphp
 
 <x-layouts.site>
-    {{-- CMS: banner --}}
+    {{-- Banner: managed from the admin panel (admin.banner.edit) --}}
     <section class="relative isolate overflow-hidden bg-neutral-900 text-white">
-        {{-- Imagen: foto con fondo claro o desenfocado (4:3) --}}
-        <div class="absolute inset-0 -z-10 bg-neutral-700"></div>
+        @if ($banner?->imageUrl())
+            <img src="{{ $banner->imageUrl() }}" alt="" class="absolute inset-0 -z-20 size-full object-cover">
+            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-950/80 via-neutral-950/40 to-neutral-950/20"></div>
+        @else
+            <div class="absolute inset-0 -z-10 bg-neutral-700"></div>
+        @endif
 
         <div class="mx-auto flex min-h-[80dvh] max-w-7xl flex-col justify-end gap-6 px-4 py-16 lg:justify-center">
-            <h1 class="max-w-2xl text-4xl font-semibold text-balance sm:text-5xl">{{ __('Instituto de Idioma y Cultura China en México') }}</h1>
-            @if (app()->getLocale() === 'es')
-                <p lang="zh-Hant" class="text-xl text-white/80">墨西哥中華文化學院</p>
+            <h1 class="max-w-2xl text-4xl font-semibold text-balance sm:text-5xl">{{ $banner?->localized('title') ?? __('Instituto de Idioma y Cultura China en México') }}</h1>
+            @if ($banner?->localized('subtitle'))
+                <p class="max-w-2xl text-xl text-white/80">{{ $banner->localized('subtitle') }}</p>
             @endif
-            <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')" class="self-start">
-                {{ __('Comienza ahora') }}
-            </x-site.whatsapp-button>
+            @if ($banner?->button_url)
+                <a href="{{ $banner->button_url }}" class="inline-flex items-center justify-center gap-2 self-start rounded-full bg-brand-green px-6 py-3 font-semibold text-white transition hover:brightness-110">
+                    {{ $banner->localized('button_label') }}
+                </a>
+            @else
+                <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')" class="self-start">
+                    {{ $banner?->localized('button_label') ?? __('Comienza ahora') }}
+                </x-site.whatsapp-button>
+            @endif
         </div>
     </section>
 
