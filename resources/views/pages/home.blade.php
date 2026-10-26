@@ -1,5 +1,6 @@
 @php
-    $banner = App\Models\Banner::current();
+    $banner = App\Models\Banner::current()?->load('slides');
+    $slides = $banner?->slides ?? collect();
 
     $services = [
         ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-motion.webp'],
@@ -12,31 +13,72 @@
 
 <x-layouts.site>
     {{-- Banner: managed from the admin panel (admin.banner.edit) --}}
-    <section class="relative isolate overflow-hidden bg-neutral-900 text-white">
-        @if ($banner?->imageUrl())
-            <img src="{{ $banner->imageUrl() }}" alt="" class="absolute inset-0 -z-20 size-full object-cover">
-            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-950/80 via-neutral-950/40 to-neutral-950/20"></div>
-        @else
-            <div class="absolute inset-0 -z-10 bg-neutral-700"></div>
-        @endif
+    <div class="hero-page -mt-20">
+    <section class="hero-section-01" data-hero-section-01>
+        <div class="media" aria-live="polite">
+            @forelse ($slides as $slide)
+                <div @class(['item', 'active' => $loop->first])>
+                    @if ($slide->isVideo())
+                        <video src="{{ $slide->url() }}" @if ($slide->thumbnailUrl()) poster="{{ $slide->thumbnailUrl() }}" @endif @if ($loop->first) autoplay preload="auto" @else preload="metadata" @endif muted loop playsinline></video>
+                    @else
+                        <img src="{{ $slide->url() }}" alt="" @unless ($loop->first) loading="lazy" @endunless>
+                    @endif
+                </div>
+            @empty
+                <div class="item active"><div class="fallback"></div></div>
+            @endforelse
+        </div>
 
-        <div class="mx-auto flex min-h-[80dvh] max-w-7xl flex-col justify-end gap-6 px-4 py-16 lg:justify-center">
-            <h1 class="max-w-2xl text-4xl font-semibold text-balance sm:text-5xl">{{ $banner?->localized('title') ?? __('Instituto de Idioma y Cultura China en México') }}</h1>
+        <div class="content">
             @if ($banner?->localized('subtitle'))
-                <p class="max-w-2xl text-xl text-white/80">{{ $banner->localized('subtitle') }}</p>
+                <p>{{ $banner->localized('subtitle') }}</p>
             @endif
-            @if ($banner?->button_url)
-                <a href="{{ $banner->button_url }}" class="inline-flex items-center justify-center gap-2 self-start rounded-full bg-brand-green px-6 py-3 font-semibold text-white transition hover:brightness-110">
-                    {{ $banner->localized('button_label') }}
-                </a>
-            @else
-                <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')" class="self-start">
-                    {{ $banner?->localized('button_label') ?? __('Comienza ahora') }}
-                </x-site.whatsapp-button>
-            @endif
+
+            <div class="headline">
+                <h1>{{ $banner?->localized('title') ?? __('Instituto de Idioma y Cultura China en México') }}</h1>
+
+                <div class="cta" data-hero-nav>
+                    @if ($banner?->button_url)
+                        <a href="{{ $banner->button_url }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 font-semibold text-white transition hover:brightness-110">
+                            {{ $banner->localized('button_label') }}
+                        </a>
+                    @else
+                        <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')">
+                            {{ $banner?->localized('button_label') ?? __('Comienza ahora') }}
+                        </x-site.whatsapp-button>
+                    @endif
+                </div>
+            </div>
+
+            <span class="divider" aria-hidden="true"></span>
+
+            <div class="thumbs" aria-label="{{ __('Elegir fondo') }}" @if ($slides->count() < 2) data-single aria-hidden="true" @endif>
+                @forelse ($slides as $slide)
+                    <button @class(['active' => $loop->first]) type="button" aria-label="{{ __('Mostrar fondo :number', ['number' => $loop->iteration]) }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}">
+                        @if ($slide->thumbnailUrl())
+                            <img src="{{ $slide->thumbnailUrl() }}" alt="" loading="lazy">
+                        @else
+                            <span class="thumb-fallback" aria-hidden="true">▶</span>
+                        @endif
+                    </button>
+                @empty
+                    <button class="active" type="button" tabindex="-1" aria-pressed="true"><span class="thumb-fallback"></span></button>
+                @endforelse
+            </div>
+        </div>
+
+        <div class="loader" aria-hidden="true">
+            <div class="panel"></div>
+            <div class="panel"></div>
+
+            <div class="progress">
+                <span class="line"></span>
+                <span class="count">0%</span>
+            </div>
         </div>
     </section>
 
+    <div class="hero-section-01-next" data-hero-next>
     <section class="stacked-scroll-panel-2" data-stacked-scroll-panel-2 data-theme="light" aria-label="{{ __('Nuestros servicios') }}">
         <div class="stack" data-card-stack>
             @foreach ($services as $service)
@@ -83,7 +125,7 @@
                         @foreach ($reviews as $review)
                             <article @class(['slide', 'is-active' => $loop->first]) data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
                                 <blockquote class="quote">
-                                    <p data-quote>“{{ $review->text }}”</p>
+                                    <p data-quote>“{{ $review->localized('text') }}”</p>
                                 </blockquote>
 
                                 <footer class="person">
@@ -114,4 +156,6 @@
             </x-site.whatsapp-button>
         </div>
     </section>
+    </div>
+    </div>
 </x-layouts.site>

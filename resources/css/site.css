@@ -5,6 +5,7 @@
 @import './testimonial-05.css';
 @import './stacked-scroll-panel-2.css';
 @import './cylindrical-carousel.css';
+@import './hero-section-01.css';
 
 @source '../views/components/layouts/site.blade.php';
 @source '../views/components/site';

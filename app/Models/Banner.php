@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Concerns\HasLocalizedAttributes;
 use Database\Factories\BannerFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -19,11 +20,11 @@ use Illuminate\Support\Facades\Storage;
  * @property string|null $button_label_es
  * @property string|null $button_label_zh
  * @property string|null $button_url
- * @property string|null $image_path
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Collection<int, BannerSlide> $slides
  */
-#[Fillable(['title_es', 'title_zh', 'subtitle_es', 'subtitle_zh', 'button_label_es', 'button_label_zh', 'button_url', 'image_path'])]
+#[Fillable(['title_es', 'title_zh', 'subtitle_es', 'subtitle_zh', 'button_label_es', 'button_label_zh', 'button_url'])]
 class Banner extends Model
 {
     /** @use HasFactory<BannerFactory> */
@@ -38,10 +39,12 @@ class Banner extends Model
     }
 
     /**
-     * Public URL of the background image, if one was uploaded.
+     * Full-screen backgrounds of the hero, in display order.
+     *
+     * @return HasMany<BannerSlide, $this>
      */
-    public function imageUrl(): ?string
+    public function slides(): HasMany
     {
-        return $this->image_path ? Storage::disk('public')->url($this->image_path) : null;
+        return $this->hasMany(BannerSlide::class)->orderBy('position');
     }
 }
