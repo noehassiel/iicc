@@ -7,16 +7,7 @@
         ['route' => 'becas', 'title' => __('Becas y movilidad'), 'text' => __('Apoyamos tu dedicación con becas de excelencia académica y te brindamos la oportunidad de postular a diversas becas internacionales.'), 'image' => __('Foto de becarios'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-marsh.webp'],
     ];
 
-    /** Google reviews (5★), captured by hand until the CMS manages them. Up to 4 shown in random order on each visit. */
-    $reviews = collect([
-        ['author' => 'Robert201060', 'text' => 'Excelente institución, con una metodología y plan de aprendizaje excelentes. Igualmente, profesores que te dan un contexto muy adecuado sobre el idioma chino, la cultura y muchos aspectos útiles. También una administración muy cercana y atenta al desempeño personal.'],
-        ['author' => 'Hernández Martínez Miguel Angel', 'text' => 'Excelente instituto educativo para conocer y aprender sobre la cultura e idioma chino, principalmente chino simplificado, aunque en clase también se aprende sobre caracteres del chino tradicional. Cuenta con profesoras nativas amables, respetuosas y profesionales, y sus clases son divertidas y enriquecedoras.'],
-        ['author' => 'Victoria Castro', 'text' => 'Me encanta esta institución, tiene el mejor plan de estudios, su metodología de enseñanza es excelente. Es de las pocas escuelas que no solo te enseñan el idioma sino también su bella e interesante cultura, y tiene precios, horarios y modalidades muy accesibles. La mejor inversión.'],
-        ['author' => 'F Ramón Braojos García', 'text' => 'Las maestras son muy buenas, tienen mucha paciencia y a mi hija le gusta mucho la clase. Es la única actividad extraescolar a la que nunca protesta por ir. Además de las clases de idioma están las clases culturales una vez al mes. Una buena escuela.'],
-        ['author' => 'Andi Gonzalez', 'text' => 'Una de las pocas escuelas de mandarín en la Ciudad de México. Es una escuela relativamente pequeña con un programa completo de mandarín y un programa de inmersión en la cultura china. Bien organizada, con profesores muy capacitados.'],
-        ['author' => 'H TC', 'text' => 'Mi hermana estudia chino en el instituto. Está muy feliz y le gustan mucho sus clases. Lo recomiendo.'],
-        ['author' => 'CentralUsados MX', 'text' => 'Yo fui a pedir información, personalmente. Y es un lugar muy bonito. Decorado con dragones.'],
-    ])->shuffle()->take(4);
+    $reviews = App\Models\Review::featured();
 @endphp
 
 <x-layouts.site>
@@ -67,7 +58,8 @@
         </div>
     </section>
 
-    {{-- Reseñas de Google: se capturan a mano desde el panel --}}
+    {{-- Google reviews: managed from the admin panel (admin.reviews.*) --}}
+    @if ($reviews->isNotEmpty())
     <section class="bg-neutral-50 px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading :eyebrow="__('Reseñas de Google')">{{ __('4.5 ★ · +20 reseñas') }}</x-site.section-heading>
@@ -91,14 +83,14 @@
                         @foreach ($reviews as $review)
                             <article @class(['slide', 'is-active' => $loop->first]) data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
                                 <blockquote class="quote">
-                                    <p data-quote>“{{ $review['text'] }}”</p>
+                                    <p data-quote>“{{ $review->text }}”</p>
                                 </blockquote>
 
                                 <footer class="person">
-                                    <div class="avatar" data-avatar aria-hidden="true">{{ mb_substr($review['author'], 0, 1) }}</div>
+                                    <div class="avatar" data-avatar aria-hidden="true">{{ mb_substr($review->author, 0, 1) }}</div>
                                     <div class="identity">
-                                        <p data-person-line>{{ $review['author'] }}</p>
-                                        <p class="role" data-person-line><span class="text-brand-orange" aria-hidden="true">★★★★★</span> {{ __('Reseña de Google') }}</p>
+                                        <p data-person-line>{{ $review->author }}</p>
+                                        <p class="role" data-person-line><span class="text-brand-orange" aria-hidden="true">{{ str_repeat('★', $review->rating) }}</span><span class="sr-only">{{ __(':rating de 5 estrellas', ['rating' => $review->rating]) }}</span> {{ __('Reseña de Google') }}</p>
                                     </div>
                                 </footer>
                             </article>
@@ -108,6 +100,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <section class="relative isolate overflow-hidden px-4 py-20 text-white">
         {{-- Imagen: foto del patio escolar desenfocada (2:1) --}}

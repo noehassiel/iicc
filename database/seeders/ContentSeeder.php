@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\EventCategory;
 use App\Models\Banner;
 use App\Models\Event;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -24,6 +25,22 @@ class ContentSeeder extends Seeder
                 'button_label_es' => 'Comienza ahora',
                 'button_label_zh' => '立即開始',
             ]);
+        }
+
+        if (! Review::query()->exists()) {
+            $reviews = [
+                ['author' => 'Robert201060', 'text' => 'Excelente institución, con una metodología y plan de aprendizaje excelentes. Igualmente, profesores que te dan un contexto muy adecuado sobre el idioma chino, la cultura y muchos aspectos útiles. También una administración muy cercana y atenta al desempeño personal.'],
+                ['author' => 'Hernández Martínez Miguel Angel', 'text' => 'Excelente instituto educativo para conocer y aprender sobre la cultura e idioma chino, principalmente chino simplificado, aunque en clase también se aprende sobre caracteres del chino tradicional. Cuenta con profesoras nativas amables, respetuosas y profesionales, y sus clases son divertidas y enriquecedoras.'],
+                ['author' => 'Victoria Castro', 'text' => 'Me encanta esta institución, tiene el mejor plan de estudios, su metodología de enseñanza es excelente. Es de las pocas escuelas que no solo te enseñan el idioma sino también su bella e interesante cultura, y tiene precios, horarios y modalidades muy accesibles. La mejor inversión.'],
+                ['author' => 'F Ramón Braojos García', 'text' => 'Las maestras son muy buenas, tienen mucha paciencia y a mi hija le gusta mucho la clase. Es la única actividad extraescolar a la que nunca protesta por ir. Además de las clases de idioma están las clases culturales una vez al mes. Una buena escuela.'],
+                ['author' => 'Andi Gonzalez', 'text' => 'Una de las pocas escuelas de mandarín en la Ciudad de México. Es una escuela relativamente pequeña con un programa completo de mandarín y un programa de inmersión en la cultura china. Bien organizada, con profesores muy capacitados.'],
+                ['author' => 'H TC', 'text' => 'Mi hermana estudia chino en el instituto. Está muy feliz y le gustan mucho sus clases. Lo recomiendo.'],
+                ['author' => 'CentralUsados MX', 'text' => 'Yo fui a pedir información, personalmente. Y es un lugar muy bonito. Decorado con dragones.'],
+            ];
+
+            foreach ($reviews as $review) {
+                Review::create([...$review, 'rating' => 5]);
+            }
         }
 
         $events = [

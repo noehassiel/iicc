@@ -18,6 +18,9 @@
                     <flux:sidebar.item icon="photo" :href="route('admin.banner.edit')" :current="request()->routeIs('admin.banner.*')" wire:navigate>
                         Banner principal
                     </flux:sidebar.item>
+                    <flux:sidebar.item icon="star" :href="route('admin.reviews.index')" :current="request()->routeIs('admin.reviews.*')" wire:navigate>
+                        Reseñas
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

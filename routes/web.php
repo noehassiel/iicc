@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::livewire('eventos', Admin\Events\Index::class)->name('events.index');
     Route::livewire('eventos/crear', Admin\Events\Form::class)->name('events.create');
     Route::livewire('eventos/{event}', Admin\Events\Form::class)->name('events.edit');
+    Route::livewire('resenas', Admin\Reviews\Index::class)->name('reviews.index');
+    Route::livewire('resenas/crear', Admin\Reviews\Form::class)->name('reviews.create');
+    Route::livewire('resenas/{review}', Admin\Reviews\Form::class)->name('reviews.edit');
 });
 
 Route::redirect('dashboard', 'admin')->name('dashboard');
