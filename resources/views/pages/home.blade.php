@@ -1,0 +1,112 @@
+@php
+    $services = [
+        ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-motion.webp'],
+        ['route' => 'certificaciones', 'title' => __('Certificaciones oficiales'), 'text' => __('Con la guía de profesores expertos, materiales actualizados y simulacros reales, aseguramos tu éxito en los exámenes oficiales.'), 'image' => __('Foto de examen / certificación'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-moss.webp'],
+        ['route' => 'becas', 'title' => __('Becas y movilidad'), 'text' => __('Apoyamos tu dedicación con becas de excelencia académica y te brindamos la oportunidad de postular a diversas becas internacionales.'), 'image' => __('Foto de becarios'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-marsh.webp'],
+    ];
+
+    /** Google reviews (5★), captured by hand until the CMS manages them. Up to 4 shown in random order on each visit. */
+    $reviews = collect([
+        ['author' => 'Robert201060', 'text' => 'Excelente institución, con una metodología y plan de aprendizaje excelentes. Igualmente, profesores que te dan un contexto muy adecuado sobre el idioma chino, la cultura y muchos aspectos útiles. También una administración muy cercana y atenta al desempeño personal.'],
+        ['author' => 'Hernández Martínez Miguel Angel', 'text' => 'Excelente instituto educativo para conocer y aprender sobre la cultura e idioma chino, principalmente chino simplificado, aunque en clase también se aprende sobre caracteres del chino tradicional. Cuenta con profesoras nativas amables, respetuosas y profesionales, y sus clases son divertidas y enriquecedoras.'],
+        ['author' => 'Victoria Castro', 'text' => 'Me encanta esta institución, tiene el mejor plan de estudios, su metodología de enseñanza es excelente. Es de las pocas escuelas que no solo te enseñan el idioma sino también su bella e interesante cultura, y tiene precios, horarios y modalidades muy accesibles. La mejor inversión.'],
+        ['author' => 'F Ramón Braojos García', 'text' => 'Las maestras son muy buenas, tienen mucha paciencia y a mi hija le gusta mucho la clase. Es la única actividad extraescolar a la que nunca protesta por ir. Además de las clases de idioma están las clases culturales una vez al mes. Una buena escuela.'],
+        ['author' => 'Andi Gonzalez', 'text' => 'Una de las pocas escuelas de mandarín en la Ciudad de México. Es una escuela relativamente pequeña con un programa completo de mandarín y un programa de inmersión en la cultura china. Bien organizada, con profesores muy capacitados.'],
+        ['author' => 'H TC', 'text' => 'Mi hermana estudia chino en el instituto. Está muy feliz y le gustan mucho sus clases. Lo recomiendo.'],
+        ['author' => 'CentralUsados MX', 'text' => 'Yo fui a pedir información, personalmente. Y es un lugar muy bonito. Decorado con dragones.'],
+    ])->shuffle()->take(4);
+@endphp
+
+<x-layouts.site>
+    {{-- CMS: banner --}}
+    <section class="relative isolate overflow-hidden bg-neutral-900 text-white">
+        {{-- Imagen: foto con fondo claro o desenfocado (4:3) --}}
+        <div class="absolute inset-0 -z-10 bg-neutral-700"></div>
+
+        <div class="mx-auto flex min-h-[80dvh] max-w-7xl flex-col justify-end gap-6 px-4 py-16 lg:justify-center">
+            <h1 class="max-w-2xl text-4xl font-semibold text-balance sm:text-5xl">{{ __('Instituto de Idioma y Cultura China en México') }}</h1>
+            @if (app()->getLocale() === 'es')
+                <p lang="zh-Hant" class="text-xl text-white/80">墨西哥中華文化學院</p>
+            @endif
+            <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')" class="self-start">
+                {{ __('Comienza ahora') }}
+            </x-site.whatsapp-button>
+        </div>
+    </section>
+
+    <section class="stacked-scroll-panel-2" data-stacked-scroll-panel-2 data-theme="light" aria-label="{{ __('Nuestros servicios') }}">
+        <div class="stack" data-card-stack>
+            @foreach ($services as $service)
+                <article class="card" data-card>
+                    <div class="card-content">
+                        <h2 class="font-semibold uppercase">{{ $service['title'] }}</h2>
+                        <div class="flex flex-col gap-6">
+                            <p>{{ $service['text'] }}</p>
+                            <a href="{{ route($service['route']) }}" class="self-start font-semibold">{{ __('Leer más →') }}</a>
+                        </div>
+                    </div>
+
+                    {{-- Imagen: {{ $service['image'] }} (placeholder temporal) --}}
+                    <div class="media" aria-hidden="true">
+                        <img src="{{ $service['placeholder'] }}" alt="" loading="lazy" />
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- Reseñas de Google: se capturan a mano desde el panel --}}
+    <section class="bg-neutral-50 px-4 py-16">
+        <div class="mx-auto max-w-7xl">
+            <x-site.section-heading :eyebrow="__('Reseñas de Google')">{{ __('4.5 ★ · +20 reseñas') }}</x-site.section-heading>
+
+            <div class="testimonial-05 mt-8" data-testimonials data-autoplay="6000">
+                <div class="progress" aria-hidden="true">
+                    <span data-progress></span>
+                </div>
+
+                <div class="carousel">
+                    <nav class="controls" aria-label="{{ __('Controles de reseñas') }}">
+                        <button type="button" data-previous aria-label="{{ __('Reseña anterior') }}" aria-controls="reviews-stage">
+                            <span class="arrow" aria-hidden="true"><svg width="18" height="16" viewBox="0 0 18 16" fill="none"><path d="M0 8.88482V6.76069L13.2244 6.78353L12.8362 6.3724L7.94837 1.50745L9.41014 0L17.2672 7.81133L9.43298 15.6455L7.94837 14.1381L13.2473 8.86198L0 8.88482Z" fill="currentColor"/></svg><svg width="18" height="16" viewBox="0 0 18 16" fill="none"><path d="M0 8.88482V6.76069L13.2244 6.78353L12.8362 6.3724L7.94837 1.50745L9.41014 0L17.2672 7.81133L9.43298 15.6455L7.94837 14.1381L13.2473 8.86198L0 8.88482Z" fill="currentColor"/></svg></span>
+                        </button>
+                        <button type="button" data-next aria-label="{{ __('Reseña siguiente') }}" aria-controls="reviews-stage">
+                            <span class="arrow" aria-hidden="true"><svg width="18" height="16" viewBox="0 0 18 16" fill="none"><path d="M0 8.88482V6.76069L13.2244 6.78353L12.8362 6.3724L7.94837 1.50745L9.41014 0L17.2672 7.81133L9.43298 15.6455L7.94837 14.1381L13.2473 8.86198L0 8.88482Z" fill="currentColor"/></svg><svg width="18" height="16" viewBox="0 0 18 16" fill="none"><path d="M0 8.88482V6.76069L13.2244 6.78353L12.8362 6.3724L7.94837 1.50745L9.41014 0L17.2672 7.81133L9.43298 15.6455L7.94837 14.1381L13.2473 8.86198L0 8.88482Z" fill="currentColor"/></svg></span>
+                        </button>
+                    </nav>
+
+                    <div class="stage" id="reviews-stage">
+                        @foreach ($reviews as $review)
+                            <article @class(['slide', 'is-active' => $loop->first]) data-slide aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
+                                <blockquote class="quote">
+                                    <p data-quote>“{{ $review['text'] }}”</p>
+                                </blockquote>
+
+                                <footer class="person">
+                                    <div class="avatar" data-avatar aria-hidden="true">{{ mb_substr($review['author'], 0, 1) }}</div>
+                                    <div class="identity">
+                                        <p data-person-line>{{ $review['author'] }}</p>
+                                        <p class="role" data-person-line><span class="text-brand-orange" aria-hidden="true">★★★★★</span> {{ __('Reseña de Google') }}</p>
+                                    </div>
+                                </footer>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative isolate overflow-hidden px-4 py-20 text-white">
+        {{-- Imagen: foto del patio escolar desenfocada (2:1) --}}
+        <div class="absolute inset-0 -z-10 bg-brand-blue"></div>
+
+        <div class="mx-auto flex max-w-7xl flex-col items-start gap-4">
+            <h2 class="text-3xl font-semibold sm:text-4xl">{{ __('¿Preguntas?') }}</h2>
+            <p class="text-lg text-white/90">{{ __('Estamos listos para ayudarte.') }}<br>{{ __('¡Escríbenos y da el primer paso hoy!') }}</p>
+            <x-site.whatsapp-button :message="__('Hola, tengo una pregunta.')" class="mt-2">
+                {{ __('Escríbenos ahora') }}
+            </x-site.whatsapp-button>
+        </div>
+    </section>
+</x-layouts.site>

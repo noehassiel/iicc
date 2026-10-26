@@ -1,0 +1,68 @@
+[data-button-06],
+[data-button-06] * {
+  box-sizing: border-box;
+}
+
+[data-button-06] {
+  --size: 40px;
+  --overlap: 4px;
+  --travel: 11.8px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+  padding: 0 calc(var(--size) - var(--overlap)) 0 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: white;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  overflow: visible;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-button-06]:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
+[data-button-06] .surface {
+  position: absolute;
+  inset: 0 calc(-1 * var(--travel)) 0 0;
+  background: var(--color-brand-green);
+  clip-path: inset(0 var(--travel) 0 0 round 999px);
+  pointer-events: none;
+}
+
+[data-button-06] .label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--size);
+  padding: 0 24px;
+  white-space: nowrap;
+}
+
+[data-button-06] .arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+}
+
+[data-button-06] .arrow svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 1.8px;
+}

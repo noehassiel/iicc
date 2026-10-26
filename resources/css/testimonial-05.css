@@ -1,0 +1,267 @@
+.testimonial-05 {
+  --surface: transparent;
+  --control-surface: #e5e5e5;
+  --text: #171717;
+  --muted-text: #737373;
+  --track: #e5e5e5;
+  --progress: var(--color-brand-blue);
+  --avatar: var(--color-brand-blue);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.testimonial-05,
+.testimonial-05 *,
+.testimonial-05 *::before,
+.testimonial-05 *::after {
+  box-sizing: border-box;
+}
+
+.testimonial-05 p,
+.testimonial-05 blockquote {
+  margin: 0;
+}
+
+.testimonial-05 img,
+.testimonial-05 svg {
+  display: block;
+}
+
+.testimonial-05 button {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.testimonial-05 button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.testimonial-05 .progress {
+  height: 3px;
+  overflow: hidden;
+  background: var(--track);
+}
+
+.testimonial-05 .progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--progress);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.testimonial-05 .carousel {
+  display: grid;
+  grid-template-areas: "controls stage";
+  grid-template-columns: 0.4fr 1fr;
+  gap: 96px;
+  margin-top: 72px;
+}
+
+.testimonial-05 .controls {
+  display: flex;
+  grid-area: controls;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.testimonial-05 .controls button {
+  position: relative;
+  display: grid;
+  width: 60px;
+  aspect-ratio: 1;
+  place-items: center;
+  color: var(--text);
+  background: transparent;
+  border-radius: 50%;
+}
+
+.testimonial-05 .controls button::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background: var(--control-surface);
+  border-radius: inherit;
+  transition: transform 400ms var(--ease-out-expo);
+}
+
+.testimonial-05 .controls button:hover::before {
+  transform: scale(1.06);
+}
+
+.testimonial-05 .controls button:hover .arrow svg:first-child {
+  transform: translateX(48px);
+}
+
+.testimonial-05 .controls button:hover .arrow svg:last-child {
+  transform: translateX(0);
+}
+
+.testimonial-05 .controls button:active::before {
+  transform: scale(0.98);
+}
+
+.testimonial-05 .controls .arrow {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  overflow: clip;
+  border-radius: inherit;
+}
+
+.testimonial-05 .controls .arrow svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 16px;
+  margin: -8px 0 0 -9px;
+  color: var(--text);
+  transition: transform 500ms var(--ease-out-expo);
+}
+
+.testimonial-05 .controls .arrow svg:first-child {
+  transform: translateX(0);
+}
+
+.testimonial-05 .controls .arrow svg:last-child {
+  transform: translateX(-48px);
+}
+
+.testimonial-05 .controls [data-previous] .arrow {
+  transform: rotate(180deg);
+}
+
+.testimonial-05 .stage {
+  display: grid;
+  grid-area: stage;
+}
+
+.testimonial-05 .slide {
+  display: flex;
+  grid-area: 1 / 1;
+  flex-direction: column;
+  min-width: 0;
+  visibility: hidden;
+}
+
+.testimonial-05 .slide.is-active {
+  visibility: visible;
+}
+
+/* Reviews are paragraphs, not one-liners, so the type is smaller than the source design. */
+.testimonial-05 .quote {
+  max-width: 38ch;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.testimonial-05 .person {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.testimonial-05 .avatar {
+  display: grid;
+  flex: 0 0 64px;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  background: var(--avatar);
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  will-change: clip-path, transform;
+}
+
+.testimonial-05 .identity {
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.testimonial-05 .identity .role {
+  margin-top: 4px;
+  color: var(--muted-text);
+}
+
+.testimonial-05 .split-line-mask {
+  overflow: clip;
+}
+
+.testimonial-05 .quote .split-line-mask {
+  clip-path: inset(0.2em 0 0);
+}
+
+.testimonial-05 .split-line {
+  will-change: transform;
+}
+
+@media (max-width: 1100px) {
+  .testimonial-05 .carousel {
+    gap: 48px;
+    margin-top: 64px;
+  }
+
+  .testimonial-05 .controls button {
+    width: 54px;
+  }
+
+  .testimonial-05 .quote {
+    font-size: 28px;
+  }
+
+  .testimonial-05 .person {
+    margin-top: 32px;
+  }
+
+  .testimonial-05 .identity {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .testimonial-05 .carousel {
+    grid-template-areas:
+      "stage"
+      "controls";
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .testimonial-05 .controls button {
+    width: 48px;
+  }
+
+  .testimonial-05 .quote {
+    font-size: 22px;
+  }
+
+  .testimonial-05 .person {
+    margin-top: 28px;
+  }
+
+  .testimonial-05 .avatar {
+    flex-basis: 52px;
+    font-size: 18px;
+  }
+
+  .testimonial-05 .identity {
+    font-size: 16px;
+  }
+}
