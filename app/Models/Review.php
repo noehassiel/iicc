@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\HasLocalizedAttributes;
 use Database\Factories\ReviewFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Collection;
@@ -10,21 +11,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * A Google review captured by hand from the admin panel. Shown as written (not translated).
+ * A Google review captured by hand from the admin panel. Stored in Spanish with a Traditional Chinese translation.
  *
  * @property int $id
  * @property string $author
  * @property int $rating
- * @property string $text
+ * @property string $text_es
+ * @property string|null $text_zh
  * @property bool $is_published
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['author', 'rating', 'text', 'is_published'])]
+#[Fillable(['author', 'rating', 'text_es', 'text_zh', 'is_published'])]
 class Review extends Model
 {
     /** @use HasFactory<ReviewFactory> */
-    use HasFactory;
+    use HasFactory, HasLocalizedAttributes;
 
     /**
      * Minimum stars a review needs to appear on the site.

@@ -21,7 +21,8 @@ test('admins can add a review', function () {
     Livewire::test(Form::class)
         ->set('author', 'Robert201060')
         ->set('rating', 5)
-        ->set('text', 'Excelente institución.')
+        ->set('text_es', 'Excelente institución.')
+        ->set('text_zh', '非常優秀的學院。')
         ->call('save')
         ->assertHasNoErrors()
         ->assertRedirect(route('admin.reviews.index'));
@@ -32,7 +33,7 @@ test('admins can add a review', function () {
 test('ratings must be between one and five', function () {
     Livewire::test(Form::class)
         ->set('author', 'Alguien')
-        ->set('text', 'Texto')
+        ->set('text_es', 'Texto')
         ->set('rating', 6)
         ->call('save')
         ->assertHasErrors(['rating' => 'between']);
@@ -57,4 +58,16 @@ test('the home page shows at most four published reviews of four stars or more',
         ->and($featured->pluck('id'))->not->toContain($hidden->id, $low->id);
 
     $this->get(route('home'))->assertOk()->assertDontSee('Reseña oculta')->assertDontSee('Tres estrellas');
+});
+
+test('the home page shows reviews in the visitor language', function () {
+    Review::factory()->create(['text_es' => 'Excelente institución.', 'text_zh' => '非常優秀的學院。']);
+    Review::factory()->create(['text_es' => 'Sin traducción todavía.', 'text_zh' => null]);
+
+    $this->get(route('home'))->assertSee('Excelente institución.');
+
+    $this->withSession(['locale' => 'zh_TW'])->get(route('home'))
+        ->assertSee('非常優秀的學院。')
+        ->assertDontSee('Excelente institución.')
+        ->assertSee('Sin traducción todavía.');
 });

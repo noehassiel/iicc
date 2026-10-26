@@ -15,7 +15,9 @@ class Form extends Component
 
     public int $rating = 5;
 
-    public string $text = '';
+    public string $text_es = '';
+
+    public string $text_zh = '';
 
     public bool $is_published = true;
 
@@ -26,7 +28,7 @@ class Form extends Component
     {
         if ($review?->exists) {
             $this->review = $review;
-            $this->fill($review->only(['author', 'rating', 'text', 'is_published']));
+            $this->fill([...$review->only(['author', 'rating', 'text_es', 'is_published']), 'text_zh' => (string) $review->text_zh]);
         }
     }
 
@@ -35,7 +37,8 @@ class Form extends Component
         $validated = $this->validate([
             'author' => ['required', 'string', 'max:255'],
             'rating' => ['required', 'integer', 'between:1,5'],
-            'text' => ['required', 'string', 'max:2000'],
+            'text_es' => ['required', 'string', 'max:2000'],
+            'text_zh' => ['nullable', 'string', 'max:2000'],
             'is_published' => ['boolean'],
         ]);
 

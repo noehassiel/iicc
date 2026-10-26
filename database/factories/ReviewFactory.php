@@ -20,7 +20,8 @@ class ReviewFactory extends Factory
         return [
             'author' => fake()->name(),
             'rating' => 5,
-            'text' => fake()->paragraph(),
+            'text_es' => fake()->paragraph(),
+            'text_zh' => '老師們都很好，非常有耐心。',
             'is_published' => true,
         ];
     }

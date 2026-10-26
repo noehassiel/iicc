@@ -20,7 +20,7 @@
                     <flux:table.cell class="max-w-md whitespace-normal">
                         <a href="{{ route('admin.reviews.edit', $review) }}" wire:navigate class="block">
                             <span class="font-medium text-zinc-800 dark:text-white">{{ $review->author }}</span>
-                            <span class="mt-1 line-clamp-2 text-zinc-500">{{ $review->text }}</span>
+                            <span class="mt-1 line-clamp-2 text-zinc-500">{{ $review->text_es }}</span>
                         </a>
                     </flux:table.cell>
                     <flux:table.cell class="max-sm:hidden whitespace-nowrap text-amber-500">{{ str_repeat('★', $review->rating) }}</flux:table.cell>
