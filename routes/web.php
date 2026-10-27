@@ -23,7 +23,9 @@ Route::view('eventos', 'pages.eventos.index')->name('eventos.index');
 
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/eventos')->name('home');
-    Route::livewire('banner', Admin\Banner\Edit::class)->name('banner.edit');
+    Route::livewire('banners', Admin\Banners\Index::class)->name('banners.index');
+    Route::livewire('banners/crear', Admin\Banners\Form::class)->name('banners.create');
+    Route::livewire('banners/{banner}', Admin\Banners\Form::class)->name('banners.edit');
     Route::livewire('eventos', Admin\Events\Index::class)->name('events.index');
     Route::livewire('eventos/crear', Admin\Events\Form::class)->name('events.create');
     Route::livewire('eventos/{event}', Admin\Events\Form::class)->name('events.edit');

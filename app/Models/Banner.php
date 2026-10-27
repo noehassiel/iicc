@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
+ * One slide of the home hero: its own copy, button and image or video background.
+ *
  * @property int $id
  * @property string $title_es
  * @property string|null $title_zh
@@ -20,31 +22,62 @@ use Illuminate\Support\Carbon;
  * @property string|null $button_label_es
  * @property string|null $button_label_zh
  * @property string|null $button_url
+ * @property string $media_type
+ * @property string|null $media_path
+ * @property string|null $poster_path
+ * @property bool $is_active
+ * @property int $position
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection<int, BannerSlide> $slides
  */
-#[Fillable(['title_es', 'title_zh', 'subtitle_es', 'subtitle_zh', 'button_label_es', 'button_label_zh', 'button_url'])]
+#[Fillable(['title_es', 'title_zh', 'subtitle_es', 'subtitle_zh', 'button_label_es', 'button_label_zh', 'button_url', 'media_type', 'media_path', 'poster_path', 'is_active', 'position'])]
 class Banner extends Model
 {
     /** @use HasFactory<BannerFactory> */
     use HasFactory, HasLocalizedAttributes;
 
     /**
-     * The home page shows a single banner: the most recently saved one.
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    public static function current(): ?self
+    protected function casts(): array
     {
-        return static::query()->latest('id')->first();
+        return [
+            'is_active' => 'boolean',
+            'position' => 'integer',
+        ];
     }
 
     /**
-     * Full-screen backgrounds of the hero, in display order.
+     * Active banners in display order; the first one opens the home page.
      *
-     * @return HasMany<BannerSlide, $this>
+     * @return Collection<int, self>
      */
-    public function slides(): HasMany
+    public static function active(): Collection
     {
-        return $this->hasMany(BannerSlide::class)->orderBy('position');
+        return self::query()->where('is_active', true)->orderBy('position')->orderBy('id')->get();
+    }
+
+    public function isVideo(): bool
+    {
+        return $this->media_type === 'video';
+    }
+
+    public function mediaUrl(): ?string
+    {
+        return $this->media_path ? Storage::disk('public')->url($this->media_path) : null;
+    }
+
+    /**
+     * Still image for the hero thumbnail: the poster for videos, the image itself otherwise.
+     */
+    public function thumbnailUrl(): ?string
+    {
+        if (! $this->isVideo()) {
+            return $this->mediaUrl();
+        }
+
+        return $this->poster_path ? Storage::disk('public')->url($this->poster_path) : null;
     }
 }

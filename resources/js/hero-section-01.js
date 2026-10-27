@@ -35,9 +35,13 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
   const progressTrack = loader?.querySelector(".progress");
   const line = loader?.querySelector(".line");
   const count = loader?.querySelector(".count");
-  const title = root.querySelector("h1");
-  const copy = root.querySelector(".content > p");
-  const navItems = root.querySelectorAll("[data-hero-nav] > *");
+  const slideTexts = media.map((_, index) => [
+    ...root.querySelectorAll(`[data-hero-text="${index}"]`),
+  ]);
+  const splitTargets = [...root.querySelectorAll("[data-split]")];
+  const title = slideTexts[0]?.find((el) => el.matches(".headline"))?.querySelector("[data-split]");
+  const copy = slideTexts[0]?.find((el) => el.matches("p"));
+  const navItems = root.querySelectorAll('[data-hero-text="0"] [data-hero-nav] > *');
   const siteHeader = document.querySelector(".navigation-01-header");
   const siteHeaderItems = siteHeader
     ? [...siteHeader.querySelectorAll(".header-content > :not(nav), .nav-list > li")]
@@ -75,8 +79,8 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
   let nextTween;
   let introTimeline;
   let switchTimeline;
-  let titleSplit;
-  let copySplit;
+  const splits = new Map();
+  let textSwapCall;
   let visibilityTrigger;
   let activeIndex = 0;
   let pendingIndex = null;
@@ -212,6 +216,7 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
     thumbs[index].classList.add("active");
     thumbs[index].setAttribute("aria-pressed", "true");
     activeIndex = index;
+    swapText(outgoingIndex, index);
 
     if (heroVisible && !document.hidden) {
       incomingVideo?.play().catch(() => {});
@@ -288,43 +293,18 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
     );
   });
 
-  let titleReveal;
-  let copyReveal;
-  let titleStarted = false;
-  let copyStarted = false;
+  // Every banner's title and subtitle is split once; each keeps its own reveal tween.
+  splitTargets.forEach((el) => {
+    const state = { reveal: null, started: false };
 
-  titleSplit = SplitText.create(title, {
-    type: "words, chars",
-    wordsClass: "split-word",
-    charsClass: "split-char",
-    autoSplit: true,
-    onSplit(self) {
-      titleReveal = gsap.fromTo(
-        self.chars,
-        { yPercent: -100, y: "-0.25em" },
-        {
-          yPercent: 0,
-          y: 0,
-          duration: 0.75,
-          stagger: 0.005,
-          ease: "hero-section-01-text",
-          paused: !titleStarted,
-        },
-      );
-
-      return titleReveal;
-    },
-  });
-
-  // The subtitle is optional in the admin.
-  if (copy) {
-    copySplit = SplitText.create(copy, {
+    state.split = SplitText.create(el, {
       type: "words, chars",
       wordsClass: "split-word",
       charsClass: "split-char",
       autoSplit: true,
       onSplit(self) {
-        copyReveal = gsap.fromTo(
+        state.chars = self.chars;
+        state.reveal = gsap.fromTo(
           self.chars,
           { yPercent: -100, y: "-0.25em" },
           {
@@ -333,14 +313,63 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
             duration: 0.75,
             stagger: 0.005,
             ease: "hero-section-01-text",
-            paused: !copyStarted,
+            paused: !state.started,
           },
         );
 
-        return copyReveal;
+        return state.reveal;
       },
     });
-  }
+
+    splits.set(el, state);
+  });
+
+  const reveal = (el) => {
+    const state = el && splits.get(el);
+    if (!state) return;
+
+    state.started = true;
+    state.reveal.restart();
+  };
+
+  const setCurrent = (index, current) => {
+    slideTexts[index]?.forEach((el) => {
+      el.classList.toggle("is-current", current);
+      el.toggleAttribute("aria-hidden", !current);
+    });
+  };
+
+  slideTexts.forEach((_, index) => setCurrent(index, index === 0));
+
+  const swapText = (outgoingIndex, incomingIndex) => {
+    textSwapCall?.kill();
+
+    const outgoingTargets = slideTexts[outgoingIndex].flatMap((el) =>
+      el.matches("[data-split]") ? [el] : [...el.querySelectorAll("[data-split]")],
+    );
+    const outgoingChars = outgoingTargets.flatMap((el) => splits.get(el)?.chars ?? []);
+    const outgoingCta = slideTexts[outgoingIndex].flatMap((el) => [...el.querySelectorAll("[data-hero-nav] > *")]);
+
+    outgoingTargets.forEach((el) => splits.get(el)?.reveal.pause());
+    gsap.to(outgoingChars, { yPercent: 100, y: "0.25em", duration: 0.45, stagger: 0.003, ease: "power2.in" });
+    gsap.to(outgoingCta, { yPercent: 120, duration: 0.45, ease: "power2.in" });
+
+    textSwapCall = gsap.delayedCall(0.5, () => {
+      textSwapCall = null;
+      if (activeIndex !== incomingIndex) return;
+
+      slideTexts.forEach((_, index) => setCurrent(index, index === incomingIndex));
+      slideTexts[incomingIndex].forEach((el) => {
+        const targets = el.matches("[data-split]") ? [el] : [...el.querySelectorAll("[data-split]")];
+        targets.forEach(reveal);
+        gsap.fromTo(
+          el.querySelectorAll("[data-hero-nav] > *"),
+          { yPercent: -120 },
+          { yPercent: 0, duration: 0.75, delay: 0.25, ease: "hero-section-01-text" },
+        );
+      });
+    });
+  };
 
   const progress = { value: 0 };
 
@@ -392,16 +421,14 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
     )
     .call(
       () => {
-        titleStarted = true;
-        titleReveal.play();
+        reveal(title);
       },
       [],
       "reveal+=0.7",
     )
     .call(
       () => {
-        copyStarted = true;
-        copyReveal?.play();
+        reveal(copy);
       },
       [],
       "reveal+=0.4",
@@ -482,8 +509,8 @@ export function cinematicMediaHero(scope = document, { lenis = null } = {}) {
     nextTween?.kill();
     visibilityTrigger?.kill();
     responsive.revert();
-    titleSplit?.revert();
-    copySplit?.revert();
+    textSwapCall?.kill();
+    splits.forEach((state) => state.split.revert());
     gsap.killTweensOf([root, next, ...root.querySelectorAll("*")]);
     delete root.heroSection01Cleanup;
   };

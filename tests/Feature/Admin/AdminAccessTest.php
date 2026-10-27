@@ -17,7 +17,7 @@ test('admins can open every panel screen', function (string $routeName) {
     $this->actingAs(User::factory()->admin()->create())
         ->get(route($routeName))
         ->assertOk();
-})->with(['admin.events.index', 'admin.events.create', 'admin.banner.edit']);
+})->with(['admin.events.index', 'admin.events.create', 'admin.banners.index', 'admin.banners.create']);
 
 test('public registration is disabled', function () {
     $this->get('/register')->assertNotFound();

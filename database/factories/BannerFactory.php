@@ -25,6 +25,25 @@ class BannerFactory extends Factory
             'button_label_es' => 'Comienza ahora',
             'button_label_zh' => '立即開始',
             'button_url' => 'https://wa.me/'.config('site.whatsapp'),
+            'media_type' => 'image',
+            'media_path' => 'banners/'.fake()->uuid().'.jpg',
+            'is_active' => true,
+            'position' => 0,
         ];
+    }
+
+    public function video(): static
+    {
+        return $this->state(fn (): array => [
+            'media_type' => 'video',
+            'media_path' => 'banners/'.fake()->uuid().'.mp4',
+        ]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state(fn (): array => [
+            'is_active' => false,
+        ]);
     }
 }

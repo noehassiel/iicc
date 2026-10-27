@@ -139,7 +139,13 @@
   margin: 0 0 50px 8px;
 }
 
-.hero-section-01 .content h1 {
+/* Every banner's copy shares the same cells; only the current one is shown. */
+.hero-section-01 .content [data-hero-text]:not(.is-current) {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hero-section-01 .content .headline :is(h1, h2) {
   margin: 0;
   font-size: clamp(56px, 4.6vw, 90px);
   font-weight: 600;
@@ -164,7 +170,13 @@
     margin: 0 0 20px;
   }
 
-  .hero-section-01 .content h1 {
+  /* Every banner's copy shares the same cells; only the current one is shown. */
+.hero-section-01 .content [data-hero-text]:not(.is-current) {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hero-section-01 .content .headline :is(h1, h2) {
     font-size: 44px;
     text-wrap: pretty;
   }

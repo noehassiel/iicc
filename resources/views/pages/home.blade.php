@@ -1,6 +1,5 @@
 @php
-    $banner = App\Models\Banner::current()?->load('slides');
-    $slides = $banner?->slides ?? collect();
+    $banners = App\Models\Banner::active();
 
     $services = [
         ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-motion.webp'],
@@ -16,12 +15,14 @@
     <div class="hero-page -mt-20">
     <section class="hero-section-01" data-hero-section-01>
         <div class="media" aria-live="polite">
-            @forelse ($slides as $slide)
+            @forelse ($banners as $banner)
                 <div @class(['item', 'active' => $loop->first])>
-                    @if ($slide->isVideo())
-                        <video src="{{ $slide->url() }}" @if ($slide->thumbnailUrl()) poster="{{ $slide->thumbnailUrl() }}" @endif @if ($loop->first) autoplay preload="auto" @else preload="metadata" @endif muted loop playsinline></video>
+                    @if (! $banner->mediaUrl())
+                        <div class="fallback"></div>
+                    @elseif ($banner->isVideo())
+                        <video src="{{ $banner->mediaUrl() }}" @if ($banner->thumbnailUrl()) poster="{{ $banner->thumbnailUrl() }}" @endif @if ($loop->first) autoplay preload="auto" @else preload="metadata" @endif muted loop playsinline></video>
                     @else
-                        <img src="{{ $slide->url() }}" alt="" @unless ($loop->first) loading="lazy" @endunless>
+                        <img src="{{ $banner->mediaUrl() }}" alt="" @unless ($loop->first) loading="lazy" @endunless>
                     @endif
                 </div>
             @empty
@@ -30,35 +31,51 @@
         </div>
 
         <div class="content">
-            @if ($banner?->localized('subtitle'))
-                <p>{{ $banner->localized('subtitle') }}</p>
-            @endif
+            @forelse ($banners as $banner)
+                @if ($banner->localized('subtitle'))
+                    <p @class(['is-current' => $loop->first]) data-hero-text="{{ $loop->index }}" data-split>{{ $banner->localized('subtitle') }}</p>
+                @endif
 
-            <div class="headline">
-                <h1>{{ $banner?->localized('title') ?? __('Instituto de Idioma y Cultura China en México') }}</h1>
-
-                <div class="cta" data-hero-nav>
-                    @if ($banner?->button_url)
-                        <a href="{{ $banner->button_url }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 font-semibold text-white transition hover:brightness-110">
-                            {{ $banner->localized('button_label') }}
-                        </a>
+                <div @class(['headline', 'is-current' => $loop->first]) data-hero-text="{{ $loop->index }}">
+                    @if ($loop->first)
+                        <h1 data-split>{{ $banner->localized('title') }}</h1>
                     @else
-                        <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')">
-                            {{ $banner?->localized('button_label') ?? __('Comienza ahora') }}
-                        </x-site.whatsapp-button>
+                        <h2 data-split>{{ $banner->localized('title') }}</h2>
                     @endif
+
+                    <div class="cta" data-hero-nav>
+                        @if ($banner->button_url)
+                            <a href="{{ $banner->button_url }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 font-semibold text-white transition hover:brightness-110">
+                                {{ $banner->localized('button_label') }}
+                            </a>
+                        @else
+                            <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')">
+                                {{ $banner->localized('button_label') ?? __('Comienza ahora') }}
+                            </x-site.whatsapp-button>
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @empty
+                <div class="headline is-current" data-hero-text="0">
+                    <h1 data-split>{{ __('Instituto de Idioma y Cultura China en México') }}</h1>
+
+                    <div class="cta" data-hero-nav>
+                        <x-site.whatsapp-button :message="__('Hola, quiero información sobre los cursos de chino.')">
+                            {{ __('Comienza ahora') }}
+                        </x-site.whatsapp-button>
+                    </div>
+                </div>
+            @endforelse
 
             <span class="divider" aria-hidden="true"></span>
 
-            <div class="thumbs" aria-label="{{ __('Elegir fondo') }}" @if ($slides->count() < 2) data-single aria-hidden="true" @endif>
-                @forelse ($slides as $slide)
-                    <button @class(['active' => $loop->first]) type="button" aria-label="{{ __('Mostrar fondo :number', ['number' => $loop->iteration]) }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}">
-                        @if ($slide->thumbnailUrl())
-                            <img src="{{ $slide->thumbnailUrl() }}" alt="" loading="lazy">
+            <div class="thumbs" aria-label="{{ __('Elegir banner') }}" @if ($banners->count() < 2) data-single aria-hidden="true" @endif>
+                @forelse ($banners as $banner)
+                    <button @class(['active' => $loop->first]) type="button" aria-label="{{ $banner->localized('title') }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}">
+                        @if ($banner->thumbnailUrl())
+                            <img src="{{ $banner->thumbnailUrl() }}" alt="" loading="lazy">
                         @else
-                            <span class="thumb-fallback" aria-hidden="true">▶</span>
+                            <span class="thumb-fallback" aria-hidden="true">{{ $banner->isVideo() ? '▶' : '' }}</span>
                         @endif
                     </button>
                 @empty

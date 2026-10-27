@@ -15,8 +15,8 @@
                     <flux:sidebar.item icon="calendar-days" :href="route('admin.events.index')" :current="request()->routeIs('admin.events.*')" wire:navigate>
                         Eventos
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="photo" :href="route('admin.banner.edit')" :current="request()->routeIs('admin.banner.*')" wire:navigate>
-                        Banner principal
+                    <flux:sidebar.item icon="photo" :href="route('admin.banners.index')" :current="request()->routeIs('admin.banners.*')" wire:navigate>
+                        Banners
                     </flux:sidebar.item>
                     <flux:sidebar.item icon="star" :href="route('admin.reviews.index')" :current="request()->routeIs('admin.reviews.*')" wire:navigate>
                         Reseñas
