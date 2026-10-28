@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c9db8b8381c2fbcafdfc84877682305",
+    "content-hash": "8209377a6de543a1885a18bf10daf442",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3001,6 +3001,60 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.9.0"
             },
             "time": "2026-09-13T18:51:52+00:00"
+        },
+        {
+            "name": "noehassiel/preview-bridge",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/noehassiel/preview-bridge.git",
+                "reference": "ce82c38bcea3b8b3727f19146ac3bc6e7226a334"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/noehassiel/preview-bridge/zipball/ce82c38bcea3b8b3727f19146ac3bc6e7226a334",
+                "reference": "ce82c38bcea3b8b3727f19146ac3bc6e7226a334",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^12.0|^13.0",
+                "illuminate/support": "^12.0|^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0|^5.0",
+                "pestphp/pest-plugin-laravel": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Noehassiel\\PreviewBridge\\PreviewBridgeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Noehassiel\\PreviewBridge\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "noehassiel",
+                    "homepage": "https://noehassiel.com"
+                }
+            ],
+            "description": "Lets a Laravel site be reviewed inside the noehassiel client portal: allows framing and reports the page the client is on.",
+            "support": {
+                "issues": "https://github.com/noehassiel/preview-bridge/issues",
+                "source": "https://github.com/noehassiel/preview-bridge/tree/v0.1.0"
+            },
+            "time": "2026-10-27T17:14:28+00:00"
         },
         {
             "name": "nunomaduro/termwind",
