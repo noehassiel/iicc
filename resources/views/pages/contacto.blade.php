@@ -43,7 +43,7 @@
             <div>
                 {{-- Image: embedded Google Map of IICC location --}}
                 <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
-                <a href="https://maps.google.com/?cid=8245321199947889934" target="_blank" rel="noopener" class="mt-4 inline-flex rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue hover:bg-brand-blue hover:text-white">{{ __('Ver en Google Maps / Cómo llegar') }}</a>
+                <a href="{{ config('site.maps') }}" target="_blank" rel="noopener" class="mt-4 inline-flex rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue hover:bg-brand-blue hover:text-white">{{ __('Ver en Google Maps / Cómo llegar') }}</a>
             </div>
         </div>
     </section>
@@ -52,11 +52,10 @@
     <section class="px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading>{{ __('Síguenos en redes sociales') }}</x-site.section-heading>
-            {{-- TODO: confirm social URLs (PDF shows handles "IICC" on Facebook and "iiccmex" on Instagram) --}}
             <div class="mt-8 grid gap-4 sm:grid-cols-3">
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="rounded-2xl bg-[#1877F2] px-6 py-5 font-semibold text-white">Facebook · IICC</a>
-                <a href="https://www.instagram.com/iiccmex" target="_blank" rel="noopener" class="rounded-2xl bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] px-6 py-5 font-semibold text-white">Instagram · iiccmex</a>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="rounded-2xl bg-[#FF0000] px-6 py-5 font-semibold text-white">YouTube</a>
+                <a href="{{ config('site.facebook') }}" target="_blank" rel="noopener" class="rounded-2xl bg-[#1877F2] px-6 py-5 font-semibold text-white">Facebook · IICC</a>
+                <a href="{{ config('site.instagram') }}" target="_blank" rel="noopener" class="rounded-2xl bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] px-6 py-5 font-semibold text-white">Instagram · iiccmex</a>
+                <a href="{{ config('site.youtube') }}" target="_blank" rel="noopener" class="rounded-2xl bg-[#FF0000] px-6 py-5 font-semibold text-white">YouTube</a>
             </div>
         </div>
     </section>

@@ -1,9 +1,9 @@
 @php
     $socials = [
         ['href' => 'https://wa.me/'.config('site.whatsapp'), 'label' => 'WhatsApp'],
-        ['href' => 'https://www.facebook.com/', 'label' => 'Facebook'],
-        ['href' => 'https://www.instagram.com/iiccmex', 'label' => 'Instagram'],
-        ['href' => 'https://www.youtube.com/', 'label' => 'YouTube'],
+        ['href' => config('site.facebook'), 'label' => 'Facebook'],
+        ['href' => config('site.instagram'), 'label' => 'Instagram'],
+        ['href' => config('site.youtube'), 'label' => 'YouTube'],
     ];
 @endphp
 

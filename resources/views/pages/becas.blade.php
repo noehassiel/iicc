@@ -151,8 +151,7 @@
                     </dl>
 
                     <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                        {{-- TODO: official call URL from the client --}}
-                        <a href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Ver convocatoria oficial') }}</a>
+                        <a href="https://taiwanscholarship.moe.gov.tw/web/pages.aspx?p=7" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Ver convocatoria oficial') }}</a>
                         <x-site.whatsapp-button :message="__('Hola, me interesa recibir asesoría sobre la :name.', ['name' => $scholarship['name']])">{{ __('¡Solicita asesoría a IICC!') }}</x-site.whatsapp-button>
                     </div>
                 </article>
@@ -161,8 +160,7 @@
             <div class="rounded-2xl bg-white p-6 shadow-sm">
                 <h3 class="text-lg font-semibold">{{ __('¿Buscas otras opciones de estudio en Taiwán?') }}</h3>
                 <p class="mt-2 text-neutral-600">{{ __('Además de las convocatorias del Ministerio de Educación (MOE), existen otros programas de excelencia como la Beca ICDF (posgrados en áreas específicas) y becas directas de universidades taiwanesas. Consulta las convocatorias vigentes a través de la representación oficial.') }}</p>
-                {{-- TODO: Facebook URL of Taiwán en México --}}
-                <a href="#" target="_blank" rel="noopener" class="mt-4 inline-block font-semibold text-brand-blue">{{ __('Ver más en el Facebook de Taiwán en México') }} ↗</a>
+                <a href="https://www.facebook.com/TaiwanenMexico/" target="_blank" rel="noopener" class="mt-4 inline-block font-semibold text-brand-blue">{{ __('Ver más en el Facebook de Taiwán en México') }} ↗</a>
             </div>
         </div>
     </section>
@@ -226,7 +224,7 @@
             </div>
 
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a href="https://www.campuschina.org" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Portal Oficial: Campus China') }} (<span lang="zh-Hant">留學中國</span>)</a>
+                <a href="https://www.campuschina.org/scholarships/index.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Portal Oficial: Campus China') }} (<span lang="zh-Hant">留學中國</span>)</a>
                 <x-site.whatsapp-button :message="__('Hola, me interesa recibir asesoría sobre becas en China Continental.')">{{ __('¡Solicita asesoría a IICC!') }}</x-site.whatsapp-button>
             </div>
         </div>
