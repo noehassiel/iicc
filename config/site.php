@@ -56,7 +56,7 @@ return [
 
     'locales' => [
         'es' => 'ES',
-        'zh_TW' => '繁中',
+        'zh_CN' => '简中',
     ],
 
 ];

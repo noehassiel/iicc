@@ -2,14 +2,14 @@
     $chevron = '<svg class="nav-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
 
     $courses = [
-        ['href' => route('cursos').'#ninos', 'title' => __('Niños'), 'description' => __('6 – 11 años'), 'glyph' => '兒童', 'color' => 'var(--color-brand-orange)'],
+        ['href' => route('cursos').'#ninos', 'title' => __('Niños'), 'description' => __('6 – 11 años'), 'glyph' => '儿童', 'color' => 'var(--color-brand-orange)'],
         ['href' => route('cursos').'#adolescentes', 'title' => __('Adolescentes'), 'description' => __('12 – 17 años'), 'glyph' => '青少年', 'color' => 'var(--color-brand-green)'],
         ['href' => route('cursos').'#adultos', 'title' => __('Adultos'), 'description' => __('> 18 años'), 'glyph' => '成人', 'color' => 'var(--color-brand-blue)'],
     ];
 
     $certifications = [
-        ['href' => route('certificaciones').'#china', 'title' => __('China'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中國', 'color' => '#b3261e'],
-        ['href' => route('certificaciones').'#taiwan', 'title' => __('Taiwán'), 'description' => __('Test of Chinese as a Foreign Language'), 'glyph' => '臺灣', 'color' => 'var(--color-brand-blue)'],
+        ['href' => route('certificaciones').'#china', 'title' => __('China'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中国', 'color' => '#b3261e'],
+        ['href' => route('certificaciones').'#taiwan', 'title' => __('Taiwán'), 'description' => __('Test of Chinese as a Foreign Language'), 'glyph' => '台湾', 'color' => 'var(--color-brand-blue)'],
     ];
 
     $scholarships = [
@@ -38,7 +38,7 @@
         <div class="header-content">
             <a class="logo flex! items-center gap-2 font-semibold tracking-wide" href="{{ route('home') }}" aria-label="{{ __('IICC — Inicio') }}">
                 <span>IICC</span>
-                <span lang="zh-Hant" class="hidden text-xs font-normal text-white/60 sm:inline">中華文化學院</span>
+                <span lang="zh-Hans" class="hidden text-xs font-normal text-white/60 sm:inline">中华文化学院</span>
             </a>
 
             <nav class="navigation-01" aria-label="{{ __('Menú principal') }}">
@@ -98,7 +98,7 @@
                                     @foreach ([...$courses, ['glyph' => '中文', 'color' => '#0f213d']] as $course)
                                         <div @class(['nav-dropdown__preview-panel', 'is-active' => $loop->first]) data-preview-index="{{ $loop->index }}">
                                             <div class="nav-dropdown__placeholder" style="background-color: {{ $course['color'] }}">
-                                                <span lang="zh-Hant" class="nav-dropdown__glyph">{{ $course['glyph'] }}</span>
+                                                <span lang="zh-Hans" class="nav-dropdown__glyph">{{ $course['glyph'] }}</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -110,7 +110,7 @@
                             <div class="nav-dropdown__inner">
                                 @foreach ($certifications as $certification)
                                     <a class="nav-featured__card" href="{{ $certification['href'] }}">
-                                        <span lang="zh-Hant" class="nav-featured__image nav-featured__image--glyph" style="background-color: {{ $certification['color'] }}" aria-hidden="true">{{ $certification['glyph'] }}</span>
+                                        <span lang="zh-Hans" class="nav-featured__image nav-featured__image--glyph" style="background-color: {{ $certification['color'] }}" aria-hidden="true">{{ $certification['glyph'] }}</span>
                                         <span class="nav-featured__content">
                                             <span class="nav-dropdown__title">{{ $certification['title'] }}</span>
                                             <span class="nav-dropdown__description">{{ $certification['description'] }}</span>

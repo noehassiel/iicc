@@ -4,7 +4,7 @@
             href="{{ route('locale.switch', $locale) }}"
             data-no-swup
             hreflang="{{ str_replace('_', '-', $locale) }}"
-            @if ($locale !== 'es') lang="zh-Hant" @endif
+            @if ($locale !== 'es') lang="zh-Hans" @endif
             @if (app()->getLocale() === $locale) aria-current="true" @endif
             @class([
                 'rounded-full px-2.5 py-1 transition',

@@ -224,7 +224,7 @@
             </div>
 
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a href="https://www.campuschina.org/scholarships/index.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Portal Oficial: Campus China') }} (<span lang="zh-Hant">留學中國</span>)</a>
+                <a href="https://www.campuschina.org/scholarships/index.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Portal Oficial: Campus China') }} (<span lang="zh-Hans">留学中国</span>)</a>
                 <x-site.whatsapp-button :message="__('Hola, me interesa recibir asesoría sobre becas en China Continental.')">{{ __('¡Solicita asesoría a IICC!') }}</x-site.whatsapp-button>
             </div>
         </div>

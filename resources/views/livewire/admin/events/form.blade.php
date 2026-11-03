@@ -15,9 +15,9 @@
 
         <div class="grid gap-6 sm:grid-cols-2">
             <flux:input wire:model="title_es" label="Título (español)" required />
-            <flux:input wire:model="title_zh" label="Título (中文)" lang="zh-Hant" />
+            <flux:input wire:model="title_zh" label="Título (中文)" lang="zh-Hans" />
             <flux:textarea wire:model="description_es" label="Descripción (español)" rows="5" />
-            <flux:textarea wire:model="description_zh" label="Descripción (中文)" rows="5" lang="zh-Hant" />
+            <flux:textarea wire:model="description_zh" label="Descripción (中文)" rows="5" lang="zh-Hans" />
         </div>
 
         <flux:input wire:model="slug" label="Identificador" description="Se genera del título si lo dejas vacío." />

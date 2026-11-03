@@ -19,7 +19,7 @@ test('admins can create an event with cover and gallery', function () {
     Livewire::test(Form::class)
         ->set('category', 'campus')
         ->set('title_es', 'Año Nuevo Chino')
-        ->set('title_zh', '農曆新年')
+        ->set('title_zh', '农历新年')
         ->set('date', '2026-02-17')
         ->set('cover', UploadedFile::fake()->image('portada.jpg'))
         ->set('photos', [UploadedFile::fake()->image('a.jpg'), UploadedFile::fake()->image('b.jpg')])

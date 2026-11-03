@@ -6,11 +6,11 @@
     <form wire:submit="save" class="mt-8 space-y-8">
         <div class="grid gap-6 sm:grid-cols-2">
             <flux:input wire:model="title_es" label="Título (español)" required />
-            <flux:input wire:model="title_zh" label="Título (中文)" lang="zh-Hant" />
+            <flux:input wire:model="title_zh" label="Título (中文)" lang="zh-Hans" />
             <flux:input wire:model="subtitle_es" label="Subtítulo (español)" />
-            <flux:input wire:model="subtitle_zh" label="Subtítulo (中文)" lang="zh-Hant" />
+            <flux:input wire:model="subtitle_zh" label="Subtítulo (中文)" lang="zh-Hans" />
             <flux:input wire:model="button_label_es" label="Texto del botón (español)" />
-            <flux:input wire:model="button_label_zh" label="Texto del botón (中文)" lang="zh-Hant" />
+            <flux:input wire:model="button_label_zh" label="Texto del botón (中文)" lang="zh-Hans" />
         </div>
 
         <flux:input wire:model="button_url" type="url" label="Enlace del botón" description="Si lo dejas vacío, el botón abre WhatsApp." placeholder="https://" />

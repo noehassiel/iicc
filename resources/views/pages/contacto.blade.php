@@ -19,7 +19,7 @@
             <div class="space-y-8">
                 <div>
                     <p class="font-semibold">Instituto de Idioma y Cultura China en México, A.C.</p>
-                    <p lang="zh-Hant" class="text-neutral-600">墨西哥中華文化學院</p>
+                    <p lang="zh-Hans" class="text-neutral-600">墨西哥中华文化学院</p>
                 </div>
 
                 <div>

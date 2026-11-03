@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="mt-4 rounded-2xl bg-brand-blue/5 p-6">
-                    <p class="font-semibold">{{ __('Ruta escolar PEP') }} (<span lang="zh-Hant">人教版</span>):</p>
+                    <p class="font-semibold">{{ __('Ruta escolar PEP') }} (<span lang="zh-Hans">人教版</span>):</p>
                     <p class="mt-1 text-neutral-600">{{ __('Diseñada para la continuidad del currículo oficial de China continental a partir de los 10 años. (Más informes en recepción).') }}</p>
                 </div>
                 <x-site.whatsapp-button class="mt-6" :message="__('Hola, quiero inscribir a mi hijo(a) en el curso de chino para niños.')">{{ __('¡Inscríbete ahora!') }}</x-site.whatsapp-button>

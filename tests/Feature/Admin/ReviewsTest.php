@@ -22,7 +22,7 @@ test('admins can add a review', function () {
         ->set('author', 'Robert201060')
         ->set('rating', 5)
         ->set('text_es', 'Excelente institución.')
-        ->set('text_zh', '非常優秀的學院。')
+        ->set('text_zh', '非常优秀的学院。')
         ->call('save')
         ->assertHasNoErrors()
         ->assertRedirect(route('admin.reviews.index'));
@@ -61,13 +61,13 @@ test('the home page shows at most four published reviews of four stars or more',
 });
 
 test('the home page shows reviews in the visitor language', function () {
-    Review::factory()->create(['text_es' => 'Excelente institución.', 'text_zh' => '非常優秀的學院。']);
+    Review::factory()->create(['text_es' => 'Excelente institución.', 'text_zh' => '非常优秀的学院。']);
     Review::factory()->create(['text_es' => 'Sin traducción todavía.', 'text_zh' => null]);
 
     $this->get(route('home'))->assertSee('Excelente institución.');
 
-    $this->withSession(['locale' => 'zh_TW'])->get(route('home'))
-        ->assertSee('非常優秀的學院。')
+    $this->withSession(['locale' => 'zh_CN'])->get(route('home'))
+        ->assertSee('非常优秀的学院。')
         ->assertDontSee('Excelente institución.')
         ->assertSee('Sin traducción todavía.');
 });

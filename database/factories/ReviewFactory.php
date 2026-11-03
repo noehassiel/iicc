@@ -21,7 +21,7 @@ class ReviewFactory extends Factory
             'author' => fake()->name(),
             'rating' => 5,
             'text_es' => fake()->paragraph(),
-            'text_zh' => '老師們都很好，非常有耐心。',
+            'text_zh' => '老师们都很好，非常有耐心。',
             'is_published' => true,
         ];
     }

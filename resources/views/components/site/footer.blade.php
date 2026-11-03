@@ -10,7 +10,7 @@
 <footer class="relative bg-[#e4e0d8] text-[#14110f] lg:min-h-svh">
     {{-- Cropped visual band, standing in for the reference's portrait --}}
     <div class="relative h-[62vw] overflow-hidden bg-[#d6d2c9] sm:h-[44vw] lg:h-[36vw] lg:max-h-[30rem]" aria-hidden="true">
-        <span lang="zh-Hant" class="absolute -right-[4vw] -bottom-[12vw] text-[46vw] leading-none font-semibold tracking-[-0.08em] text-[#ccc7bd] select-none lg:-bottom-[9vw] lg:text-[34vw]">中文</span>
+        <span lang="zh-Hans" class="absolute -right-[4vw] -bottom-[12vw] text-[46vw] leading-none font-semibold tracking-[-0.08em] text-[#ccc7bd] select-none lg:-bottom-[9vw] lg:text-[34vw]">中文</span>
     </div>
 
     <a href="{{ route('home') }}" class="absolute top-3 left-4 text-[22vw] leading-[0.8] font-semibold tracking-[-0.065em] sm:left-6 sm:text-[16vw] lg:text-[10.5rem]" aria-label="{{ __('IICC — Inicio') }}">IICC</a>
@@ -50,7 +50,7 @@
             <figcaption class="mt-3 pl-8 text-sm text-white/50">Andi Gonzalez · {{ __('Reseña de Google') }}</figcaption>
 
             <div class="mt-10 flex aspect-[4/3] items-end justify-between overflow-hidden bg-brand-blue p-4 lg:mt-auto" aria-hidden="true">
-                <span lang="zh-Hant" class="text-[5.5rem] leading-[0.85] font-semibold tracking-[-0.06em] text-white/90 sm:text-9xl">中華<br>文化</span>
+                <span lang="zh-Hans" class="text-[5.5rem] leading-[0.85] font-semibold tracking-[-0.06em] text-white/90 sm:text-9xl">中华<br>文化</span>
                 <span class="mb-2 size-14 rounded-full bg-brand-orange sm:size-20"></span>
             </div>
         </figure>
@@ -59,6 +59,6 @@
     <div class="grid gap-4 px-4 pt-10 pb-5 text-[0.7rem] leading-tight uppercase sm:px-6 lg:absolute lg:inset-x-0 lg:bottom-0 lg:pt-0 lg:grid-cols-[1fr_19%_19%]">
         <p>IICC<br>{{ __('Instituto de Idioma y Cultura China en México, A.C.') }}</p>
         <p><a href="{{ route('contacto') }}" class="hover:opacity-60">{{ __('Contacto') }}</a><br>IICC&copy;{{ date('Y') }}</p>
-        <p class="lg:text-right" lang="zh-Hant">墨西哥中華文化學院<br>{{ __('Ciudad de México') }}</p>
+        <p class="lg:text-right" lang="zh-Hans">墨西哥中华文化学院<br>{{ __('Ciudad de México') }}</p>
     </div>
 </footer>
