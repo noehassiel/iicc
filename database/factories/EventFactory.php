@@ -22,9 +22,9 @@ class EventFactory extends Factory
             'category' => fake()->randomElement(EventCategory::cases()),
             'slug' => fake()->unique()->slug(3),
             'title_es' => fake()->sentence(3),
-            'title_zh' => '中华文化活动',
+            'title_zh' => '中華文化活動',
             'description_es' => fake()->paragraph(),
-            'description_zh' => '欢迎大家一起参加我们的活动。',
+            'description_zh' => '歡迎大家一起參加我們的活動。',
             'date' => fake()->dateTimeBetween('-3 years'),
         ];
     }

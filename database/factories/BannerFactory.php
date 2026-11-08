@@ -19,11 +19,11 @@ class BannerFactory extends Factory
     {
         return [
             'title_es' => fake()->sentence(4),
-            'title_zh' => '学华语，认识中华文化',
+            'title_zh' => '學華語，認識中華文化',
             'subtitle_es' => fake()->sentence(),
-            'subtitle_zh' => '墨西哥中华文化学院',
+            'subtitle_zh' => '墨西哥中華文化學院',
             'button_label_es' => 'Comienza ahora',
-            'button_label_zh' => '立即开始',
+            'button_label_zh' => '立即開始',
             'button_url' => 'https://wa.me/'.config('site.whatsapp'),
             'media_type' => 'image',
             'media_path' => 'banners/'.fake()->uuid().'.jpg',

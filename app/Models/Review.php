@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * A Google review captured by hand from the admin panel. Stored in Spanish with a Simplified Chinese translation.
+ * A Google review captured by hand from the admin panel. Stored in Spanish with a Traditional Chinese translation.
  *
  * @property int $id
  * @property string $author

@@ -16,7 +16,7 @@ beforeEach(function () {
 test('admins can create several banners', function () {
     Livewire::test(Form::class)
         ->set('title_es', 'Aprende chino')
-        ->set('title_zh', '学华语')
+        ->set('title_zh', '學華語')
         ->set('media', UploadedFile::fake()->image('fondo.jpg'))
         ->call('save')
         ->assertHasNoErrors()
@@ -86,7 +86,7 @@ test('admins can hide, reorder and delete banners', function () {
 });
 
 test('the home hero shows every active banner in order and in the visitor language', function () {
-    Banner::factory()->video()->create(['title_es' => 'Aprende chino', 'title_zh' => '学华语', 'media_path' => 'banners/clip.mp4', 'position' => 0]);
+    Banner::factory()->video()->create(['title_es' => 'Aprende chino', 'title_zh' => '學華語', 'media_path' => 'banners/clip.mp4', 'position' => 0]);
     Banner::factory()->create(['title_es' => 'Certificaciones', 'media_path' => 'banners/fondo.jpg', 'position' => 1]);
     Banner::factory()->inactive()->create(['title_es' => 'Banner oculto']);
 
@@ -94,5 +94,5 @@ test('the home hero shows every active banner in order and in the visitor langua
         ->assertSeeInOrder(['banners/clip.mp4', 'banners/fondo.jpg', 'Aprende chino', 'Certificaciones'])
         ->assertDontSee('Banner oculto');
 
-    $this->withSession(['locale' => 'zh_CN'])->get(route('home'))->assertSee('学华语');
+    $this->withSession(['locale' => 'zh_TW'])->get(route('home'))->assertSee('學華語');
 });

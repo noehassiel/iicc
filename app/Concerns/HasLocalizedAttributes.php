@@ -14,7 +14,7 @@ trait HasLocalizedAttributes
      */
     public function localized(string $attribute): ?string
     {
-        if (App::getLocale() === 'zh_CN' && filled($this->{$attribute.'_zh'})) {
+        if (App::getLocale() === 'zh_TW' && filled($this->{$attribute.'_zh'})) {
             return $this->{$attribute.'_zh'};
         }
 
