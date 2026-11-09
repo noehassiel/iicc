@@ -122,8 +122,8 @@
                     __('Interpretación precisa y fluida en negociaciones clave.'),
                 ] as $index => $caption)
                     <figure>
-                        <a href="{{ asset('img/other/Traducción'.($index + 1).'.png') }}" target="_blank" rel="noopener">
-                            <img src="{{ asset('img/other/Traducción'.($index + 1).'.png') }}" alt="{{ $caption }}" loading="lazy" class="aspect-[4/3] w-full rounded-xl object-cover">
+                        <a href="{{ asset('img/other/Traduccion'.($index + 1).'.png') }}" target="_blank" rel="noopener">
+                            <img src="{{ asset('img/other/Traduccion'.($index + 1).'.png') }}" alt="{{ $caption }}" loading="lazy" class="aspect-[4/3] w-full rounded-xl object-cover">
                         </a>
                         <figcaption class="mt-2 text-sm text-neutral-600">{{ $caption }}</figcaption>
                     </figure>

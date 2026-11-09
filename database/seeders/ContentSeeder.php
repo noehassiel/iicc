@@ -59,5 +59,7 @@ class ContentSeeder extends Seeder
                 'title_zh' => $titleZh,
             ]);
         }
+
+        $this->call(EventPhotoSeeder::class);
     }
 }

@@ -1,0 +1,465 @@
+{
+  "gastronomia": [],
+  "manualidad": [],
+  "otros": [
+    {
+      "file": "01-taller-de-mascaras-de-opera-de-pekin-jingju.jpg",
+      "caption_es": "Taller de máscaras de Ópera de Pekín (jīngjù)",
+      "caption_zh": "京劇臉譜彩繪體驗"
+    },
+    {
+      "file": "02-danza-tradicional-con-abanicos-de-seda.jpg",
+      "caption_es": "Danza tradicional con abanicos de seda",
+      "caption_zh": "傳統長綢扇舞體驗"
+    },
+    {
+      "file": "03-aprendiendo-colores-pintando-gatitos.jpg",
+      "caption_es": "Aprendiendo colores pintando gatitos",
+      "caption_zh": "彩繪貓咪學顏色"
+    },
+    {
+      "file": "04-taller-de-rollitos-de-primavera.jpg",
+      "caption_es": "Taller de rollitos de primavera",
+      "caption_zh": "手作春捲體驗"
+    },
+    {
+      "file": "05-danza-del-leon.jpg",
+      "caption_es": "Danza del león",
+      "caption_zh": "歡樂的舞獅體驗"
+    },
+    {
+      "file": "06-elaboracion-de-tangyuan.jpg",
+      "caption_es": "Elaboración de Tangyuan",
+      "caption_zh": "親手製作紅白湯圓"
+    }
+  ],
+  "ano-nuevo-chino": [
+    {
+      "file": "01-foto-grupal-del-ano-nuevo-2024.jpg",
+      "caption_es": "Foto grupal del Año Nuevo 2024",
+      "caption_zh": "2024年春節師生大合影"
+    },
+    {
+      "file": "02-demostracion-de-tai-chi-y-artes-marciales.jpg",
+      "caption_es": "Demostración de Tai Chi y artes marciales",
+      "caption_zh": "傳統太極與武術展演"
+    },
+    {
+      "file": "03-danza-tradicional-con-cintas.jpg",
+      "caption_es": "Danza tradicional con cintas",
+      "caption_zh": "傳統彩帶舞表演"
+    },
+    {
+      "file": "04-presentacion-de-acrobacias-con-diabolo.jpg",
+      "caption_es": "Presentación de acrobacias con diábolo",
+      "caption_zh": "傳統扯鈴特技表演"
+    },
+    {
+      "file": "05-danza-tradicional-con-abanicos.jpg",
+      "caption_es": "Danza tradicional con abanicos",
+      "caption_zh": "傳統摺扇舞表演"
+    },
+    {
+      "file": "06-danza-tradicional-con-sombreros-de-bambu.jpg",
+      "caption_es": "Danza tradicional con sombreros de bambú",
+      "caption_zh": "傳統斗笠舞表演"
+    },
+    {
+      "file": "07-danza-del-leon-tradicional.jpg",
+      "caption_es": "Danza del león tradicional",
+      "caption_zh": "傳統舞獅表演"
+    },
+    {
+      "file": "08-presentacion-de-danza-con-abanicos-de-seda.jpg",
+      "caption_es": "Presentación de danza con abanicos de seda",
+      "caption_zh": "傳統長綢扇舞表演"
+    },
+    {
+      "file": "09-taller-de-papel-picado-de-ano-nuevo.jpg",
+      "caption_es": "Taller de papel picado de Año Nuevo",
+      "caption_zh": "新年剪紙藝術工作坊"
+    },
+    {
+      "file": "10-taller-de-tangyuan-de-ano-nuevo.jpg",
+      "caption_es": "Taller de Tangyuan de Año Nuevo",
+      "caption_zh": "春節手作湯圓體驗"
+    },
+    {
+      "file": "11-bazar-cultural-de-ano-nuevo.jpg",
+      "caption_es": "Bazar cultural de Año Nuevo",
+      "caption_zh": "春節文化市集"
+    },
+    {
+      "file": "12-rally-cultural-de-ano-nuevo.jpg",
+      "caption_es": "Rally cultural de Año Nuevo",
+      "caption_zh": "春節文化闖關活動"
+    },
+    {
+      "file": "13-experiencia-de-caligrafia-de-ano-nuevo.jpg",
+      "caption_es": "Experiencia de caligrafía de Año Nuevo",
+      "caption_zh": "春節書法體驗"
+    },
+    {
+      "file": "14-divertido-juego-de-ano-nuevo.jpg",
+      "caption_es": "Divertido juego de Año Nuevo",
+      "caption_zh": "春節趣味闖關遊戲"
+    },
+    {
+      "file": "15-autentica-bebida-taiwanesa.jpg",
+      "caption_es": "Auténtica bebida taiwanesa",
+      "caption_zh": "經典台式手搖飲"
+    }
+  ],
+  "aniversarios-del-instituto": [
+    {
+      "file": "01-corte-de-pastel-del-20-aniversario.jpg",
+      "caption_es": "Corte de pastel del 20° Aniversario",
+      "caption_zh": "20週年校慶切蛋糕儀式"
+    },
+    {
+      "file": "02-recital-en-el-20-aniversario.jpg",
+      "caption_es": "Recital en el 20° Aniversario",
+      "caption_zh": "20週年校慶朗誦表演"
+    },
+    {
+      "file": "03-foto-grupal-del-22-aniversario.jpg",
+      "caption_es": "Foto grupal del 22° Aniversario",
+      "caption_zh": "22週年校慶合影"
+    },
+    {
+      "file": "04-presentacion-de-danza-con-abanicos-verdes.jpg",
+      "caption_es": "Presentación de danza con abanicos verdes",
+      "caption_zh": "傳統綠綢扇舞表演"
+    },
+    {
+      "file": "05-obra-de-teatro-del-horoscopo-chino.jpg",
+      "caption_es": "Obra de teatro del horóscopo chino",
+      "caption_zh": "十二生肖話劇表演"
+    },
+    {
+      "file": "06-danza-folclorica-mexicana.jpg",
+      "caption_es": "Danza folclórica mexicana",
+      "caption_zh": "墨西哥傳統舞蹈表演"
+    },
+    {
+      "file": "07-foto-del-equipo-docente.jpg",
+      "caption_es": "Foto del equipo docente",
+      "caption_zh": "師資團隊溫馨合影"
+    },
+    {
+      "file": "08-danza-tradicional-aborigen-de-taiwan.jpg",
+      "caption_es": "Danza tradicional aborigen de Taiwán",
+      "caption_zh": "臺灣原住民傳統舞蹈"
+    },
+    {
+      "file": "09-juego-interactivo-de-radicales-chinos.jpg",
+      "caption_es": "Juego interactivo de radicales chinos",
+      "caption_zh": "部首巧連拼遊戲"
+    }
+  ],
+  "ceremonia-de-apertura": [],
+  "4to-festival-de-arte-y-cultura-de-taiwan-2023": [
+    {
+      "file": "01-juego-de-go-tradicional.jpg",
+      "caption_es": "Juego de Go tradicional",
+      "caption_zh": "傳統圍棋體驗"
+    },
+    {
+      "file": "02-experiencia-de-diabolo-tradicional.jpg",
+      "caption_es": "Experiencia de diábolo tradicional",
+      "caption_zh": "傳統扯鈴體驗"
+    },
+    {
+      "file": "03-experiencia-de-caligrafia-tradicional.jpg",
+      "caption_es": "Experiencia de caligrafía tradicional",
+      "caption_zh": "傳統書法體驗"
+    },
+    {
+      "file": "04-experiencia-de-caligrafia-tradicional-2.jpg",
+      "caption_es": "Experiencia de caligrafía tradicional 2",
+      "caption_zh": "傳統書法體驗"
+    },
+    {
+      "file": "05-experiencia-fotografica-con-trajes-tradicionales-y-paraguas.jpg",
+      "caption_es": "Experiencia fotográfica con trajes tradicionales y paraguas de papel",
+      "caption_zh": "傳統服飾與紙傘拍照體驗"
+    },
+    {
+      "file": "06-emocionante-experiencia-con-simuladores-de-carreras.jpg",
+      "caption_es": "Emocionante experiencia con simuladores de carreras",
+      "caption_zh": "刺激好玩的賽車模擬器體驗"
+    },
+    {
+      "file": "07-el-alegre-dios-de-la-riqueza-interactuando-con-el-publico.jpg",
+      "caption_es": "El alegre Dios de la Riqueza interactuando con el público",
+      "caption_zh": "喜氣洋洋的財神爺現身與眾同樂"
+    },
+    {
+      "file": "08-distinguidos-invitados-en-la-inauguracion-del-festival-de-ar.jpg",
+      "caption_es": "Distinguidos invitados en la inauguración del Festival de Arte y Cultura de Taiwán",
+      "caption_zh": "嘉賓齊聚的臺灣文化日開幕"
+    },
+    {
+      "file": "09-juegos-de-argollas-estilo-mercado-nocturno.jpg",
+      "caption_es": "Juegos de argollas estilo mercado nocturno",
+      "caption_zh": "夜市套圈圈遊戲"
+    },
+    {
+      "file": "10-exhibicion-de-accesorios-y-artesanias-orientales.jpg",
+      "caption_es": "Exhibición de accesorios y artesanías orientales",
+      "caption_zh": "東方工藝與飾品展示"
+    },
+    {
+      "file": "11-presentacion-de-la-danza-del-leon.jpg",
+      "caption_es": "Presentación de la danza del león",
+      "caption_zh": "舞獅展演"
+    },
+    {
+      "file": "12-presentacion-de-los-principes-tecno-y-danza-de-dragon.jpg",
+      "caption_es": "Presentación de los Príncipes Tecno y danza de dragón",
+      "caption_zh": "電音三太子與舞龍表演"
+    }
+  ],
+  "3er-festival-de-arte-y-cultura-de-taiwan-2016": [
+    {
+      "file": "01-los-principes-tecno-de-taiwan.jpg",
+      "caption_es": "Los Príncipes Tecno de Taiwán",
+      "caption_zh": "來自臺灣的電音三太子"
+    },
+    {
+      "file": "02-presentacion-de-danza-tradicional-con-paraguas-de-papel.jpg",
+      "caption_es": "Presentación de danza tradicional con paraguas de papel",
+      "caption_zh": "傳統紙傘舞蹈表演"
+    },
+    {
+      "file": "03-presentacion-tradicional-de-la-danza-del-leon.jpg",
+      "caption_es": "Presentación tradicional de la danza del león",
+      "caption_zh": "傳統舞獅精彩演出"
+    },
+    {
+      "file": "04-presentacion-de-danza-tradicional-aborigen.jpg",
+      "caption_es": "Presentación de danza tradicional aborigen",
+      "caption_zh": "原住民傳統舞蹈演出"
+    },
+    {
+      "file": "05-vibrante-presentacion-conjunta-de-danza-de-dragon-y-leon.jpg",
+      "caption_es": "Vibrante presentación conjunta de danza de dragón y león",
+      "caption_zh": "熱鬧的舞龍舞獅慶典匯演"
+    },
+    {
+      "file": "06-inauguracion-oficial-del-3er-festival-cultural-de-taiwan.jpg",
+      "caption_es": "Inauguración oficial del 3er Festival Cultural de Taiwán",
+      "caption_zh": "第三屆臺灣文化日正式開幕"
+    },
+    {
+      "file": "07-salchichas-tradicionales-al-estilo-taiwanes.jpg",
+      "caption_es": "Salchichas tradicionales al estilo taiwanés",
+      "caption_zh": "臺灣道地美食（香腸）"
+    }
+  ],
+  "2do-festival-de-arte-y-cultura-de-taiwan-2015": [
+    {
+      "file": "01-experiencia-de-masajes-tradicionales-chinos.jpg",
+      "caption_es": "Experiencia de masajes tradicionales chinos",
+      "caption_zh": "傳統中醫推拿體驗"
+    },
+    {
+      "file": "02-experiencia-de-caligrafia-china.jpg",
+      "caption_es": "Experiencia de caligrafía china",
+      "caption_zh": "書法教學體驗"
+    },
+    {
+      "file": "03-vibrante-presentacion-de-los-principes-tecno.jpg",
+      "caption_es": "Vibrante presentación de los Príncipes Tecno",
+      "caption_zh": "熱鬧的電音三太子表演"
+    },
+    {
+      "file": "04-presentacion-de-titeres-de-guante-tradicionales-de-taiwan-y.jpg",
+      "caption_es": "Presentación de títeres de guante tradicionales de Taiwán y danza de abanicos",
+      "caption_zh": "臺灣布袋戲與扇舞演出"
+    },
+    {
+      "file": "05-exhibicion-de-estetica-floral.jpg",
+      "caption_es": "Exhibición de estética floral",
+      "caption_zh": "花藝美學展示"
+    },
+    {
+      "file": "06-juegos-interactivos-y-divertidos-compartidos-entre-invitados.jpg",
+      "caption_es": "Juegos interactivos y divertidos compartidos entre invitados y el público",
+      "caption_zh": "貴賓與民眾同樂的趣味互動遊戲"
+    },
+    {
+      "file": "07-invitados-distinguidos-disfrutando-de-la-presentacion-de-la.jpg",
+      "caption_es": "Invitados distinguidos disfrutando de la presentación de la danza del león",
+      "caption_zh": "貴賓觀賞精彩的舞獅表演"
+    }
+  ],
+  "1er-festival-de-arte-y-cultura-de-taiwan-2013": [
+    {
+      "file": "01-presentacion-de-danza-con-abanicos.jpg",
+      "caption_es": "Presentación de danza con abanicos",
+      "caption_zh": "傳統扇舞展演"
+    },
+    {
+      "file": "02-caligrafia-tradicional.jpg",
+      "caption_es": "Caligrafía tradicional",
+      "caption_zh": "傳統書法"
+    },
+    {
+      "file": "03-danza-tradicional-del-dragon.jpg",
+      "caption_es": "Danza tradicional del dragón",
+      "caption_zh": "傳統舞龍表演"
+    },
+    {
+      "file": "04-experiencia-de-go.jpg",
+      "caption_es": "Experiencia de Go",
+      "caption_zh": "圍棋體驗"
+    },
+    {
+      "file": "05-ceremonia-de-inauguracion-del-festival-de-arte-y-cultura-de.jpg",
+      "caption_es": "Ceremonia de inauguración del Festival de Arte y Cultura de Taiwán",
+      "caption_zh": "臺灣文化日活動開幕式"
+    },
+    {
+      "file": "06-danza-del-dianyin-santaizi-tercer-principe-tecno-de-taiwan.jpg",
+      "caption_es": "Danza del \"Dianyin Santaizi\" (Tercer Príncipe Tecno de Taiwán)",
+      "caption_zh": "電音三太子表演"
+    },
+    {
+      "file": "07-un-dia-cultural-de-taiwan-lleno-de-distinguidos-invitados.jpg",
+      "caption_es": "Un Día Cultural de Taiwán lleno de distinguidos invitados",
+      "caption_zh": "高朋滿座的臺灣文化日"
+    }
+  ],
+  "desfile-de-ano-nuevo-chino-sobre-reforma-2010": [
+    {
+      "file": "01-alegre-contingente-del-iicc-en-el-desfile.jpg",
+      "caption_es": "Alegre contingente del IICC en el desfile",
+      "caption_zh": "IICC 師生歡樂遊行隊伍"
+    },
+    {
+      "file": "02-abanico-y-linternas-tradicionales.jpg",
+      "caption_es": "Abanico y linternas tradicionales",
+      "caption_zh": "傳統紅燈籠與摺扇"
+    },
+    {
+      "file": "03-presentacion-de-acrobacias-con-diabolo.jpg",
+      "caption_es": "Presentación de acrobacias con diábolo",
+      "caption_zh": "扯鈴特技表演"
+    },
+    {
+      "file": "04-danza-tradicional-aborigen-de-taiwan-en-reforma.jpg",
+      "caption_es": "Danza tradicional aborigen de Taiwán en Reforma",
+      "caption_zh": "臺灣原住民傳統舞蹈踩街"
+    },
+    {
+      "file": "05-carro-alegorico-de-la-mascota-del-ano-del-tigre.jpg",
+      "caption_es": "Carro alegórico de la mascota del Año del Tigre",
+      "caption_zh": "虎年吉祥物花車踩街"
+    },
+    {
+      "file": "06-carro-alegorico-monumental-del-ano-del-tigre.jpg",
+      "caption_es": "Carro alegórico monumental del Año del Tigre",
+      "caption_zh": "虎年巨型創意花車"
+    },
+    {
+      "file": "07-foto-grupal-de-artistas.jpg",
+      "caption_es": "Foto grupal de artistas",
+      "caption_zh": "表演者合影"
+    },
+    {
+      "file": "08-banderazo-de-inicio-del-desfile.jpg",
+      "caption_es": "Banderazo de inicio del desfile",
+      "caption_zh": "遊行開幕儀式"
+    }
+  ],
+  "desfile-de-ano-nuevo-chino-sobre-reforma-2009": [
+    {
+      "file": "01-carro-alegorico-del-ano-del-buey-2009.jpg",
+      "caption_es": "Carro alegórico del Año del Buey 2009",
+      "caption_zh": "2009 牛年春節大遊行花車"
+    },
+    {
+      "file": "02-transmitiendo-bendiciones-de-ano-nuevo-en-dos-idiomas.jpg",
+      "caption_es": "Transmitiendo bendiciones de Año Nuevo en dos idiomas",
+      "caption_zh": "中西雙語傳遞新春祝福"
+    },
+    {
+      "file": "03-danza-del-leon.jpg",
+      "caption_es": "Danza del león",
+      "caption_zh": "傳統舞獅表演"
+    },
+    {
+      "file": "04-carro-alegorico-en-forma-de-barco-dragon.jpg",
+      "caption_es": "Carro alegórico en forma de barco dragón",
+      "caption_zh": "傳統龍舟造型遊行花車"
+    },
+    {
+      "file": "05-exhibicion-de-abanicos-de-tai-chi.jpg",
+      "caption_es": "Exhibición de abanicos de Tai Chi",
+      "caption_zh": "太極扇展演"
+    },
+    {
+      "file": "06-discurso-de-la-directora.jpg",
+      "caption_es": "Discurso de la Directora",
+      "caption_zh": "校長致詞"
+    },
+    {
+      "file": "07-carro-alegorico-del-buey-dorado-frente-al-angel-de-la-indepe.jpg",
+      "caption_es": "Carro alegórico del Buey Dorado frente al Ángel de la Independencia",
+      "caption_zh": "獨立紀念柱前的金牛花車"
+    },
+    {
+      "file": "08-carro-alegorico-de-taipei-101-y-tav.jpg",
+      "caption_es": "Carro alegórico de Taipei 101 y TAV",
+      "caption_zh": "臺北101與高鐵主題花車"
+    },
+    {
+      "file": "09-carro-alegorico-con-tematica-de-taiwan.jpg",
+      "caption_es": "Carro alegórico con temática de Taiwán",
+      "caption_zh": "臺灣主題遊行花車"
+    }
+  ],
+  "desfile-de-ano-nuevo-chino-sobre-reforma-2008": [
+    {
+      "file": "01-danza-del-dragon-en-el-desfile.jpg",
+      "caption_es": "Danza del dragón en el desfile",
+      "caption_zh": "傳統舞龍熱鬧踩街"
+    },
+    {
+      "file": "02-multitud-entusiasta-en-paseo-de-la-reforma.jpg",
+      "caption_es": "Multitud entusiasta en Paseo de la Reforma",
+      "caption_zh": "改革大道上的熱情民眾"
+    },
+    {
+      "file": "03-demostracion-de-abanicos-de-tai-chi-en-reforma.jpg",
+      "caption_es": "Demostración de abanicos de Tai Chi en Reforma",
+      "caption_zh": "改革大道太極扇舞展演"
+    },
+    {
+      "file": "04-exhibicion-de-artes-marciales-en-reforma.jpg",
+      "caption_es": "Exhibición de artes marciales en Reforma",
+      "caption_zh": "改革大道武術展演"
+    },
+    {
+      "file": "05-carro-alegorico-del-dragon-en-el-desfile.jpg",
+      "caption_es": "Carro alegórico del dragón en el desfile",
+      "caption_zh": "春節遊行巨龍花車"
+    },
+    {
+      "file": "06-invitados-de-honor-en-el-desfile-de-ano-nuevo.jpg",
+      "caption_es": "Invitados de honor en el desfile de Año Nuevo",
+      "caption_zh": "春節遊行貴賓合影"
+    },
+    {
+      "file": "07-equipo-docente-con-qipao-tradicional.jpg",
+      "caption_es": "Equipo docente con Qipao tradicional",
+      "caption_zh": "穿著傳統旗袍的老師們"
+    },
+    {
+      "file": "08-maestros-y-alumnos-en-el-carro-alegorico.jpg",
+      "caption_es": "Maestros y alumnos en el carro alegórico",
+      "caption_zh": "遊行花車上的師生合影"
+    }
+  ]
+}
