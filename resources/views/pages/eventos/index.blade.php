@@ -24,6 +24,8 @@
         'title' => (string) $event['year'],
         'description' => $event['title'],
         ...$cardSchemes[$index % count($cardSchemes)],
+        'src' => $event['cover'],
+        'overlay' => 'rgba(15, 33, 61, 0.5)',
     ]);
 
     // Modal data, keyed by slug.

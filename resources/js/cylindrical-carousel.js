@@ -133,6 +133,16 @@ export function cylindricalCarousel(scope = document) {
         sourceWidth, sourceHeight, 0, 0, faceWidth, faceHeight);
       context.fillStyle = card.overlay || "transparent";
       context.fillRect(0, 0, faceWidth, faceHeight);
+      // Darker band through the middle, where the year and title sit.
+      const band = context.createLinearGradient(0, 0, 0, faceHeight);
+      band.addColorStop(0, "rgba(10, 22, 41, 0)");
+      band.addColorStop(.5, "rgba(10, 22, 41, .55)");
+      band.addColorStop(1, "rgba(10, 22, 41, 0)");
+      context.fillStyle = band;
+      context.fillRect(0, 0, faceWidth, faceHeight);
+      context.shadowColor = "rgba(0, 0, 0, .6)";
+      context.shadowBlur = 24;
+      context.shadowOffsetY = 2;
     }
     context.fillStyle = card.color;
     context.textAlign = "center";
@@ -370,12 +380,12 @@ export function cylindricalCarousel(scope = document) {
   window.addEventListener("resize", resize, { signal, passive: true });
 
   async function initialize() {
-    const images = await Promise.all(cards.map(({ src }) => src ? new Promise((resolve, reject) => {
+    const images = await Promise.all(cards.map(({ src }) => src ? new Promise(resolve => {
       const image = new Image();
       image.crossOrigin = "anonymous";
       image.decoding = "async";
       image.onload = () => resolve(image);
-      image.onerror = () => reject(new Error("A carousel image could not load."));
+      image.onerror = () => resolve(null);
       image.src = src;
     }) : Promise.resolve(null)));
     await document.fonts.ready;
