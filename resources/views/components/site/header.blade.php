@@ -8,7 +8,7 @@
     ];
 
     $certifications = [
-        ['href' => route('certificaciones').'#china', 'title' => __('China'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中國', 'color' => '#b3261e'],
+        ['href' => route('certificaciones').'#china', 'title' => __('China'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中國大陸', 'color' => '#b3261e'],
         ['href' => route('certificaciones').'#taiwan', 'title' => __('Taiwán'), 'description' => __('Test of Chinese as a Foreign Language'), 'glyph' => '臺灣', 'color' => 'var(--color-brand-blue)'],
     ];
 
@@ -109,7 +109,7 @@
                             <div class="nav-dropdown__inner">
                                 @foreach ($certifications as $certification)
                                     <a class="nav-featured__card" href="{{ $certification['href'] }}">
-                                        <span lang="zh-Hant" class="nav-featured__image nav-featured__image--glyph" style="background-color: {{ $certification['color'] }}" aria-hidden="true">{{ $certification['glyph'] }}</span>
+                                        <span lang="zh-Hant" class="nav-featured__image nav-featured__image--glyph" style="background-color: {{ $certification['color'] }}@if (mb_strlen($certification['glyph']) > 2); font-size: 44px; padding-top: 54px @endif" aria-hidden="true">{{ $certification['glyph'] }}</span>
                                         <span class="nav-featured__content">
                                             <span class="nav-dropdown__title">{{ $certification['title'] }}</span>
                                             <span class="nav-dropdown__description">{{ $certification['description'] }}</span>

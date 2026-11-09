@@ -114,7 +114,6 @@
 .hero-section-01 .media .fallback {
   background:
     radial-gradient(circle at 80% 20%, var(--color-brand-orange), transparent 45%),
-    radial-gradient(circle at 15% 85%, var(--color-brand-green), transparent 50%),
     var(--color-brand-blue);
 }
 

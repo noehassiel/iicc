@@ -3,8 +3,8 @@
   --carousel-color: rgb(23, 23, 23);
   --carousel-control: rgb(243, 242, 241);
   --carousel-control-hover: rgb(234, 232, 230);
-  --carousel-focus: var(--color-brand-orange);
-  --carousel-glow: #f0a35c;
+  --carousel-focus: var(--color-brand-blue);
+  --carousel-glow: #4a78b5;
   position: relative;
   width: 100%;
   height: 100svh;

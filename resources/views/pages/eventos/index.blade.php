@@ -16,8 +16,8 @@
 
     $cardSchemes = [
         ['background' => '#1f4e8c', 'color' => '#ffffff'],
-        ['background' => '#f0a35c', 'color' => '#1f2937'],
-        ['background' => '#7ab648', 'color' => '#ffffff'],
+        ['background' => '#163a6b', 'color' => '#ffffff'],
+        ['background' => '#4a78b5', 'color' => '#ffffff'],
     ];
 
     $carouselCards = collect($externalEvents)->values()->map(fn (array $event, int $index) => [

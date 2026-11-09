@@ -169,13 +169,13 @@ export function cylindricalCarousel(scope = document) {
     }
   }
 
-  /** Soft brand-orange halo drawn once and shared by every card's glow plane. */
+  /** Soft brand-blue halo drawn once and shared by every card's glow plane. */
   function createGlowTexture() {
     const glow = document.createElement("canvas");
     glow.width = 544;
     glow.height = 644;
     const context = glow.getContext("2d");
-    const color = getComputedStyle(root).getPropertyValue("--carousel-glow").trim() || "#f0a35c";
+    const color = getComputedStyle(root).getPropertyValue("--carousel-glow").trim() || "#4a78b5";
     context.shadowColor = color;
     context.shadowBlur = 56;
     context.fillStyle = color;

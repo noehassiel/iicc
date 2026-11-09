@@ -27,7 +27,7 @@
 }
 
 [data-button-06]:focus-visible {
-  outline: 2px solid var(--color-brand-orange);
+  outline: 2px solid var(--color-brand-blue);
   outline-offset: 2px;
 }
 
