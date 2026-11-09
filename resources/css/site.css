@@ -13,13 +13,20 @@
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-kai: 'Kaiti TC', 'BiauKai', 'DFKai-SB', '標楷體', 'KaiTi', 'STKaiti', serif;
+    --font-kai: 'IICC Kai', 'Kaiti TC', 'BiauKai', 'DFKai-SB', '標楷體', 'KaiTi', 'STKaiti', serif;
 
     --color-brand-blue: #1f4e8c;
     --color-brand-blue-deep: #163a6b;
     --color-brand-blue-soft: #4a78b5;
     --color-brand-green: #7ab648;
     --color-brand-orange: #f0a35c;
+}
+
+/* Kai glyphs read small next to Latin text, so the system Kai fonts are scaled up. */
+@font-face {
+    font-family: 'IICC Kai';
+    src: local('Kaiti TC Regular'), local('STKaitiTC-Regular'), local('BiauKai'), local('DFKai-SB'), local('DFKaiShu-SB-Estd-BF'), local('KaiTi');
+    size-adjust: 118%;
 }
 
 :lang(zh-TW),

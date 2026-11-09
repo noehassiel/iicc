@@ -33,14 +33,18 @@
         'title' => $event->localized('title'),
         'date' => $event->displayDate(),
         'description' => $event->localized('description') ?? '',
-        'photos' => $event->photos->map->url()->all(),
+        'photos' => $event->photos->map(fn (App\Models\EventPhoto $photo) => [
+            'url' => $photo->url(),
+            'caption' => $photo->localized('caption') ?? $event->localized('title'),
+        ])->all(),
     ]]);
 @endphp
 
 <x-layouts.site title="Eventos">
 <div
-    x-data="{ events: {{ Js::from($modalEvents) }}, huella: {{ Js::from(collect($externalEvents)->pluck('slug')) }}, current: null }"
-    x-on:keydown.escape.window="current = null"
+    x-data="{ events: {{ Js::from($modalEvents) }}, huella: {{ Js::from(collect($externalEvents)->pluck('slug')) }}, current: null, photo: null }"
+    x-on:keydown.escape.window="photo !== null ? photo = null : current = null"
+    x-effect="document.documentElement.classList.toggle('has-modal-open', current !== null); if (current === null) photo = null"
     x-on:carousel:select="current = huella[$event.detail.index]"
 >
     {{-- Hero --}}
@@ -200,8 +204,13 @@
 
                     <h3 class="mt-8 text-lg font-semibold">{{ __('Galería') }}</h3>
                     <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                        <template x-for="photo in events[current].photos" x-bind:key="photo">
-                            <img x-bind:src="photo" alt="" loading="lazy" class="aspect-square w-full rounded-xl object-cover">
+                        <template x-for="(item, index) in events[current].photos" x-bind:key="item.url">
+                            <figure>
+                                <button type="button" x-on:click="photo = index" class="group block w-full cursor-zoom-in overflow-hidden rounded-xl" x-bind:aria-label="'{{ __('Ampliar foto') }}: ' + item.caption">
+                                    <img x-bind:src="item.url" x-bind:alt="item.caption" loading="lazy" class="aspect-square w-full object-cover transition duration-500 ease-out group-hover:scale-105">
+                                </button>
+                                <figcaption class="mt-2 text-sm leading-snug text-neutral-600" x-text="item.caption"></figcaption>
+                            </figure>
                         </template>
                         {{-- Image: gallery photo placeholders until the CMS provides photos --}}
                         <template x-for="placeholder in (events[current].photos.length ? 0 : 6)" x-bind:key="placeholder">
@@ -212,6 +221,52 @@
                     <div class="mt-8">
                         <x-site.whatsapp-button :message="__('Hola, quisiera participar en las próximas actividades del IICC.')">{{ __('¿Quieres formar parte de nuestras próximas actividades?') }}</x-site.whatsapp-button>
                     </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    {{-- Photo lightbox: enlarged gallery photo with its caption --}}
+    <template x-teleport="body">
+        <div
+            x-show="current && photo !== null"
+            x-cloak
+            x-transition.opacity.duration.250ms
+            class="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-neutral-950/90 p-4 sm:p-10"
+            x-on:click.self="photo = null"
+            x-on:keydown.arrow-right.window="if (photo !== null) photo = (photo + 1) % events[current].photos.length"
+            x-on:keydown.arrow-left.window="if (photo !== null) photo = (photo - 1 + events[current].photos.length) % events[current].photos.length"
+            role="dialog"
+            aria-modal="true"
+            aria-label="{{ __('Foto ampliada') }}"
+        >
+            <template x-if="current && photo !== null">
+                <figure class="flex max-h-full w-full max-w-5xl flex-col items-center" x-trap="photo !== null">
+                    <img
+                        x-bind:src="events[current].photos[photo].url"
+                        x-bind:alt="events[current].photos[photo].caption"
+                        x-transition:enter="transition duration-300 ease-out"
+                        x-transition:enter-start="scale-95 opacity-0"
+                        class="max-h-[78svh] w-auto rounded-2xl object-contain"
+                    >
+                    <figcaption class="mt-4 text-center text-white">
+                        <span class="block text-base font-medium sm:text-lg" x-text="events[current].photos[photo].caption"></span>
+                        <span class="mt-1 block text-sm text-white/60" x-text="(photo + 1) + ' / ' + events[current].photos.length"></span>
+                    </figcaption>
+                </figure>
+            </template>
+
+            <button type="button" x-on:click="photo = null" class="absolute top-4 right-4 grid size-11 cursor-pointer place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="{{ __('Cerrar') }}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <template x-if="current && events[current].photos.length > 1">
+                <div>
+                    <button type="button" x-on:click="photo = (photo - 1 + events[current].photos.length) % events[current].photos.length" class="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:left-6" aria-label="{{ __('Anterior') }}">
+                        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true" class="rotate-180"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
+                    </button>
+                    <button type="button" x-on:click="photo = (photo + 1) % events[current].photos.length" class="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-6" aria-label="{{ __('Siguiente') }}">
+                        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
+                    </button>
                 </div>
             </template>
         </div>

@@ -33,7 +33,11 @@ class EventPhotoSeeder extends Seeder
                     Storage::disk('public')->put($path, file_get_contents(public_path("img/Eventos/{$slug}/{$photo['file']}")));
                 }
 
-                $event->photos()->updateOrCreate(['path' => $path], ['position' => $position]);
+                $event->photos()->updateOrCreate(['path' => $path], [
+                    'caption_es' => $photo['caption_es'],
+                    'caption_zh' => $photo['caption_zh'],
+                    'position' => $position,
+                ]);
             }
 
             if ($event->cover_path === null) {
