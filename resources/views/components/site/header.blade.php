@@ -36,9 +36,8 @@
     <div class="header-shell">
         <div class="header-bar" aria-hidden="true"></div>
         <div class="header-content">
-            <a class="logo flex! items-center gap-2 font-semibold tracking-wide" href="{{ route('home') }}" aria-label="{{ __('IICC — Inicio') }}">
-                <span>IICC</span>
-                <span lang="zh-Hant" class="hidden text-xs font-normal text-white/60 sm:inline">中華文化學院</span>
+            <a class="logo" href="{{ route('home') }}" aria-label="{{ __('IICC — Inicio') }}">
+                <img src="/img/logo/logoIICC_MX.png" alt="{{ __('Instituto de Idioma y Cultura China en México, A.C.') }}" width="2897" height="1267">
             </a>
 
             <nav class="navigation-01" aria-label="{{ __('Menú principal') }}">

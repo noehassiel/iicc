@@ -183,10 +183,9 @@
             </dl>
 
             <h3 class="mt-10 font-semibold">{{ __('Más momentos en Taiwán: Nuestros alumnos en el extranjero') }}</h3>
-            {{-- Images: gallery of students in Taiwán --}}
-            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                @foreach (range(1, 4) as $i)
-                    <div class="aspect-square rounded-xl bg-neutral-100"></div>
+            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                @foreach (range(1, 3) as $i)
+                    <img src="/img/Becas/Beca-TW{{ $i }}.png" alt="" loading="lazy" class="aspect-square w-full rounded-xl object-cover">
                 @endforeach
             </div>
 
@@ -248,10 +247,9 @@
             </dl>
 
             <h3 class="mt-10 font-semibold">{{ __('Más momentos en China Continental: Nuestros alumnos en el extranjero') }}</h3>
-            {{-- Images: gallery of students in China --}}
-            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                @foreach (range(1, 4) as $i)
-                    <div class="aspect-square rounded-xl bg-neutral-100"></div>
+            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                @foreach (range(1, 3) as $i)
+                    <img src="/img/Becas/Beca-CN{{ $i }}.png" alt="" loading="lazy" class="aspect-square w-full rounded-xl object-cover">
                 @endforeach
             </div>
 

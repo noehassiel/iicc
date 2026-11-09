@@ -50,6 +50,10 @@
         <div class="mx-auto max-w-7xl space-y-12">
             <x-site.section-heading :eyebrow="__('Niveles')">{{ __('Mapa de niveles') }}</x-site.section-heading>
 
+            <a href="/img/Cursos/{{ app()->getLocale() === 'zh_TW' ? 'Mapa-denivelesenchino' : 'Mapa-denivelesenespanol' }}.png" target="_blank" rel="noopener" class="block">
+                <img src="/img/Cursos/{{ app()->getLocale() === 'zh_TW' ? 'Mapa-denivelesenchino' : 'Mapa-denivelesenespanol' }}.png" alt="{{ __('Mapa de niveles') }}" loading="lazy" class="w-full rounded-2xl border">
+            </a>
+
             <div id="ninos" class="scroll-mt-24">
                 <h3 class="text-xl font-semibold">{{ __('Niños (6 – 11 años)') }}</h3>
                 <div class="mt-4 grid gap-4 md:grid-cols-2">

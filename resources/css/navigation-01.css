@@ -3,7 +3,8 @@
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   --ease-dropdown: linear(0, 0.005, 0.02 2.1%, 0.081 4.7%, 0.467 15.7%, 0.563, 0.645, 0.717, 0.778 28.5%, 0.829 32%, 0.872 35.8%, 0.909 40.1%, 0.938 44.9%, 0.961 50.3%, 0.977 56.5%, 0.987 63.6%, 0.994 72.3%, 1);
   --duration-dropdown: 0.5s;
-  --clr-light: rgba(15, 33, 61, 0.82);
+  --clr-light: rgba(255, 255, 255, 0.86);
+  --clr-ink: #0f213d;
   --corner-shape: superellipse(1.2);
   --box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.039), 0px 0px 1px 0px hsla(0, 0%, 0%, 0.62);
 
@@ -14,7 +15,7 @@
   width: 100%;
   padding-block: 16px;
   overflow: visible;
-  color: white;
+  color: var(--clr-ink);
   font-size: 15px;
 }
 
@@ -67,9 +68,9 @@
   gap: 12px;
   padding: 4px 12px;
   border-radius: 9999px;
-  color: black;
+  color: white;
   font-size: 14px;
-  background-color: white;
+  background-color: var(--color-brand-blue);
   transition:
     opacity 0.3s ease-out,
     transform 0.3s ease-out;
@@ -139,8 +140,7 @@
   justify-self: start;
   display: block;
   width: auto;
-  height: 22px;
-  border-radius: 9999px;
+  height: 40px;
 }
 
 .navigation-01-header .logo svg,
@@ -346,7 +346,7 @@
 }
 
 .navigation-01 .nav-dropdown__description {
-  color: hsla(0, 0%, 100%, 0.55);
+  color: rgba(15, 33, 61, 0.6);
   font-size: 13px;
   line-height: 1.35;
 }
@@ -473,7 +473,8 @@
   isolation: isolate;
   border-radius: 13px;
   corner-shape: var(--corner-shape);
-  background-color: var(--clr-light);
+  color: white;
+  background-color: var(--clr-ink);
 }
 
 .navigation-01 .nav-featured__card::after {
@@ -590,7 +591,7 @@
   height: 36px;
   border-radius: 9999px;
   corner-shape: var(--corner-shape);
-  color: white;
+  color: inherit;
 }
 
 .navigation-01-header .nav-menu-toggle__icon {
@@ -655,7 +656,7 @@
 
   .navigation-01-header .logo {
     flex: none;
-    height: 20px;
+    height: 34px;
     margin-right: auto;
   }
 
@@ -728,7 +729,7 @@
   }
 
   .navigation-01 .nav-list > li.is-expanded > .nav-item {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(15, 33, 61, 0.06);
   }
 
   .navigation-01 .nav-chevron {
@@ -819,6 +820,7 @@
     height: auto;
     padding: 11px 17px;
     border-radius: 24px;
+    color: inherit;
     background-color: transparent;
     transition: background-color 0.2s ease;
   }
@@ -832,7 +834,7 @@
   .navigation-01 .nav-featured__card:focus-visible,
   .navigation-01 .nav-dropdown__item:hover,
   .navigation-01 .nav-dropdown__item:focus-visible {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(15, 33, 61, 0.05);
   }
 
   .navigation-01 .nav-featured__content {

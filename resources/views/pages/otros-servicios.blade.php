@@ -50,10 +50,9 @@
 
             <h3 class="mt-12 text-lg font-semibold">{{ __('Galería: Momentos de Nuestro Curso de Verano en 2026') }}</h3>
             <p class="mt-1 italic text-neutral-600">"{{ __('Descubre cómo nuestros estudiantes viven y disfrutan el idioma chino en IICC') }}"</p>
-            {{-- Images: summer course 2026 gallery --}}
             <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                @foreach (range(1, 4) as $i)
-                    <div class="aspect-square rounded-xl bg-neutral-200"></div>
+                @foreach (['CursodeVerano', 'CursodeVerano2', 'CursodeVerano3', 'CursodeVerano4'] as $photo)
+                    <img src="/img/other/{{ $photo }}.png" alt="" loading="lazy" class="aspect-square w-full rounded-xl object-cover">
                 @endforeach
             </div>
         </div>
@@ -121,10 +120,11 @@
                     __('Presencia profesional y confianza en tu stand.'),
                     __('Atención a compradores y explicación técnica directa.'),
                     __('Interpretación precisa y fluida en negociaciones clave.'),
-                ] as $caption)
+                ] as $index => $caption)
                     <figure>
-                        {{-- Image: interpreter at work (tap to enlarge) --}}
-                        <div class="aspect-[4/3] rounded-xl bg-neutral-200"></div>
+                        <a href="{{ asset('img/other/Traducción'.($index + 1).'.png') }}" target="_blank" rel="noopener">
+                            <img src="{{ asset('img/other/Traducción'.($index + 1).'.png') }}" alt="{{ $caption }}" loading="lazy" class="aspect-[4/3] w-full rounded-xl object-cover">
+                        </a>
                         <figcaption class="mt-2 text-sm text-neutral-600">{{ $caption }}</figcaption>
                     </figure>
                 @endforeach

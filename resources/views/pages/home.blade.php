@@ -2,9 +2,9 @@
     $banners = App\Models\Banner::active();
 
     $services = [
-        ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-motion.webp'],
-        ['route' => 'certificaciones', 'title' => __('Certificaciones oficiales'), 'text' => __('Con la guía de profesores expertos, materiales actualizados y simulacros reales, aseguramos tu éxito en los exámenes oficiales.'), 'image' => __('Foto de examen / certificación'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-moss.webp'],
-        ['route' => 'becas', 'title' => __('Becas y movilidad'), 'text' => __('Apoyamos tu dedicación con becas de excelencia académica y te brindamos la oportunidad de postular a diversas becas internacionales.'), 'image' => __('Foto de becarios'), 'placeholder' => 'https://www.details.so/vault-previews/stacked-scroll-panel-2/media/feature-marsh.webp'],
+        ['route' => 'cursos', 'title' => __('Cursos a tu medida'), 'text' => __('A partir de 6 años, presencial o en línea. Clases especializadas y grupos reducidos para una mayor interacción.'), 'image' => __('Foto de clase de cursos'), 'placeholder' => '/img/Inicio/Cursosatumedida.jpg'],
+        ['route' => 'certificaciones', 'title' => __('Certificaciones oficiales'), 'text' => __('Con la guía de profesores expertos, materiales actualizados y simulacros reales, aseguramos tu éxito en los exámenes oficiales.'), 'image' => __('Foto de examen / certificación'), 'placeholder' => '/img/Inicio/Certificacionesoficiales.jpg'],
+        ['route' => 'becas', 'title' => __('Becas y movilidad'), 'text' => __('Apoyamos tu dedicación con becas de excelencia académica y te brindamos la oportunidad de postular a diversas becas internacionales.'), 'image' => __('Foto de becarios'), 'placeholder' => '/img/Inicio/Becasymovilidad.jpg'],
     ];
 
     $reviews = App\Models\Review::featured();
@@ -108,8 +108,7 @@
                         </div>
                     </div>
 
-                    {{-- Imagen: {{ $service['image'] }} (placeholder temporal) --}}
-                    <div class="media" aria-hidden="true">
+                                        <div class="media" aria-hidden="true">
                         <img src="{{ $service['placeholder'] }}" alt="" loading="lazy" />
                     </div>
                 </article>

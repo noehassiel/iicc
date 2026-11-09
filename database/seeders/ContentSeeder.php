@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Enums\EventCategory;
-use App\Models\Banner;
 use App\Models\Event;
 use App\Models\Review;
 use Illuminate\Database\Seeder;
@@ -16,16 +15,7 @@ class ContentSeeder extends Seeder
      */
     public function run(): void
     {
-        if (! Banner::query()->exists()) {
-            Banner::create([
-                'title_es' => 'Instituto de Idioma y Cultura China en México',
-                'title_zh' => '墨西哥中華文化學院',
-                'subtitle_es' => '墨西哥中華文化學院',
-                'subtitle_zh' => 'Instituto de Idioma y Cultura China en México',
-                'button_label_es' => 'Comienza ahora',
-                'button_label_zh' => '立即開始',
-            ]);
-        }
+        $this->call(BannerSeeder::class);
 
         if (! Review::query()->exists()) {
             $reviews = [
