@@ -166,15 +166,10 @@
     </section>
 
     {{-- CTA --}}
-    <section class="bg-brand-green/10 px-4 py-16">
-        <div class="mx-auto max-w-7xl">
-            <h2 class="text-2xl font-semibold text-balance sm:text-3xl">{{ __('¿Quieres formar parte de nuestras próximas actividades?') }}</h2>
-            <div class="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <x-site.whatsapp-button :message="__('Hola, quisiera participar en las próximas actividades del IICC.')">{{ __('Escríbenos por WhatsApp') }}</x-site.whatsapp-button>
-                <p class="text-neutral-600">{{ __('Síguenos en Instagram / Facebook') }}</p>
-            </div>
-        </div>
-    </section>
+    <x-site.cta tone="orange" :message="__('Hola, quisiera participar en las próximas actividades del IICC.')" :button="__('Escríbenos por WhatsApp')">
+        <x-slot:heading>{{ __('¿Quieres formar parte de nuestras próximas actividades?') }}</x-slot:heading>
+        <x-slot:aside>{{ __('Síguenos en Instagram / Facebook') }}</x-slot:aside>
+    </x-site.cta>
     {{-- Event modal: info + gallery --}}
     <template x-teleport="body">
         <div

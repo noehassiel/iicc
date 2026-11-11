@@ -138,7 +138,7 @@
                 <div class="stack" data-card-stack>
                     @foreach ($services as $service)
                         <article class="card" data-card>
-                            <div class="card-content items-center">
+                            <div class="card-content">
                                 <h2 class="font-semibold uppercase">{{ $service['title'] }}</h2>
                                 <div class="flex flex-col gap-6">
                                     <p>{{ $service['text'] }}</p>
@@ -225,20 +225,10 @@
                 </section>
             @endif
 
-            <section class="relative isolate overflow-hidden px-4 py-20 text-white">
-                {{-- Imagen: foto del patio escolar desenfocada (2:1) --}}
-                <div class="absolute inset-0 -z-10 bg-brand-blue"></div>
-
-                <div class="mx-auto flex max-w-7xl flex-col items-start gap-4">
-                    <h2 class="text-3xl font-semibold sm:text-4xl">{{ __('¿Preguntas?') }}</h2>
-                    <p class="text-lg text-white/90">
-                        {{ __('Estamos listos para ayudarte.') }}<br>{{ __('¡Escríbenos y da el primer paso hoy!') }}
-                    </p>
-                    <x-site.whatsapp-button :message="__('Hola, tengo una pregunta.')" class="mt-2">
-                        {{ __('Escríbenos ahora') }}
-                    </x-site.whatsapp-button>
-                </div>
-            </section>
+            <x-site.cta :message="__('Hola, tengo una pregunta.')" :button="__('Escríbenos ahora')">
+                <x-slot:heading>{{ __('¿Preguntas?') }}</x-slot:heading>
+                <x-slot:text>{{ __('Estamos listos para ayudarte.') }}<br>{{ __('¡Escríbenos y da el primer paso hoy!') }}</x-slot:text>
+            </x-site.cta>
         </div>
     </div>
 </x-layouts.site>

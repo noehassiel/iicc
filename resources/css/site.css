@@ -6,6 +6,7 @@
 @import './stacked-scroll-panel-2.css';
 @import './cylindrical-carousel.css';
 @import './hero-section-01.css';
+@import './cta-gradient.css';
 
 @source '../views/components/layouts/site.blade.php';
 @source '../views/components/site';
@@ -34,6 +35,16 @@
     font-family: 'Instrument Sans', var(--font-kai);
 }
 
+/* Chinese pages use a 20px base: body text and `text-base` both grow; headings keep their own sizes. */
+html:lang(zh-TW) {
+    --text-base: 1.25rem;
+    --text-base--line-height: 1.6;
+}
+
+html:lang(zh-TW) body {
+    font-size: var(--text-base);
+}
+
 [x-cloak] {
     display: none !important;
 }
@@ -58,4 +69,26 @@ html.is-animating .transition-fade {
   line-height: 0.9;
   --number-flow-mask-height: 0.12em;
   --number-flow-mask-width: 0.18em;
+}
+
+/* Footer wordmark: characters rise into place, driven by scroll as the footer enters the viewport. */
+.footer-wordmark span {
+    display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .footer-wordmark span {
+            animation: footer-character-rise linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+    }
+}
+
+@keyframes footer-character-rise {
+    from {
+        opacity: 0;
+        transform: translateY(calc(30% + var(--i) * 14%));
+    }
 }

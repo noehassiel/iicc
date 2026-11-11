@@ -1,64 +1,90 @@
 @php
+    $menu = [
+        ['href' => route('home'), 'label' => __('Inicio')],
+        ['href' => route('cursos'), 'label' => __('Cursos')],
+        ['href' => route('certificaciones'), 'label' => __('Certificaciones')],
+        ['href' => route('becas'), 'label' => __('Becas')],
+        ['href' => route('otros-servicios'), 'label' => __('Otros Servicios')],
+        ['href' => route('eventos.index'), 'label' => __('Eventos')],
+        ['href' => route('nosotros'), 'label' => __('Nosotros')],
+        ['href' => route('contacto'), 'label' => __('Contacto')],
+    ];
+
     $socials = [
-        ['href' => 'https://wa.me/'.config('site.whatsapp'), 'label' => 'WhatsApp'],
         ['href' => config('site.facebook'), 'label' => 'Facebook'],
         ['href' => config('site.instagram'), 'label' => 'Instagram'],
         ['href' => config('site.youtube'), 'label' => 'YouTube'],
     ];
+
+    $link = 'rounded-sm transition-opacity duration-150 ease-out hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
+    $label = 'text-sm text-white/65';
 @endphp
 
-<footer class="relative bg-[#e4e0d8] text-[#14110f] lg:min-h-svh">
-    {{-- Cropped visual band, standing in for the reference's portrait --}}
-    <div class="relative h-[62vw] overflow-hidden bg-[#d6d2c9] sm:h-[44vw] lg:h-[36vw] lg:max-h-[30rem]" aria-hidden="true">
-        <span lang="zh-Hant" class="absolute -right-[4vw] -bottom-[12vw] text-[46vw] leading-none font-semibold tracking-[-0.08em] text-[#ccc7bd] select-none lg:-bottom-[9vw] lg:text-[34vw]">中文</span>
-    </div>
+<footer class="bg-white px-4 pt-4 pb-4">
+    <div class="rounded-3xl bg-brand-blue-deep px-6 pt-10 pb-6 text-white sm:px-10 sm:pt-14 lg:px-14 lg:pt-16">
+        <div class="mx-auto max-w-7xl">
+            <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                <h2 class="max-w-[20ch] text-2xl leading-tight font-semibold text-balance sm:text-4xl">Instituto de Idioma y Cultura China en México, A.C.</h2>
 
-    <a href="{{ route('home') }}" class="absolute top-3 left-4 text-[22vw] leading-[0.8] font-semibold tracking-[-0.065em] sm:left-6 sm:text-[16vw] lg:text-[10.5rem]" aria-label="{{ __('IICC — Inicio') }}">IICC</a>
-
-    <div class="grid lg:grid-cols-[1fr_38%]">
-        <div class="flex flex-col px-4 pt-6 pb-16 sm:px-6 lg:pt-5">
-            <p class="text-lg tracking-tight">{{ __('Contacto') }}</p>
-
-            <div class="mt-16 text-[2rem] leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:mt-auto lg:pt-40">
-                <a href="https://wa.me/{{ config('site.whatsapp') }}" target="_blank" rel="noopener" class="block w-fit">{{ config('site.whatsapp_display') }}</a>
-                <p class="mt-1 max-w-[26ch] text-[#14110f]/55 text-xl leading-snug tracking-tight sm:text-2xl">Tomas Alva Edison 92A, Tabacalera, Cuauhtémoc, CDMX</p>
-                <a
-                    href="https://wa.me/{{ config('site.whatsapp') }}?text={{ rawurlencode(__('Hola, quisiera información sobre los cursos de IICC.')) }}"
-                    target="_blank"
-                    rel="noopener"
-                    class="group mt-3 inline-flex w-fit items-center gap-3 border-b-2 border-current text-[#5b86b3]"
-                >
-                    {{ __('¡Contáctanos por WhatsApp!') }}
-                    <span aria-hidden="true" class="transition-transform duration-300 ease-out group-hover:translate-x-2">&rarr;</span>
-                </a>
+                <x-site.whatsapp-button
+                    class="self-start focus-visible:outline-white! lg:self-auto"
+                    :message="__('Hola, quisiera información sobre los cursos de IICC.')"
+                >{{ __('¡Contáctanos por WhatsApp!') }}</x-site.whatsapp-button>
             </div>
 
-            <ul class="mt-14 grid w-fit grid-cols-2 gap-x-24 gap-y-2 text-lg tracking-tight sm:flex sm:gap-x-24">
-                @foreach ($socials as $social)
-                    <li><a href="{{ $social['href'] }}" target="_blank" rel="noopener" class="transition-opacity hover:opacity-60">{{ $social['label'] }}</a></li>
+            <div class="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-[1.2fr_1.1fr_auto_auto] lg:gap-x-14">
+                <nav aria-labelledby="footer-menu">
+                    <h3 id="footer-menu" class="{{ $label }}">{{ __('Menú principal') }}</h3>
+                    <ul class="mt-4 grid grid-cols-2 gap-x-8 gap-y-2.5">
+                        @foreach ($menu as $item)
+                            <li><a href="{{ $item['href'] }}" class="{{ $link }}">{{ $item['label'] }}</a></li>
+                        @endforeach
+                    </ul>
+                </nav>
+
+                <div>
+                    <h3 class="{{ $label }}">{{ __('Dirección') }}</h3>
+                    <a href="{{ config('site.maps') }}" target="_blank" rel="noopener" class="{{ $link }} mt-4 block max-w-[28ch] leading-relaxed">
+                        Tomas Alva Edison 92A, Tabacalera, Cuauhtémoc, 06030 Ciudad de México, CDMX
+                    </a>
+                    <p class="mt-1 text-white/65">{{ __('(cerca del Monumento a la Revolución)') }}</p>
+                </div>
+
+                <div>
+                    <h3 class="{{ $label }}">{{ __('Horario de atención') }}</h3>
+                    <p class="mt-4 leading-relaxed lg:whitespace-nowrap">{{ __('Lunes a Viernes de 09:30 a 17:30') }}</p>
+                    <p class="leading-relaxed lg:whitespace-nowrap">{{ __('Sábados de 09:30 a 17:30') }}</p>
+                    <a href="https://wa.me/{{ config('site.whatsapp') }}" target="_blank" rel="noopener" class="{{ $link }} mt-2.5 inline-block tabular-nums">{{ config('site.whatsapp_display') }}</a>
+                </div>
+
+                <div>
+                    <h3 class="{{ $label }}">{{ __('Síguenos en redes sociales') }}</h3>
+                    <ul class="mt-4 space-y-2.5">
+                        @foreach ($socials as $social)
+                            <li>
+                                <a href="{{ $social['href'] }}" target="_blank" rel="noopener" class="{{ $link }} group inline-flex items-center gap-2">
+                                    {{ $social['label'] }}
+                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="size-3 stroke-current stroke-[1.8] transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none">
+                                        <path d="M3 13 13 3M3 3h10v10"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            {{-- The institute's Chinese name as the closing mark; each character rises into place as the footer scrolls in --}}
+            <p lang="zh-Hant" class="footer-wordmark mt-16 flex justify-between text-[clamp(1.5rem,7vw,6rem)] leading-none lg:mt-24">
+                @foreach (mb_str_split('墨西哥中華文化學院') as $character)
+                    <span style="--i: {{ $loop->index }}">{{ $character }}</span>
                 @endforeach
-            </ul>
-        </div>
+            </p>
 
-        {{-- Dark panel that rides up over the visual band --}}
-        <figure class="relative z-10 mx-4 flex flex-col bg-[#1c1815] p-4 text-white sm:mx-6 lg:mx-0 lg:-mt-[calc(min(36vw,30rem)*0.45)] lg:mb-16">
-            <blockquote class="flex gap-6 text-lg leading-snug tracking-tight sm:text-xl">
-                <span aria-hidden="true">“</span>
-                <p class="flex-1">Una de las pocas escuelas de mandarín en la Ciudad de México. Es una escuela relativamente pequeña con un programa completo de mandarín y un programa de inmersión en la cultura china.</p>
-                <span aria-hidden="true">”</span>
-            </blockquote>
-            <figcaption class="mt-3 pl-8 text-sm text-white/50">Andi Gonzalez · {{ __('Reseña de Google') }}</figcaption>
-
-            <div class="mt-10 flex aspect-[4/3] items-end justify-between overflow-hidden bg-brand-blue p-4 lg:mt-auto" aria-hidden="true">
-                <span lang="zh-Hant" class="text-[5.5rem] leading-[0.85] font-semibold tracking-[-0.06em] text-white/90 sm:text-9xl">中華<br>文化</span>
-                <span class="mb-2 size-14 rounded-full bg-brand-orange sm:size-20"></span>
+            <div class="mt-8 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 text-sm text-white/65">
+                <p>IICC &copy; {{ date('Y') }}</p>
+                <p>{{ __('Ciudad de México') }}</p>
             </div>
-        </figure>
-    </div>
-
-    <div class="grid gap-4 px-4 pt-10 pb-5 text-[0.7rem] leading-tight uppercase sm:px-6 lg:absolute lg:inset-x-0 lg:bottom-0 lg:pt-0 lg:grid-cols-[1fr_19%_19%]">
-        <p>IICC<br>{{ __('Instituto de Idioma y Cultura China en México, A.C.') }}</p>
-        <p><a href="{{ route('contacto') }}" class="hover:opacity-60">{{ __('Contacto') }}</a><br>IICC&copy;{{ date('Y') }}</p>
-        <p class="lg:text-right" lang="zh-Hant">墨西哥中華文化學院<br>{{ __('Ciudad de México') }}</p>
+        </div>
     </div>
 </footer>

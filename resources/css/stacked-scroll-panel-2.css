@@ -57,7 +57,7 @@
 .stacked-scroll-panel-2 .card-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   min-width: 0;
   padding: 40px;
 }

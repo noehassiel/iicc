@@ -8,7 +8,20 @@
   },
   "detector": {
     "extensions": [
-      { "ext": ".blade.php", "engine": "html" }
+      {
+        "ext": ".blade.php",
+        "engine": "html"
+      }
+    ],
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "iicc kai",
+        "createdAt": "2026-11-11T05:30:18.783Z",
+        "reason": "DESIGN.md Typography documents 'IICC Kai' as the Chinese font stack"
+      }
     ]
   }
 }
