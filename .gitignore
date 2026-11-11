@@ -39,3 +39,5 @@ yarn-error.log
 /opencode.json
 /opencode.jsonc
 pages-info
+/public/hot.*
+.DS_Store
