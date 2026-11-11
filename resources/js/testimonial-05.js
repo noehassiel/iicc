@@ -5,7 +5,7 @@ gsap.registerPlugin(SplitText);
 
 export function testimonial05(scope = document) {
   const motion = {
-    autoplayMs: 4000,
+    autoplayMs: 10000,
     travel: 110,
     hiddenAvatarScale: 0.72,
     ease: {

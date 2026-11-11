@@ -162,7 +162,7 @@
                         <x-site.section-heading
                             :eyebrow="__('Reseñas de Google')">{{ __('4.5 ★ · +20 reseñas') }}</x-site.section-heading>
 
-                        <div class="testimonial-05 mt-8" data-testimonials data-autoplay="6000">
+                        <div class="testimonial-05 mt-8" data-testimonials data-autoplay="10000">
                             <div class="progress" aria-hidden="true">
                                 <span data-progress></span>
                             </div>
