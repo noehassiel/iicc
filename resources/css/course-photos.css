@@ -1,0 +1,168 @@
+/*
+ * Cursos page photography: the hero photo deck, the per-age photo rails,
+ * the crossfading modality photo and the "En línea" tag.
+ */
+
+.course-deck {
+    --deck-ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.course-deck-card {
+    transform: var(--deck-transform);
+    transition:
+        transform 900ms var(--deck-ease),
+        filter 600ms ease,
+        box-shadow 600ms ease;
+    box-shadow:
+        0 1px 2px rgb(15 33 61 / 0.08),
+        0 12px 32px -12px rgb(15 33 61 / 0.35);
+}
+
+.course-deck-card[data-pos='0'] {
+    --deck-transform: translate(0, 0) rotate(-2deg) scale(1);
+    z-index: 4;
+}
+
+.course-deck-card[data-pos='1'] {
+    --deck-transform: translate(5%, 3%) rotate(3deg) scale(0.95);
+    z-index: 3;
+    filter: brightness(0.92);
+}
+
+.course-deck-card[data-pos='2'] {
+    --deck-transform: translate(-4%, 5%) rotate(-5deg) scale(0.91);
+    z-index: 2;
+    filter: brightness(0.85);
+}
+
+.course-deck-card[data-pos='3'] {
+    --deck-transform: translate(2%, 7%) rotate(6deg) scale(0.87);
+    z-index: 1;
+    filter: brightness(0.8);
+}
+
+/* The card that just left the top is tossed aside, then tucked in at the back. */
+.course-deck-card.is-leaving {
+    animation: course-deck-toss 900ms var(--deck-ease) both;
+}
+
+@keyframes course-deck-toss {
+    0% {
+        transform: translate(0, 0) rotate(-2deg) scale(1);
+        z-index: 5;
+    }
+    45% {
+        transform: translate(-58%, -3%) rotate(-11deg) scale(0.96);
+        z-index: 5;
+    }
+    55% {
+        z-index: 0;
+    }
+    100% {
+        transform: translate(2%, 7%) rotate(6deg) scale(0.87);
+        z-index: 0;
+    }
+}
+
+/* Two photos of the same modality take turns. */
+.course-crossfade img + img {
+    animation: course-crossfade 12s ease-in-out infinite;
+}
+
+@keyframes course-crossfade {
+    0%,
+    42% {
+        opacity: 0;
+    }
+    50%,
+    92% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Photo rails slide in from the right as they scroll into view. */
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .course-rail-reveal {
+            animation: course-rail-in linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 70%;
+        }
+    }
+}
+
+@keyframes course-rail-in {
+    /* Clip only: a transform here would widen the page while it plays. */
+    from {
+        opacity: 0;
+        clip-path: inset(0 0 0 40% round 16px);
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(-20% -20% -20% -20% round 0);
+    }
+}
+
+/* "Por qué IICC" panel: the active point's Kai character comes into focus, the rest blur away. */
+.course-reason-panel {
+    background-image: radial-gradient(circle at 75% 20%, rgb(240 163 92 / 0.45), transparent 55%);
+}
+
+.course-reason-glyph {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.88) translateY(4%);
+    transition:
+        opacity 500ms ease,
+        filter 500ms ease,
+        transform 700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.course-reason-glyph.is-active {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+}
+
+.course-live-dot {
+    animation: course-live-pulse 2s ease-out infinite;
+}
+
+@keyframes course-live-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgb(240 163 92 / 0.7);
+    }
+    70%,
+    100% {
+        box-shadow: 0 0 0 6px rgb(240 163 92 / 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .course-deck-card {
+        transition:
+            filter 300ms ease,
+            opacity 300ms ease;
+    }
+
+    .course-deck-card.is-leaving {
+        animation: none;
+    }
+
+    .course-crossfade img + img {
+        animation: none;
+        opacity: 0;
+    }
+
+    .course-live-dot {
+        animation: none;
+    }
+
+    .course-reason-glyph {
+        filter: none;
+        transform: none;
+    }
+}
