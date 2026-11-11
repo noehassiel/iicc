@@ -91,6 +91,20 @@
   opacity: 0.3;
 }
 
+/* Dusk tone: the brand blue with a lantern-orange glow in one corner, echoing the hero fallback. */
+.cta-gradient[data-tone='dusk'] .cta-gradient-field {
+  background: linear-gradient(120deg, #1f4e8c 0%, #26579a 55%, #2f5f9e 100%);
+}
+
+.cta-gradient[data-tone='dusk'] .cta-gradient-blob-deep {
+  background: radial-gradient(closest-side, rgb(22 58 107 / 0.8), rgb(22 58 107 / 0));
+}
+
+.cta-gradient[data-tone='dusk'] .cta-gradient-blob-light {
+  background: radial-gradient(closest-side, rgb(240 163 92 / 0.85), rgb(240 163 92 / 0));
+  mix-blend-mode: screen;
+}
+
 @keyframes cta-drift-deep {
   to {
     transform: translate3d(35%, -15%, 0) scale(1.15);
