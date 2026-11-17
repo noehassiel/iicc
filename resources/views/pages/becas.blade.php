@@ -45,10 +45,13 @@
 <x-layouts.site title="Becas">
     {{-- Hero --}}
     <section class="px-4 py-16 sm:py-24">
-        <div class="mx-auto max-w-7xl">
+        <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1fr_20rem] md:items-center lg:grid-cols-[1fr_24rem]">
+            <div>
             <h1 class="text-4xl font-semibold text-balance sm:text-5xl">{{ __('Impulsa tu futuro con nuestras') }} <span class="text-brand-blue">{{ __('BECAS') }}</span></h1>
             <p class="mt-4 max-w-xl text-lg text-neutral-600">{{ __('Premiamos tu esfuerzo académico y te abrimos las puertas a oportunidades de estudio en Taiwán y China Continental.') }}</p>
             <x-site.whatsapp-button :message="__('Hola, me gustaría recibir asesoría sobre becas.')" class="mt-8">{{ __('Solicita asesoría de becas') }}</x-site.whatsapp-button>
+            </div>
+            <img src="{{ asset('img/Becas/becas-y-movilidad.webp') }}" alt="{{ __('Beca de Excelencia IICC') }}" width="586" height="878" decoding="async" fetchpriority="high" class="aspect-4/5 w-full max-w-sm rounded-2xl bg-neutral-100 object-cover object-top shadow-sm md:max-w-none">
         </div>
     </section>
 
@@ -90,8 +93,12 @@
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading :eyebrow="__('Beca de Excelencia IICC')">{{ __('Reconocemos el compromiso, la disciplina y el talento de nuestros estudiantes en clases grupales.') }}</x-site.section-heading>
 
-            {{-- Image: photo of the Excellence Scholarship recipients --}}
-            <div class="mt-8 aspect-video rounded-2xl bg-neutral-100"></div>
+            <img src="{{ asset('img/Becas/beca-ceremonia.webp') }}" alt="{{ __('Beca de Excelencia IICC') }}" width="1280" height="720" loading="lazy" decoding="async" class="mt-8 aspect-video w-full rounded-2xl bg-neutral-100 object-cover">
+            <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                @foreach (['beca-foto-grupal', 'beca-excelencia-1', 'beca-excelencia-2', 'beca-excelencia-3'] as $photo)
+                    <img src="{{ asset("img/Becas/{$photo}.webp") }}" alt="{{ __('Beca de Excelencia IICC') }}" width="900" height="675" loading="lazy" decoding="async" class="aspect-4/3 w-full rounded-xl bg-neutral-100 object-cover">
+                @endforeach
+            </div>
             <blockquote class="mt-4 text-center italic text-neutral-600">"{{ __('Felicitamos a los beneficiarios de la Beca de Excelencia por su dedicación y constancia.') }}"</blockquote>
 
             <div class="mt-10 grid gap-6 sm:grid-cols-2">
@@ -118,7 +125,7 @@
                 <div class="rounded-2xl border p-6">
                     <h3 class="font-semibold">{{ __('Calendario y Proceso') }}</h3>
                     <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
-                        <li>{{ __('Periodo de postulación: A principios de agosto (convocatoria abierta durante 1 semana).') }}</li>
+                        <li>{{ __('Periodo de postulación: En agosto (convocatoria abierta durante 1 semana).') }}</li>
                     </ul>
                 </div>
             </div>

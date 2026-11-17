@@ -1,14 +1,14 @@
 @php
     $chinaExams = [
-        ['name' => 'YCT', 'ages' => __('6 a 15 años.'), 'items' => [__('Examen escrito: 4 niveles (YCT 1, 2, 3 y 4).'), __('Examen oral (opcional): Nivel Inicial e Intermedio.')]],
-        ['name' => 'HSK', 'detail' => __('(Escrito)'), 'ages' => __('A partir de 12 años.'), 'items' => [__('HSK 1–2: Comprensión auditiva y lectura.'), __('HSK 3–6: Comprensión auditiva, lectura y escritura.')]],
-        ['name' => 'HSKK', 'detail' => __('(Oral)'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Evaluación oral computarizada.'), __('Básico → HSK 1–2.'), __('Intermedio → HSK 3–4.'), __('Avanzado → HSK 5–6.')]],
-        ['name' => 'BCT', 'ages' => __('A partir de 18 años.'), 'items' => [__('BCT (A) Negocios inicial.'), __('BCT (B) Negocios intermedio y avanzado.')]],
+        ['logo' => 'yct', 'name' => 'YCT', 'ages' => __('6 a 15 años.'), 'items' => [__('Examen escrito: 4 niveles (YCT 1, 2, 3 y 4).'), __('Examen oral (opcional): Nivel Inicial e Intermedio.')]],
+        ['logo' => 'hsk', 'name' => 'HSK', 'detail' => __('(Escrito)'), 'ages' => __('A partir de 12 años.'), 'items' => [__('HSK 1–2: Comprensión auditiva y lectura.'), __('HSK 3–6: Comprensión auditiva, lectura y escritura.')]],
+        ['logo' => 'hskk', 'name' => 'HSKK', 'detail' => __('(Oral)'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Evaluación oral computarizada.'), __('Básico → HSK 1–2.'), __('Intermedio → HSK 3–4.'), __('Avanzado → HSK 5–6.')]],
+        ['logo' => 'bct', 'name' => 'BCT', 'ages' => __('A partir de 18 años.'), 'items' => [__('BCT (A) Negocios inicial.'), __('BCT (B) Negocios intermedio y avanzado.')]],
     ];
 
     $taiwanExams = [
-        ['name' => 'CCCC', 'detail' => 'Children’s Chinese Competency Certification', 'description' => __('Certificación estandarizada para niños no nativos o de origen chino.'), 'ages' => __('7 a 12 años.'), 'items' => [__('Comprensión auditiva y lectura.'), __('Niveles: Sprouting, Seedling, Blossoming.')]],
-        ['name' => 'TOCFL', 'detail' => 'Test of Chinese as a Foreign Language', 'description' => __('Examen oficial estandarizado desarrollado por el Ministerio de Educación de Taiwán.'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Comprensión auditiva y lectura (principales).'), __('Expresión oral y escrita (opcionales).')]],
+        ['logo' => 'cccc', 'name' => 'CCCC', 'detail' => 'Children’s Chinese Competency Certification', 'description' => __('Certificación estandarizada para niños no nativos o de origen chino.'), 'ages' => __('7 a 12 años.'), 'items' => [__('Comprensión auditiva y lectura.'), __('Niveles: Sprouting, Seedling, Blossoming.')]],
+        ['logo' => 'tocfl', 'name' => 'TOCFL', 'detail' => 'Test of Chinese as a Foreign Language', 'description' => __('Examen oficial estandarizado desarrollado por el Ministerio de Educación de Taiwán.'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Comprensión auditiva y lectura (principales).'), __('Expresión oral y escrita (opcionales).')]],
     ];
 
     $faqs = [
@@ -70,6 +70,7 @@
             <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($chinaExams as $exam)
                     <article class="rounded-2xl border p-6">
+                        <img src="{{ asset('img/certificaciones/'.$exam['logo'].'.webp') }}" alt="{{ $exam['name'] }}" width="600" height="600" loading="lazy" decoding="async" class="mb-4 aspect-square w-full rounded-xl object-contain">
                         <h3 class="text-xl font-semibold">{{ $exam['name'] }} <span class="text-sm font-normal text-neutral-500">{{ $exam['detail'] ?? '' }}</span></h3>
                         <p class="text-sm font-medium text-brand-blue">{{ $exam['ages'] }}</p>
                         <ul class="mt-3 space-y-1 text-neutral-600">
@@ -92,6 +93,7 @@
             <div class="mt-8 grid gap-4 md:grid-cols-2">
                 @foreach ($taiwanExams as $exam)
                     <article class="rounded-2xl bg-white p-6 shadow-sm">
+                        <img src="{{ asset('img/certificaciones/'.$exam['logo'].'.webp') }}" alt="{{ $exam['name'] }}" width="600" height="{{ $exam['logo'] === 'tocfl' ? 305 : 600 }}" loading="lazy" decoding="async" class="mb-4 h-40 w-full rounded-xl object-contain">
                         <h3 class="text-xl font-semibold">{{ $exam['name'] }}</h3>
                         <p class="text-sm text-neutral-500">{{ $exam['detail'] }}</p>
                         <p class="mt-3 text-neutral-600">{{ $exam['description'] }}</p>

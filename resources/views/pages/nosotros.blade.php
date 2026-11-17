@@ -1,8 +1,24 @@
 @php
     $staff = [
-        ['name' => 'Grace Zhang', 'role' => __('Directora General del IICC'), 'image' => __('Foto de directora')],
-        ['name' => 'Jeymmi', 'role' => __('Coordinación y Admisiones'), 'image' => __('Foto de secretaria')],
-        ['name' => 'Juan', 'role' => __('Seguridad y Atención en Campus'), 'image' => __('Foto de guardia de seguridad')],
+        ['name' => 'Grace Chang', 'role' => __('Directora General del IICC'), 'image' => 'grace-chang'],
+        ['name' => 'Jeymmi Yoselin Rivera Arteaga', 'role' => __('Coordinación y Admisiones'), 'image' => 'jeymmi-rivera'],
+        ['name' => 'Juan Christian Barrera Gama', 'role' => __('Seguridad y Atención en Campus'), 'image' => 'juan-barrera'],
+    ];
+
+    // [file slug in img/Nosotros/maestros, Latin name, Traditional Chinese name]
+    $teachers = [
+        ['monica-qiu', 'Monica Qiu', '邱聯慈'],
+        ['nora-wang', 'Nora Wang', '王鐸'],
+        ['becky-cheng', 'Becky Cheng', '鄭雅方'],
+        ['irene-chang', 'Irene Chang', '張萌'],
+        ['jodie-chen', 'Jodie Chen', '陳思伃'],
+        ['min-yi-chen', 'Min Yi Chen', '陳敏瑜'],
+        ['zoey-qiu-mei', 'Zoey Qiu Mei', '邱梅盈熙'],
+        ['ruby-her', 'Ruby Her', '賀立汝'],
+        ['diana-chang', 'Diana Chang', '常翔'],
+        ['jose-castro', 'José Antonio Castro Gutiérrez', null],
+        ['debby-lin', 'Debby Lin', '林霈芸'],
+        ['melissa-feng', 'Melissa Feng', '馮昊'],
     ];
 
     $achievements = [
@@ -12,17 +28,39 @@
     ];
 
     $spaces = [
-        ['title' => __('Planta Baja (afuera)'), 'text' => __('Un amplio patio al aire libre donde se celebran talleres culturales mensuales y eventos comunitarios; el lugar de juego favorito durante el recreo. Cuenta además con cocina para talleres y sanitarios para hombres al fondo.')],
-        ['title' => __('Planta Baja (interior)'), 'text' => __('La planta baja alberga dos cómodas aulas de clase, el área de recepción y secretaría para atención a alumnos, y la oficina de dirección general.')],
-        ['title' => __('Primer Piso'), 'text' => __('Espacio de aulas múltiples: cuenta con un gran salón interactivo para cursos infantiles y campamentos, tres aulas adicionales y sanitarios para damas.')],
+        ['key' => 'afuera', 'cover' => 1, 'photos' => ['exterior-puerta-principal', 'exterior-patio-1', 'exterior-patio-2', 'exterior-cocina-sanitario'], 'title' => __('Planta Baja (afuera)'), 'text' => __('Un amplio patio al aire libre donde se celebran talleres culturales mensuales y eventos comunitarios; el lugar de juego favorito durante el recreo. Cuenta además con cocina para talleres y sanitarios para hombres al fondo.')],
+        ['key' => 'interior', 'cover' => 0, 'photos' => ['interior-recepcion', 'interior-direccion', 'interior-aula-1', 'interior-aula-2', 'interior-pasillo', 'interior-biblioteca'], 'title' => __('Planta Baja (interior)'), 'text' => __('La planta baja alberga dos cómodas aulas de clase, el área de recepción y secretaría para atención a alumnos, y la oficina de dirección general.')],
+        ['key' => 'piso1', 'cover' => 0, 'photos' => ['piso1-aula-ninos-1', 'piso1-aula-ninos-2', 'piso1-aula-ninos-3', 'piso1-aula-ninos-4', 'piso1-aula-1-1', 'piso1-aula-1-2', 'piso1-aula-2', 'piso1-aula-3-1', 'piso1-aula-3-2', 'piso1-pasillo', 'piso1-sanitario-1', 'piso1-sanitario-2'], 'title' => __('Primer Piso'), 'text' => __('Espacio de aulas múltiples: cuenta con un gran salón interactivo para cursos infantiles y campamentos, tres aulas adicionales y sanitarios para damas.')],
     ];
+
+    /** @var array<string, list<array{src: string, alt: string}>> $gallery */
+    $gallery = collect($spaces)
+        ->mapWithKeys(fn (array $space): array => [$space['key'] => array_map(fn (string $photo): array => [
+            'src' => asset("img/Nosotros/instituto/{$photo}.webp"),
+            'alt' => $space['title'],
+        ], $space['photos'])])
+        ->all();
 @endphp
 
 <x-layouts.site title="Nosotros">
+<div
+    x-data="{
+        gallery: {{ Js::from($gallery) }},
+        group: null,
+        index: 0,
+        show(group, index) { this.group = group; this.index = index; },
+        close() { this.group = null; },
+        step(direction) {
+            const total = this.gallery[this.group].length;
+            this.index = (this.index + direction + total) % total;
+        },
+    }"
+    x-on:keydown.escape.window="close()"
+    x-effect="document.documentElement.classList.toggle('has-modal-open', group !== null)">
     <section class="bg-brand-blue px-4 py-16 text-white">
         <div class="mx-auto max-w-7xl">
             <p class="text-sm font-semibold uppercase tracking-wider text-white/70">{{ __('Nosotros') }}</p>
-            <h1 class="mt-2 max-w-2xl text-3xl font-semibold text-balance sm:text-5xl">{{ __('Aprendiendo chino y tendiendo puentes culturales desde 2003') }}</h1>
+            <h1 class="mt-2 max-w-2xl text-3xl font-semibold text-balance sm:text-5xl">{{ __('Enseñando chino y tendiendo puentes culturales desde 2003') }}</h1>
 
             <nav class="mt-8 flex flex-wrap gap-3">
                 <a href="#historia" class="rounded-full bg-white px-5 py-2 font-semibold text-brand-blue">{{ __('Nuestra Historia') }}</a>
@@ -38,8 +76,7 @@
                 <x-site.section-heading :eyebrow="__('Nuestra Historia')">{{ __('Desde 2003: Mucho más que una escuela') }}</x-site.section-heading>
                 <p class="mt-4 text-neutral-700">{{ __('Desde 2003, en el IICC unimos idioma y cultura como un legado vivo. Somos un puente humano para que México descubra la tradición china y un espacio de auténtica reconexión cultural para que la comunidad china en el extranjero se reencuentre con sus raíces.') }}</p>
             </div>
-            {{-- Imagen: fotos juntos o video de presentación --}}
-            <div class="aspect-video rounded-2xl bg-neutral-100"></div>
+            <img src="{{ asset('img/Nosotros/instituto/exterior-puerta-principal.webp') }}" alt="{{ __('Planta Baja (afuera)') }}" width="1280" height="960" loading="lazy" decoding="async" class="aspect-4/3 w-full rounded-2xl bg-neutral-100 object-cover">
         </div>
 
         <div class="mx-auto mt-12 grid max-w-7xl gap-4 md:grid-cols-2">
@@ -63,8 +100,7 @@
             <div class="mt-8 grid gap-6 sm:grid-cols-3">
                 @foreach ($staff as $person)
                     <div>
-                        {{-- Imagen: {{ $person['image'] }} --}}
-                        <div class="aspect-square rounded-2xl bg-neutral-200"></div>
+                        <img src="{{ asset('img/Nosotros/maestros/'.$person['image'].'.webp') }}" alt="{{ $person['name'] }}" width="600" height="600" loading="lazy" decoding="async" class="aspect-square w-full rounded-2xl bg-neutral-200 object-cover">
                         <p class="mt-3 font-semibold">{{ $person['name'] }}</p>
                         <p class="text-sm text-neutral-600">{{ $person['role'] }}</p>
                     </div>
@@ -74,15 +110,14 @@
             <x-site.section-heading class="mt-16">{{ __('Conoce a Nuestros Maestros Expertos') }}</x-site.section-heading>
             <p class="mt-4 max-w-2xl text-neutral-700">{{ __('Profesores nativos y certificados que combinan experiencia pedagógica con una auténtica pasión por enseñar. Te acompañamos paso a paso con paciencia, dinamismo y grupos reducidos para que hables chino con naturalidad.') }}</p>
 
-            {{-- 12 maestros en carrusel con flechas; datos pendientes del cliente --}}
-            <div class="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4">
-                @foreach (range(1, 12) as $teacher)
-                    <div class="w-2/3 shrink-0 snap-start sm:w-1/4">
-                        {{-- Imagen: foto de maestro --}}
-                        <div class="aspect-square rounded-2xl bg-neutral-200"></div>
-                        <p class="mt-3 font-semibold">{{ __('Nombre') }}</p>
-                        <p class="text-sm text-neutral-600">{{ __('Años de enseñanza') }}</p>
-                        <p class="text-sm text-neutral-600">{{ __('Clase presencial o en línea') }}</p>
+            <div class="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="list" aria-label="{{ __('Conoce a Nuestros Maestros Expertos') }}">
+                @foreach ($teachers as [$slug, $name, $hanzi])
+                    <div role="listitem" class="w-2/3 shrink-0 snap-start sm:w-1/4">
+                        <img src="{{ asset("img/Nosotros/maestros/{$slug}.webp") }}" alt="{{ $name }}" width="600" height="600" loading="lazy" decoding="async" class="aspect-square w-full rounded-2xl bg-neutral-200 object-cover">
+                        <p class="mt-3 font-semibold">{{ $name }}</p>
+                        @if ($hanzi)
+                            <p class="font-kai text-sm text-neutral-600" lang="zh-Hant">{{ $hanzi }}</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -115,24 +150,27 @@
                     <x-site.section-heading :eyebrow="__('Nuestro Instituto')">{{ __('Un entorno luminoso y acogedor, pensado para aprender con calma y vivir la cultura.') }}</x-site.section-heading>
                     <p class="mt-4 text-neutral-700">{{ __('Ubicado en el corazón de la Ciudad de México, a pocos pasos del emblemático Monumento a la Revolución, el IICC cuenta con instalaciones cómodas, seguras y luminosas diseñadas para el bienestar de nuestra comunidad. Nuestro campus combina la tranquilidad necesaria para el estudio con espacios abiertos para la convivencia y el intercambio cultural.') }}</p>
                 </div>
-                {{-- Video: video del instituto --}}
-                <div class="aspect-video rounded-2xl bg-neutral-200"></div>
+                <button type="button" x-on:click="show('afuera', 2)" class="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue" aria-label="{{ __('Ampliar foto') }}: {{ __('Planta Baja (afuera)') }}">
+                    <img src="{{ asset('img/Nosotros/instituto/exterior-patio-2.webp') }}" alt="" width="1280" height="960" loading="lazy" decoding="async" class="aspect-4/3 w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04]">
+                </button>
             </div>
 
-            {{-- "Ver galería" abrirá un lightbox deslizable con título, descripción y contador (ej. 2 / 4) --}}
             <div class="mt-12 grid gap-6 md:grid-cols-3">
                 @foreach ($spaces as $space)
                     <article class="overflow-hidden rounded-2xl bg-white">
-                        {{-- Imagen: fotos de {{ $space['title'] }} del IICC --}}
-                        <div class="aspect-4/3 bg-neutral-200"></div>
+                        <button type="button" x-on:click="show('{{ $space['key'] }}', {{ $space['cover'] }})" class="group relative block w-full cursor-zoom-in overflow-hidden bg-neutral-200 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-brand-blue" aria-label="{{ __('Ampliar foto') }}: {{ $space['title'] }}">
+                            <img src="{{ $gallery[$space['key']][$space['cover']]['src'] }}" alt="" width="1280" height="960" loading="lazy" decoding="async" class="aspect-4/3 w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.04]">
+                        </button>
                         <div class="p-6">
                             <h3 class="text-lg font-semibold">{{ $space['title'] }}</h3>
                             <p class="mt-2 text-neutral-600">{{ $space['text'] }}</p>
-                            <button type="button" class="mt-4 font-semibold text-brand-blue">{{ __('Ver galería →') }}</button>
+                            <button type="button" x-on:click="show('{{ $space['key'] }}', 0)" class="mt-4 cursor-pointer font-semibold text-brand-blue">{{ __('Ver galería →') }}</button>
                         </div>
                     </article>
                 @endforeach
             </div>
         </div>
     </section>
+    <x-site.lightbox />
+</div>
 </x-layouts.site>

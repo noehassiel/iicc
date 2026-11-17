@@ -42,17 +42,16 @@
                     <div><dt class="font-semibold">{{ __('Pinyin y Escritura Básica:') }}</dt><dd class="text-neutral-600">{{ __('Fundamentos fonéticos, trazos iniciales y talleres culturales vivenciales.') }}</dd></div>
                     <div><dt class="font-semibold">{{ __('Continuidad Escolar:') }}</dt><dd class="text-neutral-600">{{ __('Pase directo para integrarse a nuestras clases regulares al finalizar el curso.') }}</dd></div>
                 </dl>
-                {{-- Video: cursos de verano 2026 --}}
-                <div class="aspect-video rounded-2xl bg-neutral-200"></div>
+                <img src="{{ asset('img/other/CursodeVerano.webp') }}" alt="{{ __('Galería: Momentos de Nuestro Curso de Verano en 2026') }}" width="1280" height="960" loading="lazy" decoding="async" class="aspect-4/3 w-full rounded-2xl bg-neutral-200 object-cover">
             </div>
 
             <x-site.whatsapp-button :message="__('Hola, me gustaría conocer fechas y costos del curso de verano.')" class="mt-8">{{ __('Solicita fechas y costos a IICC') }}</x-site.whatsapp-button>
 
             <h3 class="mt-12 text-lg font-semibold">{{ __('Galería: Momentos de Nuestro Curso de Verano en 2026') }}</h3>
             <p class="mt-1 italic text-neutral-600">"{{ __('Descubre cómo nuestros estudiantes viven y disfrutan el idioma chino en IICC') }}"</p>
-            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                @foreach (['CursodeVerano', 'CursodeVerano2', 'CursodeVerano3', 'CursodeVerano4'] as $photo)
-                    <img src="/img/other/{{ $photo }}.png" alt="" loading="lazy" class="aspect-square w-full rounded-xl object-cover">
+            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                @foreach (['CursodeVerano2', 'CursodeVerano3', 'CursodeVerano4'] as $photo)
+                    <img src="{{ asset("img/other/{$photo}.webp") }}" alt="" loading="lazy" decoding="async" class="aspect-4/3 w-full rounded-xl object-cover">
                 @endforeach
             </div>
         </div>
@@ -122,8 +121,8 @@
                     __('Interpretación precisa y fluida en negociaciones clave.'),
                 ] as $index => $caption)
                     <figure>
-                        <a href="{{ asset('img/other/Traduccion'.($index + 1).'.png') }}" target="_blank" rel="noopener">
-                            <img src="{{ asset('img/other/Traduccion'.($index + 1).'.png') }}" alt="{{ $caption }}" loading="lazy" class="aspect-[4/3] w-full rounded-xl object-cover">
+                        <a href="{{ asset('img/other/Traduccion'.($index + 1).'.webp') }}" target="_blank" rel="noopener">
+                            <img src="{{ asset('img/other/Traduccion'.($index + 1).'.webp') }}" alt="{{ $caption }}" loading="lazy" class="aspect-[4/3] w-full rounded-xl object-cover">
                         </a>
                         <figcaption class="mt-2 text-sm text-neutral-600">{{ $caption }}</figcaption>
                     </figure>
