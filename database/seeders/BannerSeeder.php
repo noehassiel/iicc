@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Banner;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class BannerSeeder extends Seeder
@@ -34,7 +35,7 @@ class BannerSeeder extends Seeder
             $mediaPath = 'banners/'.$banner['image'];
 
             if (! Storage::disk('public')->exists($mediaPath)) {
-                Storage::disk('public')->put($mediaPath, file_get_contents(public_path('img/Inicio/'.$banner['image'])));
+                Storage::disk('public')->put($mediaPath, File::get(public_path('img/Inicio/'.$banner['image'])));
             }
 
             Banner::updateOrCreate(['media_path' => $mediaPath], [

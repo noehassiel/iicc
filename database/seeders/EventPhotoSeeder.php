@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class EventPhotoSeeder extends Seeder
@@ -17,7 +18,7 @@ class EventPhotoSeeder extends Seeder
     public function run(): void
     {
         /** @var array<string, list<array{file: string, caption_es: string, caption_zh: string}>> $photosByEvent */
-        $photosByEvent = json_decode(file_get_contents(__DIR__.'/data/event-photos.json'), true);
+        $photosByEvent = json_decode(File::get(__DIR__.'/data/event-photos.json'), true);
 
         foreach ($photosByEvent as $slug => $photos) {
             $event = Event::query()->where('slug', $slug)->first();
@@ -30,7 +31,7 @@ class EventPhotoSeeder extends Seeder
                 $path = "events/{$event->id}/{$photo['file']}";
 
                 if (! Storage::disk('public')->exists($path)) {
-                    Storage::disk('public')->put($path, file_get_contents(public_path("img/Eventos/{$slug}/{$photo['file']}")));
+                    Storage::disk('public')->put($path, File::get(public_path("img/Eventos/{$slug}/{$photo['file']}")));
                 }
 
                 // A renamed extension (e.g. .jpg -> .jpeg) must replace the old row, not sit beside it.
