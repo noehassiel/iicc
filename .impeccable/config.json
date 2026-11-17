@@ -21,6 +21,12 @@
         "value": "iicc kai",
         "createdAt": "2026-11-11T05:30:18.783Z",
         "reason": "DESIGN.md Typography documents 'IICC Kai' as the Chinese font stack"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "createdAt": "2026-11-17T15:11:08.868Z",
+        "reason": "project design system: DESIGN.md typography specifies Instrument Sans for all text styles"
       }
     ]
   }
