@@ -1,4 +1,8 @@
-@props(['title' => null])
+@props([
+    'title' => null,
+    'description' => 'Instituto de Idioma y Cultura China en México, A.C.: cursos de chino mandarín, certificaciones HSK, becas y eventos culturales.',
+    'image' => '/img/og/iicc-og.jpg',
+])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
@@ -8,9 +12,21 @@
 
         <title>{{ filled($title) ? __($title).' - '.config('app.name') : config('app.name') }}</title>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <meta name="description" content="{{ $description }}">
+        <link rel="canonical" href="{{ url()->current() }}">
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+        <meta property="og:locale" content="es_MX">
+        <meta property="og:title" content="{{ filled($title) ? __($title).' - '.config('app.name') : config('app.name') }}">
+        <meta property="og:description" content="{{ $description }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:image" content="{{ url($image) }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta name="twitter:card" content="summary_large_image">
+
+        @include('partials.favicons')
 
         @fonts
 
