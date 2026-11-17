@@ -33,6 +33,13 @@ class EventPhotoSeeder extends Seeder
                     Storage::disk('public')->put($path, file_get_contents(public_path("img/Eventos/{$slug}/{$photo['file']}")));
                 }
 
+                // A renamed extension (e.g. .jpg -> .jpeg) must replace the old row, not sit beside it.
+                $stem = pathinfo($photo['file'], PATHINFO_FILENAME);
+                $event->photos()
+                    ->where('path', 'like', "events/{$event->id}/{$stem}.%")
+                    ->where('path', '!=', $path)
+                    ->delete();
+
                 $event->photos()->updateOrCreate(['path' => $path], [
                     'caption_es' => $photo['caption_es'],
                     'caption_zh' => $photo['caption_zh'],
