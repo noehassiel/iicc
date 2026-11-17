@@ -52,3 +52,12 @@ test('it validates the action', function () {
         ->postJson('/_ops/maintenance', ['action' => 'reboot'])
         ->assertUnprocessable();
 });
+
+test('it runs allowed artisan commands while the site is down', function () {
+    Artisan::call('down');
+
+    $this->withToken('test-ops-token')
+        ->postJson('/_ops/maintenance', ['action' => 'optimize-clear'])
+        ->assertOk()
+        ->assertJson(['action' => 'optimize-clear', 'exit_code' => 0]);
+});
