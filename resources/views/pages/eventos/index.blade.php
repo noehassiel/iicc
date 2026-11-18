@@ -183,12 +183,26 @@
             x-bind:aria-label="current && events[current].title"
         >
             <template x-if="current">
+                {{-- Mobile: bottom sheet that slides up, with a grab handle and swipe-down to dismiss. --}}
                 <div
+                    x-data="{ dy: 0, dragging: false, snapping: false, startY: 0 }"
                     x-trap.noscroll="current"
                     x-transition:enter="transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    x-transition:enter-start="translate-y-8 opacity-0"
-                    class="relative max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-white p-6 sm:rounded-3xl sm:p-10"
+                    x-transition:enter-start="translate-y-full sm:translate-y-8 sm:opacity-0"
+                    x-bind:style="dragging ? `transform: translateY(${dy}px); transition: none` : (snapping ? 'transition: transform 250ms ease-out' : '')"
+                    class="relative max-h-[92svh] w-full max-w-3xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-t-3xl bg-white px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:rounded-3xl sm:p-10"
                 >
+                    <div
+                        class="-mx-6 flex touch-none justify-center pt-3 pb-5 sm:hidden"
+                        x-on:pointerdown="dragging = true; snapping = false; startY = $event.clientY; $el.setPointerCapture($event.pointerId)"
+                        x-on:pointermove="if (dragging) dy = Math.max(0, $event.clientY - startY)"
+                        x-on:pointerup="dragging = false; if (dy > 120) { current = null } else { snapping = true; dy = 0; setTimeout(() => snapping = false, 250) }"
+                        x-on:pointercancel="dragging = false; dy = 0"
+                        aria-hidden="true"
+                    >
+                        <span class="h-1.5 w-12 rounded-full bg-neutral-300"></span>
+                    </div>
+
                     <button type="button" x-on:click="current = null" class="absolute top-4 right-4 grid size-10 cursor-pointer place-items-center rounded-full bg-neutral-100 hover:bg-neutral-200" aria-label="{{ __('Cerrar') }}">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
                     </button>

@@ -8,8 +8,7 @@
                 <x-site.whatsapp-button class="mt-8" :message="__('Hola, quisiera información sobre los cursos de IICC.')">{{ __('¡Contáctanos por WhatsApp!') }}</x-site.whatsapp-button>
             </div>
 
-            {{-- Image: group photo of teachers and students (client to choose) --}}
-            <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+            <img src="{{ asset('img/Inicio/Banner_Inicio_1.jpg') }}" alt="{{ __('Estudiantes de IICC estudiando juntos en la biblioteca') }}" width="1280" height="960" decoding="async" class="aspect-[4/3] w-full rounded-2xl bg-neutral-100 object-cover">
         </div>
     </section>
 

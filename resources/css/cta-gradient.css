@@ -5,9 +5,11 @@
 .cta-gradient {
   position: relative;
   isolation: isolate;
-  overflow: clip;
+  /* overflow: clip ignores the radius on iOS Safari once children animate or blend; hidden plus the mask keeps the corners rounded. */
+  overflow: hidden;
   border-radius: 24px;
   background: #1f4e8c;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 @supports (corner-shape: superellipse(1.2)) {
@@ -20,6 +22,7 @@
   position: absolute;
   inset: 0;
   z-index: -2;
+  border-radius: inherit;
   background: linear-gradient(120deg, #1a4278 0%, #1f4e8c 40%, #3264a8 100%);
 }
 
@@ -60,6 +63,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
+  border-radius: inherit;
   pointer-events: none;
   opacity: 0.22;
   mix-blend-mode: soft-light;

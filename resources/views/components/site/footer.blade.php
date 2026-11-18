@@ -20,7 +20,8 @@
     $label = 'text-sm text-white/65';
 @endphp
 
-<footer class="bg-white px-4 pt-4 pb-4">
+{{-- relative + z-10 keeps the footer above the home hero, which is position: fixed on mobile --}}
+<footer class="relative z-10 bg-white px-4 pt-4 pb-4">
     <div class="rounded-3xl bg-brand-blue-deep px-6 pt-10 pb-6 text-white sm:px-10 sm:pt-14 lg:px-14 lg:pt-16">
         <div class="mx-auto max-w-7xl">
             <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">

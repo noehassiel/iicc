@@ -22,6 +22,7 @@
   font-weight: 600;
   text-decoration: none;
   overflow: visible;
+  max-width: 100%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -44,19 +45,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: var(--size);
-  padding: 0 24px;
-  white-space: nowrap;
+  min-height: var(--size);
+  padding: 8px 24px;
+  /* Wraps instead of overflowing when the label is longer than the screen. */
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 [data-button-06] .arrow {
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 0;
   display: grid;
   place-items: center;
   width: var(--size);
-  height: var(--size);
 }
 
 [data-button-06] .arrow svg {
