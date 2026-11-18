@@ -10,6 +10,9 @@ import { cinematicMediaHero } from './hero-section-01';
 const swup = new Swup({
     animateHistoryBrowsing: true,
     containers: ['#swup'],
+    // Only wait for the page fade. The default selector matches every Tailwind `transition-*` class, including
+    // looping photo crossfades (12s) and hover transforms, which stalled navigation until a manual refresh.
+    animationSelector: '#swup',
     plugins: [new SwupHeadPlugin()],
 });
 
