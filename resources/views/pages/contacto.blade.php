@@ -29,7 +29,7 @@
                                 <x-site.icon.wa class="text-[#25D366]" /><span class="sr-only">WhatsApp:</span>{{ config('site.whatsapp_display') }} <span class="text-sm font-normal text-neutral-500">WhatsApp</span>
                             </a>
                         </li>
-                        @foreach (config('site.phones') as $phone)
+                        @foreach (config('site.phones', []) as $phone)
                             <li>
                                 <a href="tel:{{ $phone['tel'] }}" class="inline-flex items-center gap-3 tabular-nums">
                                     <x-site.icon.phone class="text-brand-blue" /><span class="sr-only">{{ __('Teléfono') }}:</span>{{ $phone['display'] }}
@@ -37,8 +37,8 @@
                             </li>
                         @endforeach
                         <li>
-                            <a href="mailto:{{ config('site.email') }}" class="inline-flex items-center gap-3">
-                                <x-site.icon.mail class="text-brand-blue" /><span class="sr-only">{{ __('Correo electrónico') }}:</span>{{ config('site.email') }}
+                            <a href="mailto:{{ config('site.email', 'iiccorgmx@gmail.com') }}" class="inline-flex items-center gap-3">
+                                <x-site.icon.mail class="text-brand-blue" /><span class="sr-only">{{ __('Correo electrónico') }}:</span>{{ config('site.email', 'iiccorgmx@gmail.com') }}
                             </a>
                         </li>
                     </ul>

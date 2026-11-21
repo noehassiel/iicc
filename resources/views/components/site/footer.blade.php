@@ -58,11 +58,11 @@
                     <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.wa class="size-4 text-[#25D366]" />WhatsApp</p>
                     <a href="https://wa.me/{{ config('site.whatsapp') }}" target="_blank" rel="noopener" class="{{ $link }} mt-1 block tabular-nums">{{ config('site.whatsapp_display') }}</a>
                     <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.phone class="size-4" />{{ __('Teléfono') }}</p>
-                    @foreach (config('site.phones') as $phone)
+                    @foreach (config('site.phones', []) as $phone)
                         <a href="tel:{{ $phone['tel'] }}" class="{{ $link }} mt-1 block tabular-nums">{{ $phone['display'] }}</a>
                     @endforeach
                     <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.mail class="size-4" />{{ __('Correo electrónico') }}</p>
-                    <a href="mailto:{{ config('site.email') }}" class="{{ $link }} mt-1 block">{{ config('site.email') }}</a>
+                    <a href="mailto:{{ config('site.email', 'iiccorgmx@gmail.com') }}" class="{{ $link }} mt-1 block">{{ config('site.email', 'iiccorgmx@gmail.com') }}</a>
                 </div>
 
                 <div>
