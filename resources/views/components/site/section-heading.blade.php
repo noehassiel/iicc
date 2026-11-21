@@ -1,6 +1,6 @@
 @props(['eyebrow' => null])
 
-<div {{ $attributes->class('max-w-2xl') }}>
+<div {{ $attributes->class('max-w-5xl') }}>
     @if ($eyebrow)
         <p class="text-sm font-semibold uppercase tracking-wider text-brand-blue">{{ $eyebrow }}</p>
     @endif

@@ -175,9 +175,7 @@
                         <div class="flex flex-1 flex-col p-6">
                         <h3 class="text-xl font-semibold">{{ $group['title'] }}</h3>
                         <p class="text-sm font-medium text-brand-blue">{{ $group['ages'] }}</p>
-                        <p class="mt-3 flex-1 text-neutral-600"><span
-                                class="font-medium text-neutral-900">{{ __('Enfoque:') }}</span> {{ $group['focus'] }}
-                        </p>
+                        <p class="mt-3 flex-1 text-neutral-600">{{ $group['focus'] }}</p>
                         <a href="#{{ $group['id'] }}"
                             class="mt-4 font-semibold text-brand-blue">{{ __('Lee más →') }}</a>
                         </div>
@@ -203,6 +201,13 @@
                 <x-site.photo-rail group="ninos" :photos="$gallery['ninos']" class="mt-4 mb-6" />
                 <div class="mt-4 grid gap-4 md:grid-cols-2">
                     <div class="rounded-2xl border p-6">
+                        <p class="font-semibold">{{ __('Material: Chino Simplificado') }}</p>
+                        <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
+                            <li>{{ __('Para los que inician su aprendizaje del chino mandarín.') }}</li>
+                            <li>{{ __('Chino Fácil, Material personalizado') }}</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl border p-6">
                         <p class="font-semibold">{{ __('Material: Chino Tradicional') }}</p>
                         <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
                             <li>{{ __('Dirigido a los niños taiwaneses o interesados en caracteres tradicionales.') }}
@@ -211,18 +216,11 @@
                                 {{ __('Material personalizado') }}</li>
                         </ul>
                     </div>
-                    <div class="rounded-2xl border p-6">
-                        <p class="font-semibold">{{ __('Material: Chino Simplificado') }}</p>
-                        <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
-                            <li>{{ __('Para los que inician su aprendizaje del chino estándar.') }}</li>
-                            <li>{{ __('Chino Fácil, Material personalizado') }}</li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="mt-4 rounded-2xl bg-brand-blue/5 p-6">
                     <p class="font-semibold">{{ __('Ruta escolar PEP') }} (<span lang="zh-Hant">人教版</span>):</p>
                     <p class="mt-1 text-neutral-600">
-                        {{ __('Diseñada para la continuidad del currículo oficial de China continental a partir de los 10 años. (Más informes en recepción).') }}
+                        {{ __('Diseñada para la continuidad del currículo oficial de China Continental a partir de los 10 años. (Más informes por WhatsApp).') }}
                     </p>
                 </div>
                 <x-site.whatsapp-button class="mt-6"
@@ -234,18 +232,18 @@
                 <x-site.photo-rail group="adolescentes" :photos="$gallery['adolescentes']" class="mt-4 mb-6" />
                 <div class="mt-4 grid gap-4 md:grid-cols-2">
                     <div class="rounded-2xl border p-6">
+                        <p class="font-semibold">{{ __('Material: Chino Simplificado') }}</p>
+                        <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
+                            <li>{{ __('Para los que inician su aprendizaje del chino mandarín.') }}</li>
+                            <li>{{ __('Kuaile Hanyu y Material personalizado') }}</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl border p-6">
                         <p class="font-semibold">{{ __('Material: Chino Tradicional') }}</p>
                         <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
                             <li>{{ __('Dirigido a los adolescentes taiwaneses o interesados en caracteres tradicionales.') }}
                             </li>
                             <li>{{ __('Easy Chinese y Material personalizado') }}</li>
-                        </ul>
-                    </div>
-                    <div class="rounded-2xl border p-6">
-                        <p class="font-semibold">{{ __('Material: Chino Simplificado') }}</p>
-                        <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
-                            <li>{{ __('Para los que inician su aprendizaje del chino estándar.') }}</li>
-                            <li>{{ __('Kuaile Hanyu y Material personalizado') }}</li>
                         </ul>
                     </div>
                 </div>
@@ -259,14 +257,14 @@
                 <div class="mt-4 rounded-2xl border p-6">
                     <p class="font-semibold">{{ __('Material: Chino Simplificado') }}</p>
                     <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
-                        <li>{{ __('Para los que inician su aprendizaje del chino estándar.') }}</li>
-                        <li>{{ __('Chino Hoy, HSK y Material personalizado') }}</li>
+                        <li>{{ __('Para los que inician su aprendizaje del chino mandarín.') }}</li>
+                        <li>{{ __('Chino Hoy 1, HSK y Material personalizado') }}</li>
                     </ul>
                 </div>
                 <div class="mt-4 rounded-2xl bg-brand-blue/5 p-6">
                     <p class="font-semibold">{{ __('Pasos de aprendizaje') }}</p>
                     <p class="mt-1 text-neutral-600">
-                        {{ __('Al concluir la serie Chino Hoy, se alcanza el nivel HSK 2, con transición directa a los cursos avanzados a partir de HSK 3.') }}
+                        {{ __('Al concluir la serie Chino Hoy 1, se alcanza el nivel HSK 2, con transición directa a los cursos avanzados a partir de HSK 3.') }}
                     </p>
                 </div>
                 <x-site.whatsapp-button class="mt-6"
@@ -440,48 +438,6 @@
     </x-site.cta>
 
     {{-- Photo lightbox: any class photo enlarged, browsable within its section --}}
-    <template x-teleport="body">
-        <div
-            x-show="group !== null"
-            x-cloak
-            x-transition.opacity.duration.250ms
-            class="fixed inset-0 z-60 flex flex-col items-center justify-center bg-neutral-950/90 p-4 backdrop-blur-sm sm:p-10"
-            x-on:click.self="close()"
-            x-on:keydown.arrow-right.window="group !== null && step(1)"
-            x-on:keydown.arrow-left.window="group !== null && step(-1)"
-            role="dialog"
-            aria-modal="true"
-            aria-label="{{ __('Foto ampliada') }}"
-        >
-            <template x-if="group !== null">
-                <figure class="flex max-h-full w-full max-w-5xl flex-col items-center" x-trap.noscroll="group !== null">
-                    <img
-                        x-bind:key="gallery[group][index].src"
-                        x-bind:src="gallery[group][index].src"
-                        x-bind:alt="gallery[group][index].alt"
-                        class="max-h-[78svh] w-auto rounded-2xl object-contain"
-                    >
-                    <figcaption class="mt-4 text-center text-white">
-                        <span class="block text-base font-medium sm:text-lg" x-text="gallery[group][index].alt"></span>
-                        <span class="mt-1 block text-sm text-white/60 tabular-nums" x-text="(index + 1) + ' / ' + gallery[group].length"></span>
-                    </figcaption>
-                </figure>
-            </template>
-
-            <button type="button" x-on:click="close()" class="absolute top-4 right-4 grid size-11 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-95" aria-label="{{ __('Cerrar') }}">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <template x-if="group !== null && gallery[group].length > 1">
-                <div>
-                    <button type="button" x-on:click="step(-1)" class="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-95 sm:left-6" aria-label="{{ __('Anterior') }}">
-                        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true" class="rotate-180"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
-                    </button>
-                    <button type="button" x-on:click="step(1)" class="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-95 sm:right-6" aria-label="{{ __('Siguiente') }}">
-                        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
-                    </button>
-                </div>
-            </template>
-        </div>
-    </template>
+    <x-site.lightbox />
 </div>
 </x-layouts.site>

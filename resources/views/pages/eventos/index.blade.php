@@ -31,7 +31,8 @@
     // Modal data, keyed by slug.
     $modalEvents = $events->mapWithKeys(fn (App\Models\Event $event) => [$event->slug => [
         'title' => $event->localized('title'),
-        'date' => $event->displayDate(),
+        // Only the external events carry a date; the class and campus albums are timeless.
+        'date' => $event->category === App\Enums\EventCategory::Huella ? $event->displayDate() : null,
         'description' => $event->localized('description') ?? '',
         'photos' => $event->photos->map(fn (App\Models\EventPhoto $photo) => [
             'url' => $photo->url(),
@@ -65,7 +66,7 @@
     <section id="actividades-culturales" class="scroll-mt-20 px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading>{{ __('Actividades Culturales') }}</x-site.section-heading>
-            <p class="mt-4 max-w-2xl text-neutral-600">{{ __('El idioma y la cultura van de la mano. Cada mes, nuestros cursos incluyen una actividad vivencial —gastronomía, arte y tradiciones— para vivir el chino más allá de los libros.') }}</p>
+            <p class="mt-4 max-w-6xl text-pretty text-neutral-600">{{ __('El idioma y la cultura van de la mano. Cada mes, nuestros cursos incluyen una actividad vivencial —gastronomía, arte y tradiciones— para vivir el chino más allá de los libros.') }}</p>
 
             <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($culturalActivities as $event)
@@ -86,7 +87,7 @@
 
             <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <x-site.whatsapp-button :message="__('Hola, quisiera información sobre los cursos de IICC.')">{{ __('Solicita los cursos de IICC') }}</x-site.whatsapp-button>
-                <p class="text-neutral-600">{{ __('Síguenos en Instagram / Facebook') }}</p>
+                <x-site.social-links />
             </div>
         </div>
     </section>
@@ -95,7 +96,7 @@
     <section id="eventos-en-campus" class="scroll-mt-20 bg-neutral-50 px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading>{{ __('Eventos en Campus') }}</x-site.section-heading>
-            <p class="mt-4 max-w-2xl text-neutral-600">{{ __('Las celebraciones anuales que unen a nuestros alumnos, docentes y comunidad educativa.') }}</p>
+            <p class="mt-4 max-w-6xl text-pretty text-neutral-600">{{ __('Las celebraciones anuales que unen a nuestros alumnos, docentes y comunidad educativa.') }}</p>
 
             <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($campusEvents as $event)
@@ -114,7 +115,7 @@
                 @endforeach
             </div>
 
-            <p class="mt-10 text-neutral-600">{{ __('Síguenos en Instagram / Facebook') }}</p>
+            <x-site.social-links class="mt-10" />
         </div>
     </section>
 
@@ -122,7 +123,7 @@
     <section id="nuestra-huella" class="scroll-mt-20 px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading :eyebrow="__('Vinculación Externa')">{{ __('Nuestra Huella en México') }}</x-site.section-heading>
-            <p class="mt-4 max-w-2xl text-neutral-600">{{ __('Más de 20 años impulsando puentes culturales en el espacio público mediante la coorganización y participación en eventos clave.') }}</p>
+            <p class="mt-4 max-w-6xl text-pretty text-neutral-600">{{ __('Más de 20 años impulsando puentes culturales en el espacio público mediante la coorganización y participación en eventos clave.') }}</p>
 
         </div>
 
@@ -168,7 +169,7 @@
     {{-- CTA --}}
     <x-site.cta tone="orange" :message="__('Hola, quisiera participar en las próximas actividades del IICC.')" :button="__('Escríbenos por WhatsApp')">
         <x-slot:heading>{{ __('¿Quieres formar parte de nuestras próximas actividades?') }}</x-slot:heading>
-        <x-slot:aside>{{ __('Síguenos en Instagram / Facebook') }}</x-slot:aside>
+        <x-slot:aside><x-site.social-links class="justify-center" /></x-slot:aside>
     </x-site.cta>
     {{-- Event modal: info + gallery --}}
     <template x-teleport="body">
@@ -207,9 +208,9 @@
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
                     </button>
 
-                    <p class="text-sm font-semibold text-brand-orange" x-text="events[current].date"></p>
+                    <p x-show="events[current].date" class="text-sm font-semibold text-brand-orange" x-text="events[current].date"></p>
                     <h2 class="mt-2 pr-12 text-2xl font-semibold text-balance sm:text-3xl" x-text="events[current].title"></h2>
-                    <p class="mt-4 max-w-2xl text-neutral-700" x-text="events[current].description"></p>
+                    <p class="mt-4 max-w-6xl text-pretty text-neutral-700" x-text="events[current].description"></p>
 
                     <h3 class="mt-8 text-lg font-semibold">{{ __('Galería') }}</h3>
                     <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -241,7 +242,7 @@
             x-show="current && photo !== null"
             x-cloak
             x-transition.opacity.duration.250ms
-            class="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-neutral-950/90 p-4 sm:p-10"
+            class="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-neutral-950/90 p-4 pb-24 sm:p-10"
             x-on:click.self="photo = null"
             x-on:keydown.arrow-right.window="if (photo !== null) photo = (photo + 1) % events[current].photos.length"
             x-on:keydown.arrow-left.window="if (photo !== null) photo = (photo - 1 + events[current].photos.length) % events[current].photos.length"
@@ -256,7 +257,7 @@
                         x-bind:alt="events[current].photos[photo].caption"
                         x-transition:enter="transition duration-300 ease-out"
                         x-transition:enter-start="scale-95 opacity-0"
-                        class="max-h-[78svh] w-auto rounded-2xl object-contain"
+                        class="max-h-[68svh] w-auto rounded-2xl object-contain sm:max-h-[78svh]"
                     >
                     <figcaption class="mt-4 text-center text-white">
                         <span class="block text-base font-medium sm:text-lg" x-text="events[current].photos[photo].caption"></span>
@@ -270,10 +271,10 @@
             </button>
             <template x-if="current && events[current].photos.length > 1">
                 <div>
-                    <button type="button" x-on:click="photo = (photo - 1 + events[current].photos.length) % events[current].photos.length" class="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:left-6" aria-label="{{ __('Anterior') }}">
+                    <button type="button" x-on:click="photo = (photo - 1 + events[current].photos.length) % events[current].photos.length" class="absolute bottom-6 left-[calc(50%-4rem)] grid size-12 cursor-pointer place-items-center rounded-full bg-white/20 text-white hover:bg-white/30 sm:top-1/2 sm:bottom-auto sm:left-6 sm:size-11 sm:-translate-y-1/2 sm:bg-white/10" aria-label="{{ __('Anterior') }}">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true" class="rotate-180"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
                     </button>
-                    <button type="button" x-on:click="photo = (photo + 1) % events[current].photos.length" class="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-6" aria-label="{{ __('Siguiente') }}">
+                    <button type="button" x-on:click="photo = (photo + 1) % events[current].photos.length" class="absolute right-[calc(50%-4rem)] bottom-6 grid size-12 cursor-pointer place-items-center rounded-full bg-white/20 text-white hover:bg-white/30 sm:top-1/2 sm:right-6 sm:bottom-auto sm:size-11 sm:-translate-y-1/2 sm:bg-white/10" aria-label="{{ __('Siguiente') }}">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
                     </button>
                 </div>

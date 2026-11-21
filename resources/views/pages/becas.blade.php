@@ -116,7 +116,7 @@
             <div>
                 <h1 class="text-4xl font-semibold text-balance sm:text-5xl">{{ __('Impulsa tu futuro con nuestras') }}
                     <span class="text-brand-blue">{{ __('BECAS') }}</span></h1>
-                <p class="mt-4 max-w-xl text-lg text-neutral-600">
+                <p class="mt-4 max-w-2xl text-lg text-pretty text-neutral-600">
                     {{ __('Premiamos tu esfuerzo académico y te abrimos las puertas a oportunidades de estudio en Taiwán y China Continental.') }}
                 </p>
                 <x-site.whatsapp-button :message="__('Hola, me gustaría recibir asesoría sobre becas.')"
@@ -275,7 +275,7 @@
     <section class="px-4 py-16">
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading :eyebrow="__('Historias de éxito')">{{ __('De México a Taiwán') }}</x-site.section-heading>
-            <p class="mt-3 max-w-2xl text-neutral-600">
+            <p class="mt-3 max-w-6xl text-pretty text-neutral-600">
                 {{ __('Descubre cómo es estudiar y vivir en Taiwán a través de los videos y vivencias compartidas por nuestros alumnos becados.') }}
             </p>
 
@@ -358,8 +358,7 @@
 
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a href="https://www.campuschina.org/scholarships/index.html" target="_blank" rel="noopener"
-                    class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 font-semibold text-brand-blue">{{ __('Portal Oficial: Campus China') }}
-                    (<span lang="zh-Hant">留學中國</span>)</a>
+                    class="inline-flex items-center justify-center rounded-full border border-brand-blue px-6 py-3 text-center font-semibold text-brand-blue"><span class="text-balance">{{ __('Portal Oficial: Campus China') }}@if (app()->getLocale() !== 'zh_TW') <span class="whitespace-nowrap">(<span lang="zh-Hant">留學中國</span>)</span>@endif</span></a>
                 <x-site.whatsapp-button
                     :message="__('Hola, me interesa recibir asesoría sobre becas en China Continental.')">{{ __('¡Solicita asesoría a IICC!') }}</x-site.whatsapp-button>
             </div>
@@ -371,8 +370,8 @@
         <div class="mx-auto max-w-7xl">
             <x-site.section-heading
                 :eyebrow="__('Historias de éxito')">{{ __('De México a China Continental') }}</x-site.section-heading>
-            <p class="mt-3 max-w-2xl text-neutral-600">
-                {{ __('Descubre cómo es estudiar y vivir en China a través de los videos y vivencias compartidas por nuestros alumnos becados.') }}
+            <p class="mt-3 max-w-6xl text-pretty text-neutral-600">
+                {{ __('Descubre cómo es estudiar y vivir en China Continental a través de los videos y vivencias compartidas por nuestros alumnos becados.') }}
             </p>
 
             {{-- Video: Gonzalo --}}

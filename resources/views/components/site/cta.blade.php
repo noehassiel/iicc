@@ -33,7 +33,7 @@
             </x-site.whatsapp-button>
 
             @isset($aside)
-                <p @class(['mt-5 text-sm', 'text-white/80' => ! $isLight, 'text-neutral-900/75' => $isLight])>{{ $aside }}</p>
+                <div @class(['mt-5 text-sm', 'text-white/80' => ! $isLight, 'text-neutral-900/75' => $isLight])>{{ $aside }}</div>
             @endisset
         </div>
     </div>

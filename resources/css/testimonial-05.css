@@ -207,6 +207,15 @@
   clip-path: inset(0.2em 0 0);
 }
 
+/* Chinese glyphs sit higher in the line box; the top inset would shave the first line. */
+html:lang(zh) .testimonial-05 .quote {
+  line-height: 1.45;
+}
+
+html:lang(zh) .testimonial-05 .quote .split-line-mask {
+  clip-path: none;
+}
+
 .testimonial-05 .split-line {
   will-change: transform;
 }

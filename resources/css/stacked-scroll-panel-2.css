@@ -13,7 +13,7 @@
   --ssc-muted: rgb(107, 104, 102);
   --ssc-max-width: 1240px;
   width: 100%;
-  padding: 65svh 32px 55svh;
+  padding: 16svh 32px 12svh;
   overflow-x: clip;
   color: var(--ssc-text);
   background: var(--ssc-canvas);
@@ -58,6 +58,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 32px;
   min-width: 0;
   padding: 40px;
 }
@@ -107,7 +108,7 @@
 
 @media (max-width: 1024px) {
   .stacked-scroll-panel-2 {
-    padding: 24svh 24px;
+    padding: 10svh 24px;
   }
 
   .stacked-scroll-panel-2 .stack {
@@ -129,8 +130,9 @@
   }
 
   .stacked-scroll-panel-2 .card-content {
-    min-height: 400px;
-    padding: 24px;
+    gap: 24px;
+    min-height: 0;
+    padding: 32px 24px;
   }
 
   .stacked-scroll-panel-2 h2 {
@@ -154,7 +156,7 @@
 
 @media (max-width: 767px) {
   .stacked-scroll-panel-2 {
-    padding: 18svh 16px;
+    padding: 8svh 16px;
   }
 
   .stacked-scroll-panel-2 .stack {
@@ -166,8 +168,7 @@
   }
 
   .stacked-scroll-panel-2 .card-content {
-    min-height: 340px;
-    padding: 20px;
+    padding: 28px 20px;
   }
 
   .stacked-scroll-panel-2 h2 {

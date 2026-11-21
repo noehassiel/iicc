@@ -39,7 +39,7 @@
             <x-site.section-heading :eyebrow="__('Comparativa')">{{ __('Diferencias entre sistemas de certificación') }}</x-site.section-heading>
             <div class="mt-8 grid gap-4 md:grid-cols-2">
                 <article class="rounded-2xl bg-white p-6 shadow-sm">
-                    <h3 class="text-xl font-semibold">{{ __('China') }}</h3>
+                    <h3 class="text-xl font-semibold">{{ __('China Continental') }}</h3>
                     <p class="text-sm text-neutral-500">(YCT, HSK, HSKK, BCT)</p>
                     <ul class="mt-4 list-disc space-y-1 pl-5 text-neutral-600">
                         <li>{{ __('Becas oficiales') }}</li>
@@ -65,8 +65,8 @@
     {{-- China --}}
     <section id="china" class="scroll-mt-24 px-4 py-12 sm:py-20">
         <div class="mx-auto max-w-7xl">
-            <x-site.section-heading :eyebrow="__('China')">Chinese Proficiency Test</x-site.section-heading>
-            <p class="mt-4 max-w-2xl text-neutral-600">{{ __('Organizados por el Instituto Confucio, abarcan HSK, HSKK, YCT y BCT, son válidos para becas, estudios y empleo en empresas chinas.') }}</p>
+            <x-site.section-heading :eyebrow="__('China Continental')">{{ __('Chinese Proficiency Test') }}</x-site.section-heading>
+            <p class="mt-4 max-w-6xl text-pretty text-neutral-600">{{ __('Organizados por el Instituto Confucio, abarcan HSK, HSKK, YCT y BCT, son válidos para becas, estudios y empleo en empresas chinas.') }}</p>
             <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($chinaExams as $exam)
                     <article class="rounded-2xl border p-6">
@@ -88,8 +88,8 @@
     {{-- Taiwán --}}
     <section id="taiwan" class="scroll-mt-24 bg-neutral-50 px-4 py-12 sm:py-20">
         <div class="mx-auto max-w-7xl">
-            <x-site.section-heading :eyebrow="__('Taiwán')">Test of Chinese as a Foreign Language</x-site.section-heading>
-            <p class="mt-4 max-w-2xl text-neutral-600">{{ __('Examen oficial para hablantes no nativos avalado por el Ministerio de Educación de Taiwán (SC-TOP), con equivalencia internacional en CEFR y ACTFL.') }}</p>
+            <x-site.section-heading :eyebrow="__('Taiwán')">{{ __('Test of Chinese as a Foreign Language') }}</x-site.section-heading>
+            <p class="mt-4 max-w-6xl text-pretty text-neutral-600">{{ __('Examen oficial para hablantes no nativos avalado por el Ministerio de Educación de Taiwán (SC-TOP), con equivalencia internacional en CEFR y ACTFL.') }}</p>
             <div class="mt-8 grid gap-4 md:grid-cols-2">
                 @foreach ($taiwanExams as $exam)
                     <article class="rounded-2xl bg-white p-6 shadow-sm">

@@ -8,7 +8,7 @@
     ];
 
     $certifications = [
-        ['href' => route('certificaciones').'#china', 'title' => __('China'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中國大陸', 'color' => '#b3261e'],
+        ['href' => route('certificaciones').'#china', 'title' => __('China Continental'), 'description' => __('Chinese Proficiency Test'), 'glyph' => '中國大陸', 'color' => '#b3261e'],
         ['href' => route('certificaciones').'#taiwan', 'title' => __('Taiwán'), 'description' => __('Test of Chinese as a Foreign Language'), 'glyph' => '臺灣', 'color' => 'var(--color-brand-blue)'],
     ];
 
@@ -22,6 +22,12 @@
         ['href' => route('otros-servicios').'#formacion-especial', 'title' => __('Formación Especial')],
         ['href' => route('otros-servicios').'#enlace-profesional', 'title' => __('Enlace Profesional')],
         ['href' => route('otros-servicios').'#bolsa-de-trabajo', 'title' => __('Bolsa de Trabajo')],
+    ];
+
+    $about = [
+        ['href' => route('nosotros').'#historia', 'title' => __('Nuestra Historia')],
+        ['href' => route('nosotros').'#equipo', 'title' => __('Nuestro Equipo')],
+        ['href' => route('nosotros').'#instituto', 'title' => __('Nuestro Entorno')],
     ];
 
     $flyouts = [
@@ -62,7 +68,13 @@
                         <a class="nav-item" href="{{ route('eventos.index') }}">{{ __('Eventos') }}</a>
                     </li>
                     <li>
-                        <a class="nav-item" href="{{ route('nosotros') }}">{{ __('Nosotros') }}</a>
+                        <button type="button" class="nav-item" data-flyout="nosotros" aria-expanded="false" aria-haspopup="true">
+                            {{ __('Nosotros') }}
+                            {!! $chevron !!}
+                        </button>
+                        <div class="nav-accordion" data-accordion="nosotros">
+                            <div class="nav-accordion__inner"></div>
+                        </div>
                     </li>
                 </ul>
 
@@ -119,7 +131,7 @@
                             </div>
                         </div>
 
-                        @foreach (['becas' => $scholarships, 'otros-servicios' => $services] as $key => $items)
+                        @foreach (['becas' => $scholarships, 'otros-servicios' => $services, 'nosotros' => $about] as $key => $items)
                             <div class="nav-flyout__panel nav-flyout__panel--simple" data-panel="{{ $key }}">
                                 <div class="nav-dropdown__inner">
                                     <span class="nav-dropdown__pill" aria-hidden="true"></span>

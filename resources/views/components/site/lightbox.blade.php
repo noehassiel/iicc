@@ -7,7 +7,7 @@
             x-show="group !== null"
             x-cloak
             x-transition.opacity.duration.250ms
-            class="fixed inset-0 z-60 flex flex-col items-center justify-center bg-neutral-950/90 p-4 backdrop-blur-sm sm:p-10"
+            class="fixed inset-0 z-60 flex flex-col items-center justify-center bg-neutral-950/90 p-4 pb-24 backdrop-blur-sm sm:p-10"
             x-on:click.self="close()"
             x-on:keydown.arrow-right.window="group !== null && step(1)"
             x-on:keydown.arrow-left.window="group !== null && step(-1)"
@@ -21,7 +21,7 @@
                         x-bind:key="gallery[group][index].src"
                         x-bind:src="gallery[group][index].src"
                         x-bind:alt="gallery[group][index].alt"
-                        class="max-h-[78svh] w-auto rounded-2xl object-contain"
+                        class="max-h-[68svh] w-auto rounded-2xl object-contain sm:max-h-[78svh]"
                     >
                     <figcaption class="mt-4 text-center text-white">
                         <span class="block text-base font-medium sm:text-lg" x-text="gallery[group][index].alt"></span>
@@ -35,10 +35,10 @@
             </button>
             <template x-if="group !== null && gallery[group].length > 1">
                 <div>
-                    <button type="button" x-on:click="step(-1)" class="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-95 sm:left-6" aria-label="{{ __('Anterior') }}">
+                    <button type="button" x-on:click="step(-1)" class="absolute bottom-6 left-[calc(50%-4rem)] grid size-12 cursor-pointer place-items-center rounded-full bg-white/20 text-white transition hover:bg-white/30 active:scale-95 sm:top-1/2 sm:bottom-auto sm:left-6 sm:size-11 sm:-translate-y-1/2 sm:bg-white/10" aria-label="{{ __('Anterior') }}">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true" class="rotate-180"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
                     </button>
-                    <button type="button" x-on:click="step(1)" class="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-95 sm:right-6" aria-label="{{ __('Siguiente') }}">
+                    <button type="button" x-on:click="step(1)" class="absolute right-[calc(50%-4rem)] bottom-6 grid size-12 cursor-pointer place-items-center rounded-full bg-white/20 text-white transition hover:bg-white/30 active:scale-95 sm:top-1/2 sm:right-6 sm:bottom-auto sm:size-11 sm:-translate-y-1/2 sm:bg-white/10" aria-label="{{ __('Siguiente') }}">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" aria-hidden="true"><path d="M1.41406 13.4141L7.41406 7.41406L1.41406 1.41406" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" /></svg>
                     </button>
                 </div>

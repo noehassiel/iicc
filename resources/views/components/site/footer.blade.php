@@ -55,7 +55,14 @@
                     <h3 class="{{ $label }}">{{ __('Horario de atención') }}</h3>
                     <p class="mt-4 leading-relaxed lg:whitespace-nowrap">{{ __('Lunes a Viernes de 09:30 a 17:30') }}</p>
                     <p class="leading-relaxed lg:whitespace-nowrap">{{ __('Sábados de 09:30 a 17:30') }}</p>
-                    <a href="https://wa.me/{{ config('site.whatsapp') }}" target="_blank" rel="noopener" class="{{ $link }} mt-2.5 inline-block tabular-nums">{{ config('site.whatsapp_display') }}</a>
+                    <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.wa class="size-4 text-[#25D366]" />WhatsApp</p>
+                    <a href="https://wa.me/{{ config('site.whatsapp') }}" target="_blank" rel="noopener" class="{{ $link }} mt-1 block tabular-nums">{{ config('site.whatsapp_display') }}</a>
+                    <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.phone class="size-4" />{{ __('Teléfono') }}</p>
+                    @foreach (config('site.phones') as $phone)
+                        <a href="tel:{{ $phone['tel'] }}" class="{{ $link }} mt-1 block tabular-nums">{{ $phone['display'] }}</a>
+                    @endforeach
+                    <p class="mt-4 inline-flex items-center gap-2 {{ $label }}"><x-site.icon.mail class="size-4" />{{ __('Correo electrónico') }}</p>
+                    <a href="mailto:{{ config('site.email') }}" class="{{ $link }} mt-1 block">{{ config('site.email') }}</a>
                 </div>
 
                 <div>
