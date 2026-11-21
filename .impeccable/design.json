@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T00:00:00Z",
+  "title": "Design System: IICC",
+  "extensions": {
+    "colorMeta": {
+      "patio-blue": { "role": "primary", "displayName": "Patio Blue", "canonical": "#1f4e8c", "tonalRamp": ["oklch(15% 0.05 258)", "oklch(27% 0.09 258)", "oklch(40% 0.12 258)", "oklch(52% 0.12 258)", "oklch(64% 0.1 258)", "oklch(76% 0.07 258)", "oklch(87% 0.04 258)", "oklch(95% 0.015 258)"] },
+      "patio-blue-deep": { "role": "primary", "displayName": "Deep Patio Blue", "canonical": "#163a6b", "tonalRamp": ["oklch(15% 0.045 258)", "oklch(25% 0.08 258)", "oklch(35% 0.1 258)", "oklch(47% 0.1 258)", "oklch(60% 0.085 258)", "oklch(73% 0.06 258)", "oklch(86% 0.035 258)", "oklch(95% 0.012 258)"] },
+      "patio-blue-soft": { "role": "primary", "displayName": "Soft Patio Blue", "canonical": "#4a78b5", "tonalRamp": ["oklch(15% 0.04 255)", "oklch(28% 0.07 255)", "oklch(42% 0.1 255)", "oklch(57% 0.11 255)", "oklch(68% 0.09 255)", "oklch(79% 0.065 255)", "oklch(89% 0.035 255)", "oklch(95% 0.015 255)"] },
+      "bamboo-green": { "role": "secondary", "displayName": "Bamboo Green", "canonical": "#7ab648", "tonalRamp": ["oklch(15% 0.04 135)", "oklch(28% 0.08 135)", "oklch(42% 0.12 135)", "oklch(56% 0.15 135)", "oklch(71% 0.16 135)", "oklch(82% 0.12 135)", "oklch(91% 0.07 135)", "oklch(96% 0.03 135)"] },
+      "lantern-orange": { "role": "tertiary", "displayName": "Lantern Orange", "canonical": "#f0a35c", "tonalRamp": ["oklch(15% 0.03 65)", "oklch(30% 0.06 65)", "oklch(45% 0.09 65)", "oklch(60% 0.12 65)", "oklch(77% 0.12 65)", "oklch(85% 0.09 65)", "oklch(92% 0.05 65)", "oklch(96% 0.025 65)"] },
+      "nav-ink": { "role": "neutral", "displayName": "Nav Ink", "canonical": "#0f213d", "tonalRamp": ["oklch(15% 0.03 260)", "oklch(25% 0.05 260)", "oklch(38% 0.05 260)", "oklch(52% 0.04 260)", "oklch(66% 0.03 260)", "oklch(79% 0.02 260)", "oklch(89% 0.012 260)", "oklch(95% 0.006 260)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#171717", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#f5f5f5"] },
+      "ink-muted": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#525252", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#f5f5f5"] },
+      "ink-subtle": { "role": "neutral", "displayName": "Subtle Ink", "canonical": "#737373", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#f5f5f5"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#e5e5e5", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#f5f5f5"] },
+      "surface-sunken": { "role": "neutral", "displayName": "Sunken Surface", "canonical": "#f5f5f5", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#f5f5f5"] },
+      "surface-alt": { "role": "neutral", "displayName": "Alternate Surface", "canonical": "#fafafa", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#fafafa"] },
+      "surface": { "role": "neutral", "displayName": "Surface", "canonical": "#ffffff", "tonalRamp": ["#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The home hero headline only. 44px on phones." },
+      "headline": { "displayName": "Headline", "purpose": "Each inner page's h1. 1.875rem on phones, 3rem from sm." },
+      "title": { "displayName": "Title", "purpose": "Card and subsection headings." },
+      "body": { "displayName": "Body", "purpose": "Running text in Muted Ink; lead paragraphs step up to 1.125rem." },
+      "label": { "displayName": "Label", "purpose": "Uppercase Patio Blue eyebrow above section headings." }
+    },
+    "shadows": [
+      { "name": "floating-shell", "value": "0px 4px 4px 0px hsla(0, 0%, 0%, 0.039), 0px 0px 1px 0px hsla(0, 0%, 0%, 0.62)", "purpose": "Navigation pill and its flyout." },
+      { "name": "raised-card", "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)", "purpose": "White cards on the alternate surface." }
+    ],
+    "motion": [
+      { "name": "ease-out-quad", "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)", "purpose": "Page transition fade and blur (0.5s); small opacity changes in the nav." },
+      { "name": "ease-out-cubic", "value": "cubic-bezier(0.215, 0.61, 0.355, 1)", "purpose": "Navigation transforms (500 to 600ms)." },
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.19, 1, 0.22, 1)", "purpose": "Review carousel slide changes (400 to 500ms)." },
+      { "name": "accordion-open", "value": "700ms, spring-like linear() curve", "purpose": "Accordion expand and collapse." },
+      { "name": "nav-flyout", "value": "0.5s, spring-like linear() curve", "purpose": "Navigation flyout and mobile accordion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "hero", "value": "700px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "nav-collapse", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "WhatsApp Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Green capsule with a travelling arrow tab; every WhatsApp call to action.",
+      "html": "<a class=\"ds-btn-wa\" href=\"#\"><span class=\"ds-btn-wa-label\">Comienza ahora</span><span class=\"ds-btn-wa-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\" fill=\"none\"><path d=\"M3 13 13 3M3 3h10v10\"></path></svg></span></a>",
+      "css": ".ds-btn-wa { display: inline-flex; align-items: center; gap: 4px; color: #fff; font: 600 16px 'Instrument Sans', system-ui, sans-serif; text-decoration: none; } .ds-btn-wa-label { display: inline-flex; align-items: center; height: 40px; padding: 0 24px; border-radius: 999px; background: var(--color-brand-green, #7ab648); white-space: nowrap; } .ds-btn-wa-arrow { display: grid; place-items: center; width: 40px; height: 40px; margin-left: -8px; border-radius: 999px; background: var(--color-brand-green, #7ab648); transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1); } .ds-btn-wa-arrow svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.8px; } .ds-btn-wa:hover .ds-btn-wa-arrow { transform: translateX(8px); } .ds-btn-wa:focus-visible { outline: 2px solid var(--color-brand-blue, #1f4e8c); outline-offset: 2px; border-radius: 999px; }"
+    },
+    {
+      "name": "Nav Contact Button",
+      "kind": "button",
+      "refersTo": "button-nav-contact",
+      "description": "Small blue pill at the right of the header.",
+      "html": "<a class=\"ds-btn-contact\" href=\"#\">Contacto</a>",
+      "css": ".ds-btn-contact { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; background: var(--color-brand-blue, #1f4e8c); color: #fff; font: 400 14px 'Instrument Sans', system-ui, sans-serif; text-decoration: none; transition: opacity 0.3s ease-out; } .ds-btn-contact:hover { opacity: 0.8; } .ds-btn-contact:focus-visible { outline: 2px solid var(--color-brand-blue, #1f4e8c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation Pill",
+      "kind": "nav",
+      "description": "Floating translucent header shell with blur and a fine edge shadow.",
+      "html": "<nav class=\"ds-nav\"><strong class=\"ds-nav-logo\">IICC</strong><span class=\"ds-nav-links\"><a href=\"#\">Inicio</a><a href=\"#\">Cursos</a><a href=\"#\">Eventos</a><a href=\"#\">Nosotros</a></span><a class=\"ds-nav-cta\" href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 8px 12px 8px 20px; border-radius: 9999px; background: rgba(255, 255, 255, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.039), 0px 0px 1px 0px hsla(0, 0%, 0%, 0.62); color: #0f213d; font: 400 15px 'Instrument Sans', system-ui, sans-serif; } .ds-nav-logo { font-weight: 600; } .ds-nav-links { display: flex; gap: 20px; } .ds-nav a { color: inherit; text-decoration: none; transition: opacity 150ms ease; } .ds-nav-links a:hover { opacity: 0.6; } .ds-nav a:focus-visible { outline: 2px solid var(--color-brand-blue, #1f4e8c); outline-offset: 2px; border-radius: 4px; } .ds-nav .ds-nav-cta { padding: 4px 12px; border-radius: 9999px; background: var(--color-brand-blue, #1f4e8c); color: #fff; font-size: 14px; } .ds-nav .ds-nav-cta:hover { opacity: 0.8; }"
+    },
+    {
+      "name": "Language Toggle",
+      "kind": "chip",
+      "refersTo": "locale-toggle-active",
+      "description": "Pill group switching Spanish and Traditional Chinese.",
+      "html": "<div class=\"ds-locale\" role=\"group\"><a class=\"ds-locale-on\" href=\"#\">ES</a><a class=\"ds-locale-off\" href=\"#\">繁中</a></div>",
+      "css": ".ds-locale { display: inline-flex; align-items: center; padding: 2px; border: 1px solid rgb(23 23 23 / 0.15); border-radius: 9999px; font: 600 12px 'Instrument Sans', system-ui, sans-serif; } .ds-locale a { padding: 4px 10px; border-radius: 9999px; text-decoration: none; transition: color 150ms ease; } .ds-locale-on { background: var(--color-brand-blue, #1f4e8c); color: #fff; } .ds-locale-off { color: #737373; } .ds-locale-off:hover { color: #171717; } .ds-locale a:focus-visible { outline: 2px solid var(--color-brand-blue, #1f4e8c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Anchor Chip",
+      "kind": "chip",
+      "refersTo": "chip-anchor",
+      "description": "Outlined pill on blue bands that jumps to a section of the page.",
+      "html": "<div class=\"ds-chip-band\"><a class=\"ds-chip\" href=\"#\">Actividades Culturales</a><a class=\"ds-chip\" href=\"#\">Nuestra Huella</a></div>",
+      "css": ".ds-chip-band { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px; background: var(--color-brand-blue, #1f4e8c); border-radius: 16px; } .ds-chip { padding: 8px 16px; border: 1px solid rgb(255 255 255 / 0.4); border-radius: 9999px; color: #fff; font: 500 14px 'Instrument Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.2s ease; } .ds-chip:hover { background: rgb(255 255 255 / 0.1); } .ds-chip:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Raised Card",
+      "kind": "card",
+      "refersTo": "card-raised",
+      "description": "White card on the alternate surface; course overviews.",
+      "html": "<article class=\"ds-card\"><h3>Niños</h3><p class=\"ds-card-meta\">6 – 11 años</p><p class=\"ds-card-body\">Enfoque: aprendizaje lúdico en grupos reducidos.</p><a href=\"#\">Lee más →</a></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; max-width: 320px; padding: 24px; border-radius: 16px; background: #fff; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); color: #171717; font-family: 'Instrument Sans', system-ui, sans-serif; } .ds-card h3 { margin: 0; font-size: 20px; font-weight: 600; } .ds-card-meta { margin: 0; font-size: 14px; font-weight: 500; color: var(--color-brand-blue, #1f4e8c); } .ds-card-body { margin: 12px 0 0; color: #525252; } .ds-card a { margin-top: 16px; font-weight: 600; color: var(--color-brand-blue, #1f4e8c); text-decoration: none; } .ds-card a:hover { text-decoration: underline; } .ds-card a:focus-visible { outline: 2px solid var(--color-brand-blue, #1f4e8c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outlined Card and Tinted Note",
+      "kind": "card",
+      "refersTo": "card-outlined",
+      "description": "Bordered detail block and the blue-tinted side note that follows it.",
+      "html": "<div class=\"ds-detail\"><div class=\"ds-outlined\"><p class=\"ds-detail-title\">Material: Chino Tradicional</p><p>Easy Chinese y material personalizado.</p></div><div class=\"ds-tinted\"><p class=\"ds-detail-title\">Ruta escolar PEP</p><p>Más informes en recepción.</p></div></div>",
+      "css": ".ds-detail { display: grid; gap: 16px; max-width: 360px; font-family: 'Instrument Sans', system-ui, sans-serif; color: #525252; } .ds-detail p { margin: 0; } .ds-detail-title { margin-bottom: 8px !important; font-weight: 600; color: #171717; } .ds-outlined { padding: 24px; border: 1px solid #e5e5e5; border-radius: 16px; background: #fff; } .ds-tinted { padding: 24px; border-radius: 16px; background: rgb(31 78 140 / 0.05); }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "description": "Uppercase blue eyebrow over a semibold section title.",
+      "html": "<div class=\"ds-heading\"><p>Cursos</p><h2>Cursos por edades</h2></div>",
+      "css": ".ds-heading { max-width: 42rem; font-family: 'Instrument Sans', system-ui, sans-serif; } .ds-heading p { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-brand-blue, #1f4e8c); } .ds-heading h2 { margin: 8px 0 0; font-size: 30px; font-weight: 600; line-height: 1.2; color: #171717; text-wrap: balance; }"
+    },
+    {
+      "name": "Accordion Item",
+      "kind": "custom",
+      "refersTo": "accordion-item",
+      "description": "Sunken question row with optional orange numeral and a plus mark.",
+      "html": "<div class=\"ds-acc\"><span><span class=\"ds-acc-num\">01.</span> ¿Desde qué edad pueden inscribirse?</span><span class=\"ds-acc-icon\" aria-hidden=\"true\">+</span></div>",
+      "css": ".ds-acc { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 480px; padding: 16px 24px; border-radius: 12px; background: #f5f5f5; color: #171717; font: 500 17px 'Instrument Sans', system-ui, sans-serif; cursor: pointer; transition: background-color 0.2s ease; } .ds-acc:hover { background: #ededed; } .ds-acc-num { color: var(--color-brand-orange, #f0a35c); } .ds-acc-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px; background: #fff; transition: transform 700ms cubic-bezier(0.19, 1, 0.22, 1); } .ds-acc:hover .ds-acc-icon { transform: rotate(90deg); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Patio Abierto",
+    "overview": "The site behaves like the institute's open courtyard: bright white ground, generous air between things, rounded friendly surfaces, and motion as the life happening in it. Client photography is low quality, so the pages do not lean on images. Shape, color, large type and movement carry them instead.\n\nSurfaces are lifted and tactile. The navigation is a translucent, blurred pill that floats above the page; cards sit a step above their ground; the WhatsApp button is a physical green capsule whose arrow slides. Layers should feel like things you could pick up, not flat regions of a grid. Today this is strongest in the header and the animated set pieces (hero, stacked service cards, review carousel, cylindrical event carousel) and lightest on the inner pages, which still use a single faint card shadow.\n\nChinese is always Traditional and always set in a Kai (brush-style) face, sitting beside the Latin sans rather than replacing it. Large Kai characters also appear as graphic elements.",
+    "keyCharacteristics": [
+      "White ground, three brand colors, neutral grays for everything else.",
+      "One typeface in one working weight (semibold) for all headings.",
+      "Rounded everywhere: 16px corners on surfaces, full pills on anything clickable.",
+      "Floating layers: translucency, blur and soft shadow mark what sits above the page.",
+      "Motion is part of the system, with reduced-motion fallbacks.",
+      "Mobile-first."
+    ],
+    "rules": [
+      { "name": "The Green Means WhatsApp Rule", "body": "Bamboo Green fills a button only when that button opens WhatsApp or is the hero's primary action. It is never a decorative fill.", "section": "colors" },
+      { "name": "The Provisional Footer Note", "body": "The footer currently uses its own warm paper and ink tones and oversized type. It is still being worked out. Those colors are not system tokens and must not be reused elsewhere until the footer is settled.", "section": "colors" },
+      { "name": "The One Weight Rule", "body": "Headings are semibold (600). Medium (500) is for small secondary emphasis. Bold, black and light are not used.", "section": "typography" },
+      { "name": "The Traditional Kai Rule", "body": "Chinese text is Traditional, tagged `lang=\"zh-Hant\"`, and rendered in the Kai stack. Never Simplified, never a sans CJK face.", "section": "typography" },
+      { "name": "The Floating Layer Rule", "body": "Anything fixed or overlaid (header, flyout, gallery lightbox) is translucent or shadowed so the page reads through or beneath it. It never sits as an opaque flat bar.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set Chinese in the Kai stack with `lang=\"zh-Hant\"`, and keep it Traditional.",
+      "Do use the green WhatsApp button for every WhatsApp call to action.",
+      "Do round surfaces at 16px and make every standalone control a full pill.",
+      "Do alternate sections between Surface and Alternate Surface instead of drawing divider lines.",
+      "Do give floating and overlaid layers translucency, blur or the Floating shell shadow.",
+      "Do design at phone width first and keep the 16px gutter.",
+      "Do provide a `prefers-reduced-motion` fallback for every animation, as the navigation does.",
+      "Do use the logo exactly as the client delivered it."
+    ],
+    "donts": [
+      "Don't use Simplified Chinese or a sans CJK face.",
+      "Don't use Flux or any UI component library on the public site; it is plain Tailwind v4 plus Alpine.",
+      "Don't use Bamboo Green as a decorative fill.",
+      "Don't reuse the footer's warm paper and ink colors elsewhere while the footer is provisional.",
+      "Don't introduce heading weights other than semibold.",
+      "Don't depend on client photos to carry a section; they are low quality."
+    ]
+  }
+}
