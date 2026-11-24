@@ -40,7 +40,7 @@
         [
             __('Asesoría Inicial'),
             __(
-                'Evaluamos tu nivel actual de chino, definimos juntos tu objetivo (Taiwán o China Continental) y trazamos tu calendario de preparación ideal.',
+                'Evaluamos tu nivel actual de chino mandarín, definimos juntos tu objetivo (Taiwán o China Continental) y trazamos tu calendario de preparación ideal.',
             ),
         ],
         [
@@ -65,9 +65,9 @@
 
     $faqs = [
         [
-            __('¿Puedo postular a la Beca Huayu si apenas inicio en chino?'),
+            __('¿Puedo postular a la Beca Huayu si apenas inicio en chino mandarín?'),
             __(
-                'Sí. La beca está diseñada para aprender chino en Taiwán y preparar allá tu TOCFL. Solo ten en cuenta que el certificado oficial de inglés (mín. B1) sí es obligatorio.',
+                'Sí. La beca está diseñada para aprender chino mandarín en Taiwán y preparar allá tu TOCFL. Solo ten en cuenta que el certificado oficial de inglés (mín. B1) sí es obligatorio.',
             ),
         ],
         [
@@ -77,7 +77,7 @@
             ),
         ],
         [
-            __('¿Qué diferencia hay entre estudiar chino en Taiwán o en China Continental?'),
+            __('¿Qué diferencia hay entre estudiar chino mandarín en Taiwán o en China Continental?'),
             __(
                 'La principal diferencia es el sistema de escritura: en Taiwán se emplean los caracteres tradicionales, mientras que en China Continental se utilizan los caracteres simplificados. En el IICC te enseñamos el sistema que mejor se adapte a tus objetivos.',
             ),
@@ -114,7 +114,11 @@
     <section class="px-4 py-16 sm:py-24">
         <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1fr_20rem] md:items-center lg:grid-cols-[1fr_24rem]">
             <div>
-                <h1 class="text-4xl font-semibold text-balance sm:text-5xl">{{ __('Impulsa tu futuro con nuestras') }}
+                <h1 class="text-4xl font-semibold text-balance sm:text-5xl">@if (app()->getLocale() === 'zh_TW')
+                    <span class="text-brand-blue">獎學金計畫</span>｜從 IICC 起步，
+                @else
+                    {{ __('Impulsa tu futuro con nuestras') }}
+                @endif
                     <span class="text-brand-blue">{{ __('BECAS') }}</span></h1>
                 <p class="mt-4 max-w-2xl text-lg text-pretty text-neutral-600">
                     {{ __('Premiamos tu esfuerzo académico y te abrimos las puertas a oportunidades de estudio en Taiwán y China Continental.') }}
@@ -155,7 +159,7 @@
                     </p>
                     <p class="mt-4 font-medium">{{ __('Te apoyamos con:') }}</p>
                     <ul class="mt-2 list-disc space-y-1 pl-5 text-neutral-600">
-                        <li>{{ __('Cursos intensivos de chino.') }}</li>
+                        <li>{{ __('Cursos intensivos de chino mandarín.') }}</li>
                         <li>{{ __('Información de convocatorias.') }}</li>
                         <li>{{ __('Cartas de recomendación académica.') }}</li>
                     </ul>

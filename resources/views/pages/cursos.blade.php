@@ -68,7 +68,7 @@
      * @var array<string, array{folder: string, alt: string, shots: list<array{0: int, 1: bool}>}> $photoSets
      */
     $photoSets = [
-        'ninos' => ['folder' => 'Claseninos', 'alt' => __('Clase de chino para niños en el IICC'), 'shots' => [[5, false], [2, false], [6, false], [3, false], [4, false], [1, true]]],
+        'ninos' => ['folder' => 'Claseninos', 'alt' => __('Clase de chino para niños en el IICC'), 'shots' => [[5, false], [4, false], [2, false], [6, false], [3, false], [1, true]]],
         'adolescentes' => ['folder' => 'Claseadolescente', 'alt' => __('Clase de chino para adolescentes en el IICC'), 'shots' => [[3, false], [2, false], [4, false], [5, false], [1, true]]],
         'adultos' => ['folder' => 'Claseadultos', 'alt' => __('Clase de chino para adultos en el IICC'), 'shots' => [[2, false], [3, false], [1, false], [4, true]]],
         'grupal' => ['folder' => 'Clasegrupal', 'alt' => __('Clase grupal de chino en el IICC'), 'shots' => [[3, false], [2, false], [1, true]]],
@@ -84,9 +84,9 @@
         ], $set['shots']))
         ->all();
 
-    $ageCovers = ['ninos' => $gallery['ninos'][1], 'adolescentes' => $gallery['adolescentes'][2], 'adultos' => $gallery['adultos'][0]];
+    $ageCovers = ['ninos' => $gallery['ninos'][2], 'adolescentes' => $gallery['adolescentes'][2], 'adultos' => $gallery['adultos'][0]];
 
-    $heroDeck = [$gallery['ninos'][2], $gallery['adolescentes'][1], $gallery['adultos'][1], $gallery['grupal'][0]];
+    $heroDeck = [$gallery['ninos'][3], $gallery['adolescentes'][1], $gallery['adultos'][1], $gallery['grupal'][0]];
 @endphp
 
 <x-layouts.site title="Cursos">
@@ -108,7 +108,7 @@
     <section class="overflow-x-clip px-4 py-12 sm:py-20">
         <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-                <h1 class="text-3xl font-semibold text-balance sm:text-5xl">{{ __('Aprender chino en IICC') }}</h1>
+                <h1 class="text-3xl font-semibold text-balance sm:text-5xl">{{ __('Aprender chino mandarín en IICC') }}</h1>
                 <p class="mt-4 text-lg text-neutral-600">
                     {{ __('Tenemos más de 20 años de experiencia en la enseñanza de chino mandarín, y ofrecemos varios servicios de cursos para ti.') }}
                 </p>
@@ -212,7 +212,7 @@
                         <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-600">
                             <li>{{ __('Dirigido a los niños taiwaneses o interesados en caracteres tradicionales.') }}
                             </li>
-                            <li>Bopomofo (<span lang="zh-Hant">ㄅㄆㄇ數來寶</span>), Living Mandarin,
+                            <li>Bopomofo (<span lang="zh-Hant">ㄅㄆㄇ數來寶</span>), {{ __('Living Mandarin') }},
                                 {{ __('Material personalizado') }}</li>
                         </ul>
                     </div>

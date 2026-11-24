@@ -48,6 +48,12 @@ html:lang(zh-TW) {
     --text-lg--line-height: 1.6;
     --text-xl: 1.5rem;
     --text-xl--line-height: 1.5;
+    /* Stacked Chinese headings read cramped at the Latin line-heights (1–1.2). */
+    --text-2xl--line-height: 1.45;
+    --text-3xl--line-height: 1.4;
+    --text-4xl--line-height: 1.4;
+    --text-5xl--line-height: 1.4;
+    --text-6xl--line-height: 1.35;
 }
 
 html:lang(zh-TW) body {
