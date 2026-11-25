@@ -1,0 +1,134 @@
+/*
+ * Closing CTA card: a brand-blue field with soft color masses drifting on long, offset loops,
+ * finished with a film grain. Lighter blues stay at the edges so the centered white copy keeps its contrast.
+ */
+.cta-gradient {
+  position: relative;
+  isolation: isolate;
+  /* overflow: clip ignores the radius on iOS Safari once children animate or blend; hidden plus the mask keeps the corners rounded. */
+  overflow: hidden;
+  border-radius: 24px;
+  background: #1f4e8c;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+@supports (corner-shape: superellipse(1.2)) {
+  .cta-gradient {
+    corner-shape: superellipse(1.2);
+  }
+}
+
+.cta-gradient-field {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  background: linear-gradient(120deg, #1a4278 0%, #1f4e8c 40%, #3264a8 100%);
+}
+
+.cta-gradient-blob {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.cta-gradient-blob-deep {
+  left: -20%;
+  bottom: -45%;
+  width: 70%;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgb(15 33 61 / 0.75), rgb(15 33 61 / 0));
+  animation: cta-drift-deep 26s ease-in-out infinite alternate;
+}
+
+.cta-gradient-blob-soft {
+  left: 20%;
+  top: -60%;
+  width: 75%;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgb(90 140 205 / 0.75), rgb(90 140 205 / 0));
+  animation: cta-drift-soft 32s ease-in-out infinite alternate;
+}
+
+.cta-gradient-blob-light {
+  right: -25%;
+  top: -35%;
+  width: 60%;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgb(170 200 240 / 0.85), rgb(170 200 240 / 0));
+  animation: cta-drift-light 22s ease-in-out infinite alternate;
+}
+
+.cta-gradient-grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.6 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lantern tone: warm orange field with ink copy (white on orange fails contrast). */
+.cta-gradient[data-tone='orange'] {
+  background: #f0a35c;
+}
+
+.cta-gradient[data-tone='orange'] .cta-gradient-field {
+  background: linear-gradient(120deg, #eb9448 0%, #f0a35c 45%, #f5b97c 100%);
+}
+
+.cta-gradient[data-tone='orange'] .cta-gradient-blob-deep {
+  background: radial-gradient(closest-side, rgb(214 112 46 / 0.6), rgb(214 112 46 / 0));
+}
+
+.cta-gradient[data-tone='orange'] .cta-gradient-blob-soft {
+  background: radial-gradient(closest-side, rgb(246 178 112 / 0.75), rgb(246 178 112 / 0));
+}
+
+.cta-gradient[data-tone='orange'] .cta-gradient-blob-light {
+  background: radial-gradient(closest-side, rgb(255 226 190 / 0.9), rgb(255 226 190 / 0));
+}
+
+.cta-gradient[data-tone='orange'] .cta-gradient-grain {
+  opacity: 0.3;
+}
+
+/* Dusk tone: the brand blue with a lantern-orange glow in one corner, echoing the hero fallback. */
+.cta-gradient[data-tone='dusk'] .cta-gradient-field {
+  background: linear-gradient(120deg, #1f4e8c 0%, #26579a 55%, #2f5f9e 100%);
+}
+
+.cta-gradient[data-tone='dusk'] .cta-gradient-blob-deep {
+  background: radial-gradient(closest-side, rgb(22 58 107 / 0.8), rgb(22 58 107 / 0));
+}
+
+.cta-gradient[data-tone='dusk'] .cta-gradient-blob-light {
+  background: radial-gradient(closest-side, rgb(240 163 92 / 0.85), rgb(240 163 92 / 0));
+  mix-blend-mode: screen;
+}
+
+@keyframes cta-drift-deep {
+  to {
+    transform: translate3d(35%, -15%, 0) scale(1.15);
+  }
+}
+
+@keyframes cta-drift-soft {
+  to {
+    transform: translate3d(-30%, 20%, 0) scale(0.9);
+  }
+}
+
+@keyframes cta-drift-light {
+  to {
+    transform: translate3d(-20%, 45%, 0) scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-gradient-blob {
+    animation: none;
+  }
+}

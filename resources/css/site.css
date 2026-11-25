@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@import './navigation-01.css';
+@import './button-06.css';
+@import './accordion-01.css';
+@import './testimonial-05.css';
+@import './stacked-scroll-panel-2.css';
+@import './cylindrical-carousel.css';
+@import './hero-section-01.css';
+@import './cta-gradient.css';
+@import './course-photos.css';
+
+@source '../views/components/layouts/site.blade.php';
+@source '../views/components/site';
+@source '../views/pages';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-kai: 'IICC Kai', 'Kaiti TC', 'BiauKai', 'DFKai-SB', '標楷體', 'KaiTi', 'STKaiti', serif;
+
+    --color-brand-blue: #1f4e8c;
+    --color-brand-blue-deep: #163a6b;
+    --color-brand-blue-soft: #4a78b5;
+    --color-brand-green: #7ab648;
+    --color-brand-orange: #f0a35c;
+}
+
+/* Kai glyphs read small next to Latin text, so the system Kai fonts are scaled up. */
+@font-face {
+    font-family: 'IICC Kai';
+    src: local('Kaiti TC Regular'), local('STKaitiTC-Regular'), local('BiauKai'), local('DFKai-SB'), local('DFKaiShu-SB-Estd-BF'), local('KaiTi');
+    size-adjust: 118%;
+}
+
+:lang(zh-TW),
+:lang(zh-Hant) {
+    font-family: 'Instrument Sans', var(--font-kai);
+}
+
+/* Chinese pages use a 20px base: body text and the small text sizes grow; headings keep their own sizes. */
+html:lang(zh-TW) {
+    --text-xs: 0.875rem;
+    --text-xs--line-height: 1.6;
+    --text-sm: 1.125rem;
+    --text-sm--line-height: 1.6;
+    --text-base: 1.25rem;
+    --text-base--line-height: 1.6;
+    --text-lg: 1.375rem;
+    --text-lg--line-height: 1.6;
+    --text-xl: 1.5rem;
+    --text-xl--line-height: 1.5;
+    /* Stacked Chinese headings read cramped at the Latin line-heights (1–1.2). */
+    --text-2xl--line-height: 1.45;
+    --text-3xl--line-height: 1.4;
+    --text-4xl--line-height: 1.4;
+    --text-5xl--line-height: 1.4;
+    --text-6xl--line-height: 1.35;
+}
+
+html:lang(zh-TW) body {
+    font-size: var(--text-base);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+html.is-changing .transition-fade {
+    transition:
+        opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+    filter: blur(0);
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
+    filter: blur(7px);
+}
+
+.nf-number {
+  display: inline-block;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+  --number-flow-mask-height: 0.12em;
+  --number-flow-mask-width: 0.18em;
+}
+
+/* Footer wordmark: characters rise into place, driven by scroll as the footer enters the viewport. */
+.footer-wordmark span {
+    display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .footer-wordmark span {
+            animation: footer-character-rise linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+    }
+}
+
+@keyframes footer-character-rise {
+    from {
+        opacity: 0;
+        transform: translateY(calc(30% + var(--i) * 14%));
+    }
+}

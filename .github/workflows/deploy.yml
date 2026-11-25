@@ -1,0 +1,61 @@
+name: deploy
+
+# Builds the production bundle (vendor + compiled assets) and publishes it
+# to the `deploy` branch, which Plesk pulls through its Git extension.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          # Must match the server (Plesk: 8.4.x); composer.lock requires >= 8.4.1
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Build assets
+        run: |
+          npm ci
+          npm run build
+          rm -f public/hot
+
+      - name: Publish to deploy branch
+        run: |
+          rm -rf node_modules
+          # Ship built assets and vendor, which main's .gitignore excludes
+          sed -i -e '/^\/public\/build$/d' -e '/^\/vendor$/d' .gitignore
+          find vendor -name .git -type d -prune -exec rm -rf {} +
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan deploy-tmp
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA::7}"
+          git push --force origin deploy-tmp:deploy
