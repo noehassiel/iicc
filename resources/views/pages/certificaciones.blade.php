@@ -7,8 +7,8 @@
     ];
 
     $taiwanExams = [
-        ['logo' => 'cccc', 'name' => 'CCCC', 'detail' => 'Children’s Chinese Competency Certification', 'description' => __('Certificación estandarizada para niños no nativos o de origen chino.'), 'ages' => __('7 a 12 años.'), 'items' => [__('Comprensión auditiva y lectura.'), __('Niveles: Sprouting, Seedling, Blossoming.')]],
-        ['logo' => 'tocfl', 'name' => 'TOCFL', 'detail' => 'Test of Chinese as a Foreign Language', 'description' => __('Examen oficial estandarizado desarrollado por el Ministerio de Educación de Taiwán.'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Comprensión auditiva y lectura (principales).'), __('Expresión oral y escrita (opcionales).')]],
+        ['logo' => 'cccc', 'zh' => '兒童華語文能力測驗', 'name' => 'CCCC', 'detail' => 'Children’s Chinese Competency Certification', 'description' => __('Certificación estandarizada para niños no nativos o de origen chino.'), 'ages' => __('7 a 12 años.'), 'items' => [__('Comprensión auditiva y lectura.'), __('Niveles: Sprouting, Seedling, Blossoming.')]],
+        ['logo' => 'tocfl', 'zh' => '華語文能力測驗', 'name' => 'TOCFL', 'detail' => 'Test of Chinese as a Foreign Language', 'description' => __('Examen oficial estandarizado desarrollado por el Ministerio de Educación de Taiwán.'), 'ages' => __('A partir de 12 años.'), 'items' => [__('Comprensión auditiva y lectura (principales).'), __('Expresión oral y escrita (opcionales).')]],
     ];
 
     $faqs = [
@@ -94,6 +94,9 @@
                 @foreach ($taiwanExams as $exam)
                     <article class="rounded-2xl bg-white p-6 shadow-sm">
                         <img src="{{ asset('img/certificaciones/'.$exam['logo'].'.webp') }}" alt="{{ $exam['name'] }}" width="600" height="{{ $exam['logo'] === 'tocfl' ? 305 : 600 }}" loading="lazy" decoding="async" class="mb-4 h-40 w-full rounded-xl object-contain">
+                        @if (app()->getLocale() === 'zh_TW' && isset($exam['zh']))
+                            <p class="text-sm font-semibold text-brand-blue" lang="zh-Hant">{{ $exam['zh'] }}</p>
+                        @endif
                         <h3 class="text-xl font-semibold">{{ $exam['name'] }}</h3>
                         <p class="text-sm text-neutral-500">{{ $exam['detail'] }}</p>
                         <p class="mt-3 text-neutral-600">{{ $exam['description'] }}</p>
@@ -116,9 +119,9 @@
             <x-site.section-heading :eyebrow="__('IICC')">{{ __('Programa de Tutoría y Certificación de IICC') }}</x-site.section-heading>
             <p class="mt-4 text-neutral-600">{{ __('Más de 20 años de experiencia en México × Equipo de profesores especializados') }}</p>
             <div class="mt-8 grid gap-4 md:grid-cols-3">
-                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Profesores certificados') }}</span> {{ __('con dominio total de TOCFL y HSK.') }}</div>
-                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Pruebas 100% oficiales') }}</span> {{ __('para superar puntos débiles y maximizar tu puntaje.') }}</div>
-                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Clases alineadas al examen oficial:') }}</span> {{ __('aprende y certifícate a la vez.') }}</div>
+                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Profesores certificados') }}</span>{{ app()->getLocale() === 'zh_TW' ? '，' : ' ' }}{{ __('con dominio total de TOCFL y HSK.') }}</div>
+                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Pruebas 100% oficiales') }}</span>{{ app()->getLocale() === 'zh_TW' ? '，' : ' ' }}{{ __('para superar puntos débiles y maximizar tu puntaje.') }}</div>
+                <div class="rounded-2xl border p-6 text-neutral-600"><span class="font-semibold text-neutral-900">{{ __('Clases alineadas al examen oficial:') }}</span>{{ app()->getLocale() === 'zh_TW' ? '，' : ' ' }}{{ __('aprende y certifícate a la vez.') }}</div>
             </div>
             <p class="mt-8 text-neutral-600">{{ __('¿No estás seguro de qué nivel corresponde a tu hijo o a ti?') }}</p>
             <x-site.whatsapp-button class="mt-4" :message="__('Hola, quiero agendar un diagnóstico de nivel y asesoría gratuita.')">{{ __('Agendar diagnóstico de nivel y asesoría gratuita') }}</x-site.whatsapp-button>

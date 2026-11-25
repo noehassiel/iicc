@@ -86,7 +86,7 @@
     <section class="bg-brand-blue px-4 py-16 text-white">
         <div class="mx-auto max-w-7xl">
             <p class="text-sm font-semibold uppercase tracking-wider text-white/70">{{ __('Nosotros') }}</p>
-            <h1 class="mt-2 max-w-2xl text-3xl font-semibold text-balance sm:text-5xl">{{ __('Enseñando chino y tendiendo puentes culturales desde 2003') }}</h1>
+            <h1 class="mt-2 max-w-2xl text-3xl font-semibold text-balance sm:text-5xl">{{ __('Enseñando chino mandarín y tendiendo puentes culturales desde 2003') }}</h1>
 
             <nav class="mt-8 flex flex-wrap gap-3">
                 <a href="#historia" class="rounded-full bg-white px-5 py-2 font-semibold text-brand-blue">{{ __('Nuestra Historia') }}</a>

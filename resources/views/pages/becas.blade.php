@@ -119,7 +119,7 @@
                 @else
                     {{ __('Impulsa tu futuro con nuestras') }}
                 @endif
-                    <span class="text-brand-blue">{{ __('BECAS') }}</span></h1>
+                    <span @class(['text-brand-blue' => app()->getLocale() !== 'zh_TW'])>{{ __('BECAS') }}</span></h1>
                 <p class="mt-4 max-w-2xl text-lg text-pretty text-neutral-600">
                     {{ __('Premiamos tu esfuerzo académico y te abrimos las puertas a oportunidades de estudio en Taiwán y China Continental.') }}
                 </p>
@@ -135,7 +135,7 @@
     {{-- Overview --}}
     <section class="bg-neutral-50 px-4 py-16">
         <div class="mx-auto max-w-7xl">
-            <x-site.section-heading>{{ __('Becas para tu aprendizaje de chino') }}</x-site.section-heading>
+            <x-site.section-heading>{{ __('Becas para tu aprendizaje de chino mandarín') }}</x-site.section-heading>
 
             <div class="mt-8 grid gap-6 md:grid-cols-2">
                 <article class="rounded-2xl bg-white p-6 shadow-sm">

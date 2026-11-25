@@ -54,10 +54,10 @@
 
                     @foreach ($flyouts as $key => $label)
                         <li>
-                            <button type="button" class="nav-item" data-flyout="{{ $key }}" aria-expanded="false" aria-haspopup="true">
+                            <a class="nav-item" href="{{ route($key) }}" data-flyout="{{ $key }}" aria-expanded="false" aria-haspopup="true">
                                 {{ $label }}
                                 {!! $chevron !!}
-                            </button>
+                            </a>
                             <div class="nav-accordion" data-accordion="{{ $key }}">
                                 <div class="nav-accordion__inner"></div>
                             </div>
@@ -68,10 +68,10 @@
                         <a class="nav-item" href="{{ route('eventos.index') }}">{{ __('Eventos') }}</a>
                     </li>
                     <li>
-                        <button type="button" class="nav-item" data-flyout="nosotros" aria-expanded="false" aria-haspopup="true">
+                        <a class="nav-item" href="{{ route('nosotros') }}" data-flyout="nosotros" aria-expanded="false" aria-haspopup="true">
                             {{ __('Nosotros') }}
                             {!! $chevron !!}
-                        </button>
+                        </a>
                         <div class="nav-accordion" data-accordion="nosotros">
                             <div class="nav-accordion__inner"></div>
                         </div>
@@ -119,6 +119,7 @@
 
                         <div class="nav-flyout__panel nav-flyout__panel--featured" data-panel="certificaciones">
                             <div class="nav-dropdown__inner">
+                                <a class="nav-dropdown__item nav-view-all" href="{{ route('certificaciones') }}"><span class="nav-dropdown__title">{{ __('Ver todo') }}</span></a>
                                 @foreach ($certifications as $certification)
                                     <a class="nav-featured__card" href="{{ $certification['href'] }}">
                                         <span lang="zh-Hant" class="nav-featured__image nav-featured__image--glyph" style="background-color: {{ $certification['color'] }}@if (mb_strlen($certification['glyph']) > 2); font-size: 44px; padding-top: 54px @endif" aria-hidden="true">{{ $certification['glyph'] }}</span>
@@ -136,6 +137,7 @@
                                 <div class="nav-dropdown__inner">
                                     <span class="nav-dropdown__pill" aria-hidden="true"></span>
                                     <ul class="nav-dropdown__list">
+                                        <li class="nav-view-all"><a class="nav-dropdown__item" href="{{ route($key) }}"><span class="nav-dropdown__title">{{ __('Ver todo') }}</span></a></li>
                                         @foreach ($items as $item)
                                             <li><a class="nav-dropdown__item" href="{{ $item['href'] }}"><span class="nav-dropdown__title">{{ $item['title'] }}</span></a></li>
                                         @endforeach

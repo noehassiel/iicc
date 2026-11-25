@@ -489,17 +489,20 @@ export function navigation01(scope = document) {
     nav.addEventListener("click", (event) => {
       if (!isMobileNav()) return;
       const link = event.target.closest("a[href]");
-      if (link && nav.contains(link)) closeMobileNav();
+      // Top-level flyout triggers toggle their accordion on mobile instead of navigating.
+      if (link && nav.contains(link) && !link.hasAttribute("data-flyout")) closeMobileNav();
     });
 
-    const OPEN_KEYS = ["Enter", " ", "Spacebar", "ArrowDown"];
+    // Enter follows the trigger's link on desktop; Space and ArrowDown open its flyout.
+    const OPEN_KEYS = [" ", "Spacebar", "ArrowDown"];
     registry.forEach((_entry, trigger) => {
       trigger.addEventListener("pointerenter", () => {
         if (isMobileNav()) return;
         open(trigger);
       });
       trigger.addEventListener("keydown", (event) => {
-        if (!OPEN_KEYS.includes(event.key)) return;
+        const opens = OPEN_KEYS.includes(event.key) || (event.key === "Enter" && isMobileNav());
+        if (!opens) return;
         event.preventDefault();
         if (isMobileNav()) {
           toggleAccordion(trigger);

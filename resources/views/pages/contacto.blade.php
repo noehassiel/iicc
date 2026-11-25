@@ -3,7 +3,7 @@
     <section class="relative px-4 py-16 sm:py-24">
         <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
             <div>
-                <h1 class="text-4xl font-semibold text-balance sm:text-5xl">{{ __('Inicia tu camino en el chino con IICC') }}</h1>
+                <h1 class="text-4xl font-semibold text-balance sm:text-5xl">{{ __('Inicia tu camino en el chino mandarín con IICC') }}</h1>
                 <p class="mt-4 max-w-xl text-lg text-neutral-600">{{ __('Aprende chino, vive la cultura y conecta con el mundo. Estamos listos para acompañarte en cada paso.') }}</p>
                 <x-site.whatsapp-button class="mt-8" :message="__('Hola, quisiera información sobre los cursos de IICC.')">{{ __('¡Contáctanos por WhatsApp!') }}</x-site.whatsapp-button>
             </div>

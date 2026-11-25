@@ -894,3 +894,8 @@
       visibility 0s;
   }
 }
+
+/* "Ver todo" only exists in the mobile accordions, where the top-level item toggles instead of navigating. */
+.navigation-01 .nav-flyout__panel:not(.is-accordion) .nav-view-all {
+  display: none;
+}
