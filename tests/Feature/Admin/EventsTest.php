@@ -85,3 +85,25 @@ test('the events page lists events by section', function () {
 
     $this->get(route('eventos.index'))->assertOk()->assertSee('Taller de caligrafía');
 });
+
+test('gallery photo captions can be edited per language', function () {
+    $event = Event::factory()->create();
+    $photo = EventPhoto::factory()->for($event)->create(['caption_es' => null, 'caption_zh' => '舊的']);
+
+    Livewire::test(Form::class, ['event' => $event])
+        ->call('updateCaption', $photo->id, 'es', '  Taller de caligrafía ')
+        ->call('updateCaption', $photo->id, 'zh', '');
+
+    expect($photo->fresh())
+        ->caption_es->toBe('Taller de caligrafía')
+        ->caption_zh->toBeNull();
+});
+
+test('captions of photos from another event cannot be edited', function () {
+    $event = Event::factory()->create();
+    $foreign = EventPhoto::factory()->create();
+
+    Livewire::test(Form::class, ['event' => $event])
+        ->call('updateCaption', $foreign->id, 'es', 'Hola')
+        ->assertNotFound();
+});

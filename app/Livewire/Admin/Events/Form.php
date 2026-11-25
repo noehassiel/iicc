@@ -122,6 +122,22 @@ class Form extends Component
         $photos->each(fn (EventPhoto $item, int $position) => $item->update(['position' => $position]));
     }
 
+    /**
+     * Save one language of a gallery photo's caption; an empty value falls back to the event title on the site.
+     */
+    public function updateCaption(EventPhoto $photo, string $locale, string $caption): void
+    {
+        abort_unless($photo->event_id === $this->event?->id, 404);
+        abort_unless(in_array($locale, ['es', 'zh'], true), 422);
+
+        $caption = trim($caption);
+        validator(['caption' => $caption], ['caption' => ['max:255']])->validate();
+
+        $photo->update(["caption_{$locale}" => $caption === '' ? null : $caption]);
+
+        Flux::toast(variant: 'success', text: 'Pie de foto guardado.');
+    }
+
     public function deletePhoto(EventPhoto $photo): void
     {
         abort_unless($photo->event_id === $this->event?->id, 404);

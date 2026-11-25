@@ -56,11 +56,16 @@
         <flux:separator class="my-10" />
 
         <flux:heading size="lg">Galería ({{ $event->photos->count() }})</flux:heading>
+        <flux:text class="mt-1">Escribe el pie de cada foto y sal del campo para guardarlo. Si lo dejas vacío, se muestra el título del evento.</flux:text>
 
         <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             @forelse ($event->photos as $photo)
                 <div class="space-y-2" wire:key="photo-{{ $photo->id }}">
                     <img src="{{ $photo->url() }}" alt="" class="aspect-square w-full rounded-lg object-cover">
+                    <flux:input size="sm" placeholder="Pie de foto (español)" aria-label="Pie de foto en español" value="{{ $photo->caption_es }}" maxlength="255"
+                        x-on:change="$wire.updateCaption({{ $photo->id }}, 'es', $event.target.value)" />
+                    <flux:input size="sm" placeholder="Pie de foto (中文)" aria-label="Pie de foto en chino" value="{{ $photo->caption_zh }}" maxlength="255"
+                        x-on:change="$wire.updateCaption({{ $photo->id }}, 'zh', $event.target.value)" />
                     <div class="flex justify-between">
                         <div class="flex">
                             <flux:button size="xs" variant="ghost" icon="arrow-left" wire:click="movePhoto({{ $photo->id }}, -1)" :disabled="$loop->first" aria-label="Mover antes" />
